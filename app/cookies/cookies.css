@@ -1,0 +1,11 @@
+.cookie-policy-page .cookie-table-wrap { max-width: 100%; overflow-x: auto; margin: 16px 0 10px; border: 1px solid var(--privacy-line); border-radius: 9px; background: #fff; -webkit-overflow-scrolling: touch; }
+.cookie-policy-page .cookie-table { width: 100%; min-width: 600px; border-collapse: collapse; color: var(--privacy-ink); font-size: 13px; line-height: 1.55; text-align: left; }
+.cookie-policy-page .cookie-table th { padding: 12px 14px; color: var(--privacy-navy); background: #F5F5F5; font-family: "The Seasons", Georgia, serif; font-size: 14px; font-weight: 700; vertical-align: top; }
+.cookie-policy-page .cookie-table td { padding: 13px 14px; border-top: 1px solid var(--privacy-line); color: var(--privacy-ink); vertical-align: top; }
+.cookie-policy-page .cookie-table th:first-child, .cookie-policy-page .cookie-table td:first-child { width: 27%; }
+.cookie-policy-page .cookie-inventory-note { margin-top: 11px !important; padding: 12px 14px; border-left: 3px solid #b59c00; border-radius: 0 6px 6px 0; color: #344154 !important; background: #fffde9; font-size: 14px !important; line-height: 1.6 !important; }
+@media (max-width: 740px) {
+  .cookie-policy-page .cookie-table { font-size: 12px; }
+  .cookie-policy-page .cookie-table th { font-size: 13px; }
+  .cookie-policy-page .cookie-table th, .cookie-policy-page .cookie-table td { padding: 11px 12px; }
+}

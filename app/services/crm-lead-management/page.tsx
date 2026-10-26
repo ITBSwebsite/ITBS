@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CRMLeadManagementStyles } from '@/components/services/crm-lead-management-styles';
 import { CRMLeadManagementView } from '@/components/services/crm-lead-management-view';
 
 const title = 'CRM & Lead Management | Lead Routing and Automation | ITBS';
@@ -87,6 +88,7 @@ export default function CRMLeadManagementPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
       />
+      <CRMLeadManagementStyles />
       <CRMLeadManagementView faqItems={faqItems} />
     </>
   );

@@ -69,20 +69,27 @@ export function WhyChooseUsSection() {
   React.useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+
+    const items = root.querySelectorAll<HTMLElement>('[data-wcu-anim]');
+    if (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      typeof IntersectionObserver === 'undefined'
+    ) {
+      items.forEach((item) => item.classList.add('wcu-visible'));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('wcu-visible');
-          } else {
-            entry.target.classList.remove('wcu-visible');
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('wcu-visible');
+          observer.unobserve(entry.target);
         });
       },
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
     );
-    const els = root.querySelectorAll('[data-wcu-anim]');
-    els.forEach((el) => observer.observe(el));
+    items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
 
@@ -208,48 +215,25 @@ export function WhyChooseUsSection() {
           display: flex;
           flex-direction: column;
         }
-        .wcu-card-bracket {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 76px;
-          height: 76px;
-          border-top: 5px solid;
-          border-left: 5px solid;
-          border-top-left-radius: 20px;
-          pointer-events: none;
-          transition: all 0.35s ease;
-        }
-        .wcu-card--gold .wcu-card-bracket {
-          border-color: #EAB308;
-          box-shadow: -2px -2px 14px -2px rgba(234, 179, 8, 0.35);
-        }
-        .wcu-card--navy .wcu-card-bracket {
-          border-color: #111966;
-          box-shadow: -2px -2px 14px -2px rgba(17, 25, 102, 0.3);
-        }
+
+
+
         .wcu-card--gold:hover {
-          transform: none !important;
+          transform: translateY(-3px);
           color: #111966;
-          background: var(--brand-hover-yellow);
-          border-color: #EAB308;
-          box-shadow: 0 8px 24px rgba(234, 179, 8, 0.16), 0 2px 6px rgba(17, 25, 102, 0.04);
+          background: #FFF9AE;
+          border-color: rgba(17, 25, 102, 0.18);
+          box-shadow: 0 18px 40px rgba(17, 25, 102, 0.12);
         }
-        .wcu-card--gold:hover .wcu-card-bracket {
-          width: 96px;
-          height: 96px;
-        }
+
         .wcu-card--navy:hover {
-          transform: none !important;
+          transform: translateY(-3px);
           color: #111966;
-          background: var(--brand-hover-yellow);
-          border-color: rgba(17, 25, 102, 0.45);
-          box-shadow: 0 8px 24px rgba(17, 25, 102, 0.12), 0 2px 6px rgba(17, 25, 102, 0.04);
+          background: #FFF9AE;
+          border-color: rgba(17, 25, 102, 0.18);
+          box-shadow: 0 18px 40px rgba(17, 25, 102, 0.12);
         }
-        .wcu-card--navy:hover .wcu-card-bracket {
-          width: 96px;
-          height: 96px;
-        }
+
         .wcu-card-inner {
           padding: 42px 34px 34px;
           display: flex;
@@ -278,9 +262,9 @@ export function WhyChooseUsSection() {
           border: 1px solid rgba(212, 184, 90, 0.35);
         }
         .wcu-card--gold:hover .wcu-icon-box {
-          background: #d4b85a;
-          color: #FFFFFF;
-          transform: scale(1.06) rotate(-2deg);
+          background: #111966;
+          color: #FFF9AE;
+          transform: scale(1.04);
         }
         .wcu-card--navy .wcu-icon-box {
           background: rgba(17, 25, 102, 0.08);
@@ -289,8 +273,8 @@ export function WhyChooseUsSection() {
         }
         .wcu-card--navy:hover .wcu-icon-box {
           background: #111966;
-          color: #FFFFFF;
-          transform: scale(1.06) rotate(-2deg);
+          color: #FFF9AE;
+          transform: scale(1.04);
         }
         .wcu-card-tag {
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
@@ -360,8 +344,8 @@ export function WhyChooseUsSection() {
           color: #7A5B1E;
         }
         .wcu-card--gold:hover .wcu-point-check {
-          background: #d4b85a;
-          color: #FFFFFF;
+          background: #111966;
+          color: #FFF9AE;
         }
         .wcu-card--navy .wcu-point-check {
           background: rgba(17, 25, 102, 0.1);
@@ -369,7 +353,7 @@ export function WhyChooseUsSection() {
         }
         .wcu-card--navy:hover .wcu-point-check {
           background: #111966;
-          color: #FFFFFF;
+          color: #FFF9AE;
         }
         .wcu-point-text {
           flex: 1;
@@ -502,6 +486,15 @@ export function WhyChooseUsSection() {
         .wcu-card[data-wcu-anim]:nth-child(1).wcu-visible { animation-delay: 0.05s; }
         .wcu-card[data-wcu-anim]:nth-child(2).wcu-visible { animation-delay: 0.2s; }
         .wcu-card[data-wcu-anim]:nth-child(3).wcu-visible { animation-delay: 0.35s; }
+        @media (prefers-reduced-motion: reduce) {
+          [data-wcu-anim],
+          .wcu-card[data-wcu-anim].wcu-visible {
+            animation: none !important;
+            opacity: 1;
+            transform: none;
+            will-change: auto;
+          }
+        }
       `}</style>
 
       {/* Ambient background glows */}
@@ -546,9 +539,6 @@ export function WhyChooseUsSection() {
                 className={`wcu-card ${isNavy ? 'wcu-card--navy' : 'wcu-card--gold'}`}
                 data-wcu-anim
               >
-                {/* Signature curved corner bracket accent (inspired by reference image) */}
-                <div className="wcu-card-bracket" aria-hidden="true" />
-
                 <div className="wcu-card-inner">
                   {/* Icon & Tag row */}
                   <div className="wcu-card-top">

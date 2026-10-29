@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import Script from 'next/script';
 import { Cardo } from 'next/font/google';
 import './globals.css';
@@ -85,7 +86,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <Header />
         <div className="flex-1" suppressHydrationWarning>
-          <SiteBreadcrumbs />
+          <Suspense fallback={null}>
+            <SiteBreadcrumbs />
+          </Suspense>
           {children}
         </div>
         <Footer />

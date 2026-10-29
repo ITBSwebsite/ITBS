@@ -25,6 +25,7 @@ const seoAiSearch: BreadcrumbItem = {
 
 const routeBreadcrumbs: Record<string, BreadcrumbItem[]> = {
   '/about': [home, { label: 'About Us' }],
+  '/blogs': [home, { label: 'Blogs' }],
   '/help': [home, { label: 'Help Center' }],
   '/app-design-services': [home, designCreative, { label: 'App Design & Development' }],
   '/custom-web-development': [home, webDevelopment, { label: 'Custom Web Development' }],

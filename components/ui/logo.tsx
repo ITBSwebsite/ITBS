@@ -20,6 +20,7 @@ export function Logo({ className = '' }: LogoProps) {
         alt="Infotec Business Solutions"
         width={125}
         height={24}
+        style={{ width: '125px', height: 'auto' }}
         priority
         className="h-6 w-auto max-h-[25px] object-contain select-none"
       />

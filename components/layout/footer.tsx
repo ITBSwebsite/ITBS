@@ -36,6 +36,7 @@ const FOOTER_COMPANY = [
   { label: 'Help Center', href: '/help' },
   { label: 'Contact Us', href: '/contact' },
   { label: 'FAQ', href: '/faq' },
+  { label: 'Blog', href: '/blogs' },
   { label: 'Parent Community', href: '/community' },
   { label: 'About Us', href: '/about' },
 ];
@@ -563,6 +564,8 @@ export function Footer() {
                 width={140}
                 height={27}
                 style={{
+                  width: '140px',
+                  height: 'auto',
                   filter: 'brightness(0) invert(1)',
                   objectFit: 'contain',
                 }}

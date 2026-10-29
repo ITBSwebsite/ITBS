@@ -1,10 +1,13 @@
 import type { MetadataRoute } from 'next';
+import { getBlogContent } from '@/lib/blog-content';
 
 const siteUrl = 'https://infotechbusinesssolutions.com';
 
 const routes: Array<{ path: string; priority: number }> = [
   { path: '/', priority: 1 },
   { path: '/about', priority: 0.7 },
+  { path: '/blogs', priority: 0.8 },
+  { path: '/authors/itbs-editorial-team', priority: 0.5 },
   { path: '/community', priority: 0.5 },
   { path: '/contact', priority: 0.8 },
   { path: '/help', priority: 0.5 },
@@ -34,10 +37,18 @@ const routes: Array<{ path: string; priority: number }> = [
   { path: '/services/crm-lead-management', priority: 0.7 },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map(({ path, priority }) => ({
-    url: new URL(path, siteUrl).toString(),
-    changeFrequency: 'monthly',
-    priority,
-  }));
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { posts } = await getBlogContent();
+  return [
+    ...routes.map(({ path, priority }) => ({
+      url: new URL(path, siteUrl).toString(),
+      changeFrequency: 'monthly' as const,
+      priority,
+    })),
+    ...posts.map((post) => ({
+      url: new URL(`/blogs/${post.slug}`, siteUrl).toString(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ];
 }

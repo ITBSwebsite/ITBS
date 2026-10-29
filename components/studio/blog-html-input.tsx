@@ -1,30 +1,46 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  AlignCenter,
+  AlignJustify,
+  AlignLeft,
+  AlignRight,
+  Bold,
+  Code2,
+  ChevronDown,
+  ImagePlus,
+  Italic,
+  Link2,
+  List,
+  ListOrdered,
+  Quote,
+  Redo2,
+  Table2,
+  Trash2,
+  Underline,
+  Undo2,
+  Video,
+  type LucideIcon,
+} from 'lucide-react';
+import Image from 'next/image';
 import { PatchEvent, set, useClient, type StringInputProps } from 'sanity';
 
-type ToolbarButton = { label: string; title: string; command: string; value?: string };
+type ToolbarAction = {
+  label: string;
+  command: string;
+  icon: LucideIcon;
+};
 
-const buttons: ToolbarButton[] = [
-  { label: 'H1', command: 'formatBlock', value: 'h1', title: 'Heading 1' },
-  { label: 'H2', command: 'formatBlock', value: 'h2', title: 'Heading 2' },
-  { label: 'H3', command: 'formatBlock', value: 'h3', title: 'Heading 3' },
-  { label: 'H4', command: 'formatBlock', value: 'h4', title: 'Heading 4' },
-  { label: 'H5', command: 'formatBlock', value: 'h5', title: 'Heading 5' },
-  { label: 'H6', command: 'formatBlock', value: 'h6', title: 'Heading 6' },
-  { label: 'P', command: 'formatBlock', value: 'p', title: 'Paragraph' },
-  { label: 'B', command: 'bold', title: 'Bold' },
-  { label: 'I', command: 'italic', title: 'Italic' },
-  { label: 'Quote', command: 'formatBlock', value: 'blockquote', title: 'Block quote' },
-  { label: '• List', command: 'insertUnorderedList', title: 'Bulleted list' },
-  { label: '1. List', command: 'insertOrderedList', title: 'Numbered list' },
-  { label: 'Left', command: 'justifyLeft', title: 'Align left' },
-  { label: 'Centre', command: 'justifyCenter', title: 'Align centre' },
-  { label: 'Right', command: 'justifyRight', title: 'Align right' },
-  { label: 'Justify', command: 'justifyFull', title: 'Justify paragraph' },
+const alignmentActions: ToolbarAction[] = [
+  { label: 'Align left', command: 'justifyLeft', icon: AlignLeft },
+  { label: 'Align centre', command: 'justifyCenter', icon: AlignCenter },
+  { label: 'Align right', command: 'justifyRight', icon: AlignRight },
+  { label: 'Justify text', command: 'justifyFull', icon: AlignJustify },
 ];
 
-const escapeAttribute = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+const escapeAttribute = (value: string) =>
+  value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
 
 function getVideoEmbedUrl(value: string): string | null {
   try {
@@ -32,7 +48,9 @@ function getVideoEmbedUrl(value: string): string | null {
     const host = url.hostname.toLowerCase().replace(/^www\./, '');
     if (host === 'youtu.be' || host === 'youtube.com' || host === 'm.youtube.com' || host === 'youtube-nocookie.com') {
       const segments = url.pathname.split('/').filter(Boolean);
-      const id = host === 'youtu.be' ? segments[0] : url.searchParams.get('v') || (['embed', 'shorts', 'live'].includes(segments[0] ?? '') ? segments[1] : undefined);
+      const id = host === 'youtu.be'
+        ? segments[0]
+        : url.searchParams.get('v') || (['embed', 'shorts', 'live'].includes(segments[0] ?? '') ? segments[1] : undefined);
       return id && /^[\w-]{11}$/.test(id) ? `https://www.youtube-nocookie.com/embed/${id}` : null;
     }
     if (host === 'vimeo.com' || host === 'player.vimeo.com') {
@@ -50,6 +68,7 @@ export function BlogHtmlInput(props: StringInputProps) {
   const sourceRef = useRef<HTMLTextAreaElement>(null);
   const uploadRef = useRef<HTMLInputElement>(null);
   const selectedImageRef = useRef<HTMLImageElement | null>(null);
+  const savedRangeRef = useRef<Range | null>(null);
   const hasFocus = useRef(false);
   const client = useClient({ apiVersion: '2025-02-19' });
   const [uploading, setUploading] = useState(false);
@@ -64,6 +83,25 @@ export function BlogHtmlInput(props: StringInputProps) {
       editor.innerHTML = props.value ?? '';
     }
   }, [props.value, showHtml]);
+
+  const rememberSelection = useCallback(() => {
+    const editor = editorRef.current;
+    const selection = window.getSelection();
+    if (!editor || !selection?.rangeCount) return;
+    const range = selection.getRangeAt(0);
+    if (editor.contains(range.commonAncestorContainer)) savedRangeRef.current = range.cloneRange();
+  }, []);
+
+  const restoreSelection = useCallback(() => {
+    const editor = editorRef.current;
+    const range = savedRangeRef.current;
+    if (!editor) return;
+    editor.focus();
+    if (!range || !editor.contains(range.commonAncestorContainer)) return;
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
+  }, []);
 
   const saveHtml = useCallback(() => {
     const editor = editorRef.current;
@@ -99,13 +137,15 @@ export function BlogHtmlInput(props: StringInputProps) {
 
   const applyCommand = (command: string, value?: string) => {
     if (showHtml) return;
-    editorRef.current?.focus();
+    restoreSelection();
     document.execCommand(command, false, value);
+    rememberSelection();
     saveHtml();
   };
 
   const addLink = () => {
     if (showHtml) return;
+    rememberSelection();
     const url = window.prompt('Enter the link URL (https://…, mailto:… or a site path):');
     if (!url) return;
     const normalized = /^(https?:|mailto:|tel:|\/|#)/i.test(url) ? url : `https://${url}`;
@@ -114,6 +154,7 @@ export function BlogHtmlInput(props: StringInputProps) {
 
   const addVideo = () => {
     if (showHtml) return;
+    rememberSelection();
     const input = window.prompt('Paste a YouTube or Vimeo video URL:');
     if (!input) return;
     const embedUrl = getVideoEmbedUrl(input);
@@ -123,12 +164,21 @@ export function BlogHtmlInput(props: StringInputProps) {
     }
     const title = window.prompt('Add a short accessible video title:', 'Embedded video') || 'Embedded video';
     setUploadError('');
-    editorRef.current?.focus();
+    restoreSelection();
     document.execCommand(
       'insertHTML',
       false,
       `<figure><iframe src="${escapeAttribute(embedUrl)}" title="${escapeAttribute(title)}" width="720" height="405" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></figure><p><br></p>`,
     );
+    saveHtml();
+  };
+
+  const addTable = () => {
+    if (showHtml) return;
+    restoreSelection();
+    const cells = '<td>Write here</td><td>Write here</td><td>Write here</td>';
+    const table = `<table><thead><tr><th>Heading</th><th>Heading</th><th>Heading</th></tr></thead><tbody><tr>${cells}</tr><tr>${cells}</tr></tbody></table><p><br></p>`;
+    document.execCommand('insertHTML', false, table);
     saveHtml();
   };
 
@@ -162,11 +212,11 @@ export function BlogHtmlInput(props: StringInputProps) {
         selectedImage.alt = alt;
         clearImageSelection();
       } else {
-        editorRef.current?.focus();
+        restoreSelection();
         document.execCommand(
           'insertHTML',
           false,
-          `<figure><img src="${escapeAttribute(asset.url)}" alt="${escapeAttribute(alt)}" loading="lazy" /></figure>`,
+          `<figure><img src="${escapeAttribute(asset.url)}" alt="${escapeAttribute(alt)}" loading="lazy" /></figure><p><br></p>`,
         );
       }
       saveHtml();
@@ -179,44 +229,107 @@ export function BlogHtmlInput(props: StringInputProps) {
     }
   };
 
-  const toolbarButtonStyle = (disabled = false) => ({
-    minWidth: 38,
-    border: '1px solid #d8dce8',
-    borderRadius: 7,
-    padding: '7px 10px',
-    background: '#fff',
-    color: disabled ? '#758094' : '#111966',
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    fontWeight: 700,
-  } as const);
+  const button = (
+    label: string,
+    Icon: LucideIcon,
+    onClick: () => void,
+    disabled = false,
+    destructive = false,
+  ) => (
+    <button
+      className={`itbs-editor-tool${destructive ? ' is-destructive' : ''}`}
+      key={label}
+      type="button"
+      title={label}
+      aria-label={label}
+      disabled={disabled}
+      onMouseDown={(event) => {
+        rememberSelection();
+        event.preventDefault();
+      }}
+      onClick={onClick}
+    >
+      <Icon size={17} strokeWidth={1.8} aria-hidden="true" />
+      <span className="itbs-editor-tool-label">{label}</span>
+    </button>
+  );
 
   return (
-    <div className="itbs-blog-html-input" style={{ border: '1px solid #d8dce8', borderRadius: 12, overflow: 'hidden', background: '#fff' }}>
-      <style>{'.itbs-blog-html-editor img[data-cms-selected-image="true"]{outline:3px solid #e4bd00;outline-offset:3px;cursor:pointer}'}</style>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, padding: 10, borderBottom: '1px solid #e5e7ef', background: '#f8f8ff' }}>
-        {buttons.map((button) => (
-          <button
-            key={button.label}
-            type="button"
-            title={button.title}
-            disabled={showHtml}
-            onMouseDown={(event) => event.preventDefault()}
-            onClick={() => applyCommand(button.command, button.value)}
-            style={toolbarButtonStyle(showHtml)}
-          >
-            {button.label}
+    <div className="itbs-blog-html-input">
+      <header className="itbs-editor-header">
+        <div className="itbs-editor-identity">
+          <Image className="itbs-editor-logo" src="/images/itbs-logo.png" alt="ITBS" width={125} height={24} priority />
+          <div>
+            <strong>ITBS Blog Editor</strong>
+            <span>Compose and format your article</span>
+          </div>
+        </div>
+        <div className="itbs-editor-mode" role="tablist" aria-label="Editor mode">
+          <button type="button" role="tab" aria-selected={!showHtml} className={!showHtml ? 'is-active' : ''} onClick={() => showHtml && toggleHtml()}>
+            Word
           </button>
-        ))}
-        <button type="button" disabled={showHtml} onMouseDown={(event) => event.preventDefault()} onClick={addLink} style={toolbarButtonStyle(showHtml)}>Add link</button>
-        <button type="button" disabled={showHtml || uploading} onMouseDown={(event) => event.preventDefault()} onClick={addVideo} style={toolbarButtonStyle(showHtml)}>Embed video</button>
-        <button type="button" disabled={showHtml || uploading} onMouseDown={(event) => event.preventDefault()} onClick={() => uploadRef.current?.click()} style={toolbarButtonStyle(showHtml || uploading)}>{uploading ? 'Uploading…' : hasSelectedImage ? 'Replace selected image' : 'Upload image'}</button>
-        <button type="button" disabled={showHtml || !hasSelectedImage || uploading} onMouseDown={(event) => event.preventDefault()} onClick={removeSelectedImage} style={{ ...toolbarButtonStyle(showHtml || !hasSelectedImage || uploading), color: hasSelectedImage ? '#9b2525' : '#758094' }}>Remove selected image</button>
-        <button type="button" aria-pressed={showHtml} onMouseDown={(event) => event.preventDefault()} onClick={toggleHtml} style={{ ...toolbarButtonStyle(), background: showHtml ? '#111966' : '#fff', color: showHtml ? '#fff' : '#111966' }}>{showHtml ? 'Visual editor' : 'Show HTML'}</button>
-        <input ref={uploadRef} type="file" accept="image/*" hidden onChange={(event) => void uploadImage(event.currentTarget.files?.[0])} />
+          <button type="button" role="tab" aria-selected={showHtml} className={showHtml ? 'is-active' : ''} onClick={() => !showHtml && toggleHtml()}>
+            <Code2 size={16} aria-hidden="true" /> HTML
+          </button>
+        </div>
+      </header>
+
+      <div className={`itbs-editor-toolbar${showHtml ? ' is-source-mode' : ''}`} aria-label="Article formatting toolbar">
+        <div className="itbs-editor-tool-group" aria-label="History">
+          {button('Undo', Undo2, () => applyCommand('undo'), showHtml)}
+          {button('Redo', Redo2, () => applyCommand('redo'), showHtml)}
+        </div>
+
+        <div className="itbs-editor-tool-group itbs-editor-format-group" aria-label="Text style">
+          <label className="itbs-editor-select-wrap">
+            <span className="sr-only">Text style</span>
+            <select aria-label="Text style" defaultValue="p" disabled={showHtml} onMouseDown={rememberSelection} onChange={(event) => applyCommand('formatBlock', event.currentTarget.value)}>
+              <option value="p">Paragraph</option>
+              <option value="h1">Heading 1</option>
+              <option value="h2">Heading 2</option>
+              <option value="h3">Heading 3</option>
+              <option value="h4">Heading 4</option>
+              <option value="h5">Heading 5</option>
+              <option value="h6">Heading 6</option>
+            </select>
+            <ChevronDown className="itbs-editor-select-chevron" size={14} aria-hidden="true" />
+          </label>
+          {button('Bold', Bold, () => applyCommand('bold'), showHtml)}
+          {button('Italic', Italic, () => applyCommand('italic'), showHtml)}
+          {button('Underline', Underline, () => applyCommand('underline'), showHtml)}
+        </div>
+
+        <div className="itbs-editor-tool-group" aria-label="Paragraph layout">
+          {alignmentActions.map(({ label, command, icon: Icon }) => button(label, Icon, () => applyCommand(command), showHtml))}
+        </div>
+
+        <div className="itbs-editor-tool-group" aria-label="Lists and quotes">
+          {button('Bulleted list', List, () => applyCommand('insertUnorderedList'), showHtml)}
+          {button('Numbered list', ListOrdered, () => applyCommand('insertOrderedList'), showHtml)}
+          {button('Block quote', Quote, () => applyCommand('formatBlock', 'blockquote'), showHtml)}
+        </div>
+
+        <div className="itbs-editor-tool-group" aria-label="Insert content">
+          {button('Add link', Link2, addLink, showHtml)}
+          {button('Insert table', Table2, addTable, showHtml)}
+          {button(uploading ? 'Uploading image' : 'Add image', ImagePlus, () => uploadRef.current?.click(), showHtml || uploading)}
+          {button('Embed video', Video, addVideo, showHtml)}
+          {button('Remove selected image', Trash2, removeSelectedImage, showHtml || !hasSelectedImage || uploading, true)}
+        </div>
+
+        <input
+          ref={uploadRef}
+          type="file"
+          accept="image/*"
+          hidden
+          onClick={rememberSelection}
+          onChange={(event) => void uploadImage(event.currentTarget.files?.[0])}
+        />
       </div>
+
       <div
         ref={editorRef}
-        className="itbs-blog-html-editor"
+        className={`itbs-blog-html-editor${showHtml ? ' is-hidden' : ''}`}
         contentEditable={!showHtml}
         suppressContentEditableWarning
         role="textbox"
@@ -224,10 +337,13 @@ export function BlogHtmlInput(props: StringInputProps) {
         aria-multiline="true"
         onFocus={() => { hasFocus.current = true; }}
         onBlur={() => { hasFocus.current = false; saveHtml(); }}
-        onInput={saveHtml}
+        onInput={() => { rememberSelection(); saveHtml(); }}
+        onKeyUp={rememberSelection}
+        onMouseUp={rememberSelection}
         onClick={(event) => {
           const image = (event.target as HTMLElement).closest('img');
           selectImage(image && editorRef.current?.contains(image) ? image as HTMLImageElement : null);
+          rememberSelection();
         }}
         onKeyDown={(event) => {
           if ((event.key === 'Backspace' || event.key === 'Delete') && selectedImageRef.current?.isConnected) {
@@ -235,11 +351,12 @@ export function BlogHtmlInput(props: StringInputProps) {
             removeSelectedImage();
           }
         }}
-        style={{ display: showHtml ? 'none' : 'block', minHeight: 420, maxHeight: 900, overflow: 'auto', padding: 20, outline: 'none', color: '#202938', font: '16px/1.7 Georgia, serif' }}
       />
+
       {showHtml && (
         <textarea
           ref={sourceRef}
+          className="itbs-blog-html-source"
           aria-label="Blog article HTML source"
           spellCheck={false}
           value={sourceHtml}
@@ -247,13 +364,14 @@ export function BlogHtmlInput(props: StringInputProps) {
             setSourceHtml(event.currentTarget.value);
             props.onChange(PatchEvent.from(set(event.currentTarget.value)));
           }}
-          style={{ display: 'block', width: '100%', minHeight: 420, maxHeight: 900, overflow: 'auto', resize: 'vertical', padding: 20, border: 0, outline: 'none', color: '#202938', background: '#fbfbfd', font: '13px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace' }}
         />
       )}
-      <div style={{ padding: '8px 12px', borderTop: '1px solid #e5e7ef', color: '#586477', fontSize: 12 }}>
-        {showHtml ? 'HTML source mode. Changes auto-save to the draft; switch to Visual editor to preview the markup.' : 'Use alignment and Quote tools for formatting. Embed YouTube/Vimeo videos, or select an image to replace/remove it. Drafts auto-save in Sanity; click Publish to send the saved version live.'}
-        {uploadError && <span role="alert" style={{ display: 'block', color: '#a32323', marginTop: 5 }}>{uploadError}</span>}
-      </div>
+
+      <footer className="itbs-editor-footer">
+        <span className="itbs-editor-save-indicator"><span aria-hidden="true" /> Draft changes save automatically in Sanity</span>
+        <span>{showHtml ? 'HTML mode' : hasSelectedImage ? 'Image selected · replace or remove it from the toolbar' : 'Select an image to replace or remove it'}</span>
+        {uploadError && <span className="itbs-editor-error" role="alert">{uploadError}</span>}
+      </footer>
     </div>
   );
 }

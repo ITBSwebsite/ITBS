@@ -17,7 +17,6 @@ import {
   Mail,
   MessageCircle,
   Phone,
-  ShieldCheck,
   Sparkles,
   Target,
   Users,
@@ -179,7 +178,6 @@ function CRMFeatureSlider() {
     <section className="crm-feature-slider-section" aria-labelledby="crm-features-heading">
       <div className="crm-container">
         <div className="crm-feature-slider-heading" data-crm-reveal="up">
-          <span className="crm-eyebrow"><i aria-hidden="true" />ITBS CRM capabilities</span>
           <h2 id="crm-features-heading">Convert More Leads With Less Manual Work</h2>
         </div>
         <div
@@ -217,14 +215,14 @@ function CRMFeatureSlider() {
 }
 
 function CrmSectionHeading({ eyebrow, title, description, light = false }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   description?: string;
   light?: boolean;
 }) {
   return (
     <div className={light ? 'crm-section-heading crm-section-heading--light' : 'crm-section-heading'} data-crm-reveal>
-      <span className="crm-eyebrow"><i aria-hidden="true" />{eyebrow}</span>
+      {eyebrow ? <span className="crm-eyebrow"><i aria-hidden="true" />{eyebrow}</span> : null}
       <h2>{title}</h2>
       {description ? <p>{description}</p> : null}
     </div>
@@ -245,7 +243,7 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
     root.classList.add('crm-motion-ready');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        entry.target.classList.toggle('crm-is-visible', entry.isIntersecting);
+        if (entry.isIntersecting) { entry.target.classList.add('crm-is-visible'); observer.unobserve(entry.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -34px 0px' });
     items.forEach((item) => observer.observe(item));
@@ -264,7 +262,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
           </nav>
           <div className="crm-hero-grid">
             <div className="crm-hero-copy">
-              <span className="crm-hero-badge"><Sparkles size={15} aria-hidden="true" />AI-ready lead routing &amp; CRM automation</span>
               <h1>Your next customer could be your <span>next lead.</span></h1>
               <p>A buyer has filled in your form and is waiting for a reply. Every minute they wait can lower the chance of conversion and give a competitor another opportunity. ITBS captures every enquiry, organises your leads and automates follow-ups, helping you turn more prospects into paying customers.</p>
               <ul className="crm-hero-benefits" aria-label="CRM benefits">
@@ -291,8 +288,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
                   sizes="(max-width: 760px) 90vw, 48vw"
                 />
               </div>
-              <div className="crm-float-note crm-float-note--top"><span><Check size={15} /></span><div><b>New enquiry captured</b><small>Ready for the right next step</small></div></div>
-              <div className="crm-float-note crm-float-note--bottom"><span><Clock3 size={16} /></span><div><b>Follow-up on track</b><small>One less lead left waiting</small></div></div>
             </div>
           </div>
         </div>
@@ -321,7 +316,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
                 sizes="(max-width: 760px) 92vw, 54vw"
               />
             </div>
-            <span className="crm-dashboard-caption"><span />One connected lead journey</span>
           </div>
         </div>
       </section>
@@ -329,7 +323,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
       <section className="crm-comparison-section">
         <div className="crm-container">
           <CrmSectionHeading
-            eyebrow="CRM automation"
             title="Every enquiry needs a clear next step."
             description="Move beyond manual reminders and scattered updates with a simpler way to capture, organise and follow up with leads."
             light
@@ -351,7 +344,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
         <div className="crm-followup-orb crm-followup-orb--one" aria-hidden="true" />
         <div className="crm-followup-orb crm-followup-orb--two" aria-hidden="true" />
         <div className="crm-container crm-followup-inner" data-crm-reveal="down">
-          <span className="crm-followup-mark"><Sparkles size={17} />A more consistent customer experience</span>
           <h2>Every Lead Deserves a Follow-Up.</h2>
           <p>Your team can&apos;t follow up with every prospect manually. Our CRM and lead generation systems automate responses, organise enquiries, nurture potential customers and keep follow-ups on track—helping you convert more leads into paying customers and retain existing ones.</p>
           <a className="crm-followup-link" href="#crm-platform">See how ITBS connects the journey <ArrowUpRight size={17} /></a>
@@ -361,7 +353,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
       <section className="crm-problem-section">
         <div className="crm-container">
           <CrmSectionHeading
-            eyebrow="The problem"
             title="Disconnected tools. Scattered data. Lost potential."
             description="When customer details and conversations live in separate places, it gets harder to see what happened, who owns the next step and which opportunities need attention."
           />
@@ -388,7 +379,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
       <section className="crm-platform-section" id="crm-platform">
         <div className="crm-container">
           <div className="crm-platform-heading" data-crm-reveal="left">
-            <span className="crm-eyebrow crm-eyebrow--light"><i aria-hidden="true" />The solution</span>
             <h2>One platform. One operational view.</h2>
             <p>ITBS connects your lead sources, customer records and follow-up workflows, helping your team turn scattered information into clear next steps.</p>
           </div>
@@ -408,7 +398,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
               {outcomes.map(({ title, detail, icon: Icon }) => <div className="crm-outcome-item" key={title}><span><Icon size={16} /></span><div><b>{title}</b><small>{detail}</small></div></div>)}
             </div>
           </div>
-          <div className="crm-platform-footnote"><ShieldCheck size={16} /><span>A more organised way to manage enquiries, relationships and follow-ups.</span></div>
         </div>
       </section>
 
@@ -418,7 +407,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
         <div className="crm-success-glow" aria-hidden="true" />
         <div className="crm-container crm-success-grid">
           <div className="crm-success-copy" data-crm-reveal="left">
-            <span className="crm-eyebrow crm-eyebrow--light"><i aria-hidden="true" />A clearer customer journey</span>
             <h2>Turn Every Lead Into Your Next <span>Success Story</span></h2>
             <p>Take control of your customer journey with smarter CRM and lead management. Capture every enquiry, automate follow-ups, streamline your sales pipeline and build lasting customer relationships, all from one organised system.</p>
           </div>
@@ -428,7 +416,6 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
             <div className="crm-success-step"><span><Users size={19} /></span><div><b>Organise</b><small>Clear ownership and context</small></div><CheckCircle2 size={17} /></div>
             <div className="crm-success-step"><span><Workflow size={19} /></span><div><b>Follow up</b><small>Keep the next step moving</small></div><CheckCircle2 size={17} /></div>
             <div className="crm-success-step crm-success-step--final"><span><Sparkles size={19} /></span><div><b>Build relationships</b><small>Make every conversation count</small></div><ArrowRight size={17} /></div>
-            <div className="crm-success-journey-caption"><span />One connected lead journey, powered by ITBS</div>
           </div>
         </div>
       </section>
@@ -453,3 +440,4 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
     </main>
   );
 }
+

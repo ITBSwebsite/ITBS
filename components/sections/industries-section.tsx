@@ -7,7 +7,6 @@ interface IndustryItem {
   id: string;
   badge: string;
   title: string;
-  subtitle: string;
   desc: string;
   theme: 'gold' | 'navy';
   deliverables: string[];
@@ -18,7 +17,6 @@ const INDUSTRIES: IndustryItem[] = [
     id: 'beauty',
     badge: 'D2C & RETAIL',
     title: 'Beauty & Personal Care',
-    subtitle: 'Skincare, haircare and beauty products',
     desc: 'Helping direct-to-consumer and retail beauty brands capture high-intent shoppers, scale customer acquisition, and maximize repeat purchase value.',
     theme: 'gold',
     deliverables: [
@@ -31,7 +29,6 @@ const INDUSTRIES: IndustryItem[] = [
     id: 'tiles-paving',
     badge: 'TRADE & RESIDENTIAL',
     title: 'Tiles & Paving',
-    subtitle: 'Porcelain tiles, paving and natural stone',
     desc: 'Targeting residential homeowners and commercial trade contractors with precision organic search, sample request funnels, and targeted PPC.',
     theme: 'navy',
     deliverables: [
@@ -44,7 +41,6 @@ const INDUSTRIES: IndustryItem[] = [
     id: 'home-improvement',
     badge: 'INTERIORS & LIVING',
     title: 'Home Improvement',
-    subtitle: 'Bathroom furniture, flooring and interiors',
     desc: 'Converting browsing homeowners into paying clients with high-performing visual shopping campaigns, local and national search visibility, and conversion-first UX.',
     theme: 'gold',
     deliverables: [
@@ -57,7 +53,6 @@ const INDUSTRIES: IndustryItem[] = [
     id: 'ecommerce-retail',
     badge: 'SCALE-UP COMMERCE',
     title: 'Ecommerce & Online Retail',
-    subtitle: 'Product-led online businesses',
     desc: 'We connect the right mix of commerce platforms, paid campaigns and search visibility around your products and goals.',
     theme: 'navy',
     deliverables: [
@@ -261,7 +256,7 @@ export function IndustriesSection() {
           border-color: rgba(17, 25, 102, 0.12);
           color: #111966;
         }
-        /* Title & Subtitle */
+        /* Card title */
         .ind-card-title {
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
           font-size: 26px;
@@ -274,15 +269,7 @@ export function IndustriesSection() {
         .ind-card:hover .ind-card-title {
           color: #0c1250;
         }
-        .ind-card-subtitle {
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15px;
-          font-weight: 700;
-          color: #B8863A;
-          margin: 0 0 14px;
-          letter-spacing: 0.01em;
-        }
-        .ind-card-desc {
+.ind-card-desc {
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
           font-size: 15.5px;
           line-height: 1.72;
@@ -415,12 +402,8 @@ export function IndustriesSection() {
                 <div className="ind-card-inner">
                   {/* Category badge */}
                   <span className="ind-cat-tag">{item.badge}</span>
-
-                  {/* Title & Subtitle */}
                   <h3 className="ind-card-title">{item.title}</h3>
-                  <p className="ind-card-subtitle">{item.subtitle}</p>
-
-                  {/* Narrative description */}
+{/* Narrative description */}
                   <p className="ind-card-desc">{item.desc}</p>
 
                   {/* 3 Key Deliverables with checkmarks */}

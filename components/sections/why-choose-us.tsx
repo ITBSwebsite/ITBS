@@ -358,28 +358,10 @@ export function WhyChooseUsSection() {
         .wcu-point-text {
           flex: 1;
         }
-        .wcu-card-footer {
-          padding-top: 18px;
-          border-top: 1px solid #EEF2F6;
-        }
-        .wcu-card-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 14px;
-          font-weight: 700;
-          color: #111966;
-          text-decoration: none;
-          transition: all 0.25s ease;
-        }
-        .wcu-card-link svg {
+.wcu-card-link svg {
           transition: transform 0.25s ease;
         }
-        .wcu-card-link:hover {
-          color: #D97706;
-        }
-        .wcu-card-link:hover svg {
+.wcu-card-link:hover svg {
           transform: translateX(4px);
         }
         .wcu-trust-bar {
@@ -521,7 +503,7 @@ export function WhyChooseUsSection() {
 
           <p className="wcu-intro">
             Behind every standout campaign is a dedicated team of marketing experts and strategists
-            who live and breathe digital growth. We don’t just offer services — we build enduring
+            who live and breathe digital growth. We don’t just offer services; we build enduring
             partnerships and work as an active extension of your team to craft tailored digital
             strategies that drive real, measurable business growth.
           </p>
@@ -565,14 +547,6 @@ export function WhyChooseUsSection() {
                       </li>
                     ))}
                   </ul>
-
-                  {/* Bottom link */}
-                  <div className="wcu-card-footer">
-                    <Link href="/#services" className="wcu-card-link">
-                      <span>Learn about our process</span>
-                      <ArrowRight size={14} strokeWidth={2.2} />
-                    </Link>
-                  </div>
                 </div>
               </div>
             );

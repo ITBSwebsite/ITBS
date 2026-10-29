@@ -35,13 +35,13 @@ export function HeroSection() {
             {/* 1. EYEBROW BADGE */}
             <div className="inline-flex items-center gap-3 rounded-full border border-[#111966]/15 bg-white px-5 py-2.5 shadow-sm">
               <span className="flex h-2.5 w-2.5 rounded-full bg-[#EAB308]" />
-              <span className="text-[13px] sm:text-sm font-semibold tracking-[0.12em] uppercase text-[#111966]">
+              <span className="text-[14px] sm:text-[15px] font-semibold tracking-[0.12em] uppercase text-[#111966]">
               UK DIGITAL MARKETING AGENCY
               </span>
             </div>
 
             {/* 2. MAIN HEADLINE */}
-            <h1 className="mt-6 font-heading font-normal text-[38px] sm:text-[54px] lg:text-[60px] leading-[1.06] tracking-tight text-[#111966]">
+            <h1 className="mt-6 font-heading font-normal text-[40px] sm:text-[56px] lg:text-[64px] leading-[1.06] tracking-tight text-[#111966]">
               Grow Your Business With Digital Marketing That{' '}
               <span className="relative inline-block font-bold italic text-[#111966]">
                 Delivers Results
@@ -63,9 +63,9 @@ export function HeroSection() {
             </h1>
 
             {/* 3. PARAGRAPH DESCRIPTION */}
-            <p className="mt-6 max-w-2xl font-body text-[17px] sm:text-[19px] leading-relaxed text-[#202938]">
+            <p className="mt-6 max-w-2xl font-body text-[19px] sm:text-[22px] leading-relaxed text-[#202938]">
               We help ambitious businesses grow with data-driven digital marketing strategies,
-              high-converting websites, SEO, and paid advertising. From building brand awareness
+              websites built to convert, SEO, and paid advertising. From building brand awareness
               to generating quality leads and increasing sales, we deliver tailored solutions
               designed to turn your business goals into measurable growth.
             </p>
@@ -74,7 +74,7 @@ export function HeroSection() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="btn-primary min-h-[48px] px-8 py-3.5 text-[16px] font-medium shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                className="btn-primary min-h-[48px] px-8 py-3.5 text-[17px] font-medium shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
                 style={{ backgroundColor: '#111966', color: '#ffffff' }}
               >
                 <span style={{ color: '#ffffff' }}>Get Free Growth Proposal</span>
@@ -83,7 +83,7 @@ export function HeroSection() {
 
               <Link
                 href="#services"
-                className="btn-secondary min-h-[48px] px-7 py-3.5 text-[16px] font-medium shadow-xs transition-all duration-200"
+                className="btn-secondary min-h-[48px] px-7 py-3.5 text-[17px] font-medium shadow-xs transition-all duration-200"
                 style={{ backgroundColor: '#ffffff', color: '#111966' }}
               >
                 <Sparkles className="h-4 w-4 text-amber-500" />
@@ -98,8 +98,8 @@ export function HeroSection() {
                   <MapPin size={18} strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <span className="min-w-0">
-                  <span className="block font-heading text-[15px] font-bold leading-tight text-[#111966]">UK-based</span>
-                  <span className="mt-1 block text-[11px] leading-tight text-[#202938]">Digital agency</span>
+                  <span className="block font-heading text-[17px] font-bold leading-tight text-[#111966]">UK-based</span>
+                  <span className="mt-1 block text-[13px] leading-tight text-[#202938]">Digital agency</span>
                 </span>
               </div>
 
@@ -108,8 +108,8 @@ export function HeroSection() {
                   <LayoutDashboard size={18} strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <span className="min-w-0">
-                  <span className="block font-heading text-[15px] font-bold leading-tight text-[#111966]">SEO &amp; web</span>
-                  <span className="mt-1 block text-[11px] leading-tight text-[#202938]">Services in one place</span>
+                  <span className="block font-heading text-[17px] font-bold leading-tight text-[#111966]">SEO &amp; web</span>
+                  <span className="mt-1 block text-[13px] leading-tight text-[#202938]">Services in one place</span>
                 </span>
               </div>
 
@@ -118,8 +118,8 @@ export function HeroSection() {
                   <ListChecks size={18} strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <span className="min-w-0">
-                  <span className="block font-heading text-[15px] font-bold leading-tight text-[#111966]">Clear scope</span>
-                  <span className="mt-1 block text-[11px] leading-tight text-[#202938]">Goals, milestones, reporting</span>
+                  <span className="block font-heading text-[17px] font-bold leading-tight text-[#111966]">Clear scope</span>
+                  <span className="mt-1 block text-[13px] leading-tight text-[#202938]">Goals, milestones, reporting</span>
                 </span>
               </div>
             </div>

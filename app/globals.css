@@ -1468,35 +1468,6 @@ a {
 }
 
 /* Footer Link */
-.wcu-card-footer {
-  padding-top: 18px;
-  border-top: 1px solid #EEF2F6;
-}
-
-.wcu-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--font-body), "Cardo", Georgia, serif !important;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--navy);
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.wcu-card-link svg {
-  transition: transform 0.25s ease;
-}
-
-.wcu-card-link:hover {
-  color: #D97706;
-}
-
-.wcu-card-link:hover svg {
-  transform: translateX(4px);
-}
-
 /* Trust Bar */
 .wcu-trust-bar {
   display: flex;
@@ -1840,16 +1811,6 @@ a {
 .ind-card:hover .ind-card-title {
   color: #0c1250;
 }
-
-.ind-card-subtitle {
-  font-family: var(--font-body), "Cardo", Georgia, serif !important;
-  font-size: 15px;
-  font-weight: 700;
-  color: #B8863A;
-  margin: 0 0 14px;
-  letter-spacing: 0.01em;
-}
-
 .ind-card-desc {
   font-family: var(--font-body), "Cardo", Georgia, serif !important;
   font-size: 15.5px;
@@ -4775,3 +4736,112 @@ body > div.flex-1 .psa-campaign-intro p { font-size: 13px !important; line-heigh
 .itbs-editor-select-wrap select{min-width:128px;max-width:145px;padding-right:10px;appearance:none}
 .itbs-editor-select-chevron{position:absolute;right:7px;color:#657187;pointer-events:none}
 @media(max-width:760px){.itbs-editor-toolbar{flex-wrap:nowrap;overflow-x:auto}.itbs-editor-tool{width:34px;min-width:34px}.itbs-editor-select-wrap select{min-width:112px;max-width:118px}}
+
+/* Homepage type scale: keep body copy comfortable on desktop and mobile. */
+.home-page .svc-lead-text,
+.home-page .wcu-intro,
+.home-page .ind-intro,
+.home-page .brands-intro,
+.home-page .eq-header-desc {
+  font-size: 19px !important;
+  line-height: 1.72;
+}
+.home-page .svc-item-title,
+.home-page .wcu-card-title,
+.home-page .ind-card-title {
+  font-size: 27px !important;
+}
+.home-page .svc-item-desc,
+.home-page .wcu-card-desc,
+.home-page .ind-card-desc {
+  font-size: 17px !important;
+  line-height: 1.7;
+}
+.home-page .svc-tag-pill,
+.home-page .ind-cat-tag,
+.home-page .eq-tag-pill {
+  font-size: 12.5px !important;
+}
+.home-page .wcu-point-item,
+.home-page .ind-deliverable-item {
+  font-size: 15px !important;
+}
+.home-page .svc-cta-text,
+.home-page .wcu-trust-btn {
+  font-size: 16px !important;
+}
+.home-page .wcu-trust-lead { font-size: 20px !important; }
+.home-page .wcu-trust-sub { font-size: 16px !important; }
+.home-page .wcu-points-list { margin-bottom: 0; }
+.home-page .ind-card-title { margin-bottom: 12px; }
+
+@media (max-width: 768px) {
+  .home-page .svc-lead-text,
+  .home-page .wcu-intro,
+  .home-page .ind-intro,
+  .home-page .brands-intro,
+  .home-page .eq-header-desc {
+    font-size: 17px !important;
+    line-height: 1.68;
+  }
+  .home-page .svc-item-title,
+  .home-page .wcu-card-title,
+  .home-page .ind-card-title {
+    font-size: 24px !important;
+  }
+  .home-page .svc-item-desc,
+  .home-page .wcu-card-desc,
+  .home-page .ind-card-desc {
+    font-size: 16px !important;
+    line-height: 1.68;
+  }
+  .home-page .wcu-point-item,
+  .home-page .ind-deliverable-item {
+    font-size: 14.5px !important;
+  }
+  .home-page .eq-standard-text { font-size: 18px !important; }
+  .home-page .brand-logo-card {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .home-page .brand-logo-card:hover {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .home-page .brand-logo-img {
+    mix-blend-mode: multiply;
+    transform: none !important;
+  }
+}
+/* Blog reading-size refinements: keep article copy comfortable on desktop and mobile. */
+.blogs-page .blogs-hero-copy > p { font-size: clamp(19px, 1.45vw, 21px) !important; }
+.blogs-page .blogs-card-meta { font-size: 15px !important; }
+.blogs-page .blogs-card-excerpt { font-size: 18px !important; line-height: 1.62 !important; }
+.blogs-page .blogs-card-link { font-size: 16px !important; }
+.blogs-page .blogs-category-button { font-size: 16px; }
+.blogs-page .blogs-sidebar-note p { font-size: 16px !important; }
+.blogs-page .blogs-search input { font-size: 17px !important; }
+.blogs-page .blogs-results-total { font-size: 15px; }
+.blog-article-deck { font-size: clamp(20px, 1.75vw, 23px); }
+.blog-article-content { font-size: 20px; line-height: 1.8; }
+.blog-article-meta, .blog-article-facts { font-size: 15px; }
+.blog-article-toc nav a, .blog-article-categories-rail nav a, .blog-article-mobile-toc nav a { font-size: 14px; }
+.blog-key-takeaways li { font-size: 17px; line-height: 1.6; }
+.blog-article-content blockquote { font-size: 22px; }
+
+@media (max-width: 760px) {
+  .blogs-page .blogs-hero-copy > p { font-size: 18px !important; }
+  .blogs-page .blogs-card-meta { font-size: 14px !important; }
+  .blogs-page .blogs-card-excerpt { font-size: 17px !important; line-height: 1.62 !important; }
+  .blogs-page .blogs-category-button,
+  .blogs-page .blogs-mobile-category { font-size: 15px; }
+  .blogs-page .blogs-search input { font-size: 16px !important; }
+  .blogs-page .blogs-sidebar-note p { font-size: 15px !important; }
+  .blog-article-deck { font-size: 19px; }
+  .blog-article-content { font-size: 18px; line-height: 1.78; }
+  .blog-article-meta, .blog-article-facts { font-size: 14px; }
+  .blog-article-toc nav a, .blog-article-categories-rail nav a, .blog-article-mobile-toc nav a { font-size: 14px; }
+  .blog-key-takeaways li { font-size: 16px; }
+  .blog-article-content blockquote { font-size: 19px; }
+}

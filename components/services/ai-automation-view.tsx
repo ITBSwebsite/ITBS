@@ -172,7 +172,7 @@ function RoleSlider() {
     <section className="ai-role-section" id="ai-role-slider" aria-labelledby="ai-roles-title">
       <div className="ai-container">
         <div className="ai-role-intro" data-ai-reveal="up">
-          <span className="ai-eyebrow"><i aria-hidden="true" />DESIGNED FOR EVERY ROLE</span>
+
           <h2 id="ai-roles-title">Give every team room to do their best work.</h2>
           <p>One connected platform brings customer context, everyday workflows and useful AI into the hands of the people who need them.</p>
         </div>
@@ -263,7 +263,11 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
     }
     root.classList.add('ai-motion-ready');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.target.classList.toggle('ai-in-view', entry.isIntersecting));
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('ai-in-view');
+        observer.unobserve(entry.target);
+      });
     }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
@@ -282,7 +286,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
           </nav>
           <div className="ai-hero-grid">
             <div className="ai-hero-copy" data-ai-reveal="left">
-              <span className="ai-hero-badge"><Sparkles size={15} aria-hidden="true" />AI CRM · AUTOMATION · GROWTH</span>
+
               <h1 id="ai-hero-title">The AI CRM your business needs to <em>grow.</em></h1>
               <p>Bring customer tools and conversations together, then let thoughtful automation take care of the repetitive work—so your team can focus on better customer relationships.</p>
               <ul className="ai-hero-benefits">
@@ -294,7 +298,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
                 <Link href="/contact" className="ai-button ai-button--primary">Get a Quote <ArrowRight size={17} /></Link>
                 <a href="#ai-role-slider" className="ai-button ai-button--quiet">Explore the platform <ArrowDown size={16} /></a>
               </div>
-              <div className="ai-hero-proof"><ShieldCheck size={16} /><span>Built around your team, tools and way of working</span></div>
+
             </div>
             <div className="ai-hero-visual" data-ai-reveal="right">
               <div className="ai-hero-image-frame">
@@ -308,10 +312,10 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
                 />
                 <div className="ai-hero-live-card"><span className="ai-live-pulse" /><div><small>ITBS AI ASSISTANT</small><b>Workflows are moving</b></div><ArrowUpRight size={17} /></div>
               </div>
-              <span className="ai-hero-visual-caption"><i />One connected view of your customer journey</span>
+
             </div>
           </div>
-          <div className="ai-hero-bottom-rule" aria-hidden="true"><span>CONNECT</span><i /><span>AUTOMATE</span><i /><span>GROW</span></div>
+
         </div>
       </section>
 
@@ -321,7 +325,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
         <div className="ai-pipeline-glow" aria-hidden="true" />
         <div className="ai-container ai-pipeline-layout">
           <div className="ai-pipeline-copy" data-ai-reveal="left">
-            <span className="ai-eyebrow ai-eyebrow--light"><i aria-hidden="true" />AI, WORKING THROUGH YOUR PIPELINE</span>
+
             <h2 id="ai-pipeline-title">AI automating the pipeline for you.</h2>
             <p>More than a place to store data, your CRM can automate calls and follow-ups, qualify leads and guide customers toward lasting relationships. AI can analyse interactions and score each opportunity—helping your team see where to focus next.</p>
             <div className="ai-pipeline-capabilities">
@@ -339,7 +343,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
             <div className="ai-call-transcript"><span className="ai-transcript-dot" /><p><b>ITBS AI:</b> I can help with that. I’ll make sure the right team has your details and follows up.</p></div>
             <div className="ai-call-transcript ai-call-transcript--reply"><span className="ai-transcript-dot" /><p><b>Customer:</b> That sounds good. Please arrange the next step.</p></div>
             <div className="ai-call-metrics"><div><span>LEAD QUALITY</span><b>Qualified</b><small><Target size={13} /> Ready for follow-up</small></div><div><span>CONVERSATION</span><b>Positive</b><small><MessageCircle size={13} /> Context saved</small></div><div><span>NEXT STEP</span><b>Assigned</b><small><CheckCircle2 size={13} /> Team notified</small></div></div>
-            <div className="ai-call-footer"><span><ShieldCheck size={14} /> Team-owned. Clearly tracked.</span><span>CRM WORKFLOW <ArrowRight size={13} /></span></div>
+
           </div>
         </div>
       </section>
@@ -354,7 +358,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
           <div className="ai-integrations-visual" data-ai-reveal="scale">
             <div className="ai-integration-stage-heading">
               <div>
-                <span>ONE CONNECTED WORKFLOW</span>
+
                 <b>Bring your everyday tools together.</b>
               </div>
               <span className="ai-integration-count"><i aria-hidden="true" />{integrationLogos.length} integration logos</span>
@@ -384,7 +388,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
       <section className="ai-onboarding-intro" aria-labelledby="ai-onboarding-title">
         <div className="ai-onboarding-intro-glow" aria-hidden="true" />
         <div className="ai-container" data-ai-reveal="up">
-          <span className="ai-eyebrow"><i aria-hidden="true" />ONBOARDING &amp; SUPPORT</span>
+
           <h2 id="ai-onboarding-title">Getting started is the easy part.</h2>
           <p>AI automation setup, hands-on support and ongoing optimisation help automate workflows, reduce manual tasks and keep your business running efficiently as it grows.</p>
         </div>
@@ -393,7 +397,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
       <section className="ai-launch-section" aria-label="AI automation onboarding process">
         <div className="ai-container ai-launch-grid">
           <div className="ai-launch-copy" data-ai-reveal="left">
-            <span className="ai-eyebrow"><i aria-hidden="true" />A GUIDED START, BUILT AROUND YOU</span>
+
             <h2>Up and running in days, not weeks.</h2>
             <p>A guided onboarding experience helps your team get moving quickly—with less complexity, confusion or guesswork.</p>
             <ul><li><Check size={16} />A dedicated implementation specialist</li><li><Check size={16} />Help organising your existing data</li><li><Check size={16} />Workflows tailored to your business</li></ul>
@@ -407,7 +411,7 @@ export function AIAutomationView({ faqItems }: { faqItems: FAQItem[] }) {
               height={1536}
               sizes="(max-width: 850px) 94vw, 56vw"
             />
-            <span className="ai-launch-image-label"><span />AUTOMATION LAUNCH · ITBS</span>
+
           </div>
         </div>
       </section>
@@ -447,29 +451,30 @@ const AI_AUTOMATION_STYLES = `
   .ai-breadcrumb a { color:var(--ai-navy);transition:color .2s ease; }
   .ai-breadcrumb a:hover { color:var(--brand-gold-text); }
   .ai-breadcrumb [aria-current="page"] { color:#5f6586; }
-  .ai-hero-grid { display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);align-items:center;gap:clamp(35px,5.5vw,82px);padding:16px 0 44px; }
+  .ai-hero-grid { display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);align-items:center;gap:clamp(35px,5.5vw,82px);padding:16px 0 28px; }
   .ai-hero-copy { max-width:610px;padding:18px 0; }
   .ai-hero-badge { display:inline-flex;align-items:center;gap:9px;padding:9px 15px;color:#706000;background:#fff;border:1px solid #eee7a5;border-radius:40px;box-shadow:0 8px 24px rgba(17,25,102,.05);font-size:10px;font-weight:700;letter-spacing:.13em; }
   .ai-hero-badge svg { color:var(--brand-gold-text); }
-  .ai-hero-copy h1 { margin:24px 0 18px;color:var(--ai-navy);font-family:var(--font-heading),Georgia,serif;font-size:clamp(44px,5.1vw,72px);font-weight:600;line-height:1.04;letter-spacing:-.035em; }
-  .ai-hero-copy h1 em { color:var(--brand-gold-text);font-weight:500; }
-  .ai-hero-copy>p { max-width:560px;margin:0;color:var(--ai-copy);font-size:clamp(15px,1.35vw,17px);line-height:1.8; }
+  .ai-hero-copy h1 { margin:0 0 18px;color:var(--ai-navy);font-family:var(--font-heading),Georgia,serif;font-size:clamp(44px,5.1vw,68px);font-weight:600;line-height:1.04;letter-spacing:-.035em; }
+  .ai-hero-copy h1 em { color:var(--ai-navy);font-weight:600;text-decoration:underline;text-decoration-color:#fff9ae;text-decoration-thickness:.14em;text-underline-offset:.08em; }
+  .ai-hero-copy>p { max-width:620px;margin:0;color:#202938;font-size:clamp(17px,1.35vw,19px);line-height:1.58; }
   .ai-hero-benefits { display:grid;gap:14px;margin:27px 0 29px;padding:0;list-style:none; }
-  .ai-hero-benefits li { display:grid;grid-template-columns:20px 1fr;align-items:start;gap:11px;color:#555b7d;font-size:14px;line-height:1.6; }
+  .ai-hero-benefits li { display:grid;grid-template-columns:20px 1fr;align-items:start;gap:11px;color:#202938;font-size:17px;line-height:1.6; }
   .ai-hero-benefits li>svg { margin-top:2px;color:var(--brand-gold-text); }
   .ai-hero-benefits b { color:var(--ai-navy);font-weight:700; }
   .ai-hero-actions { display:flex;flex-wrap:wrap;align-items:center;gap:13px; }
-  .ai-button { min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 21px;border:1px solid transparent;border-radius:7px;font-size:13px;font-weight:700;transition:transform .24s ease,box-shadow .24s ease,background .24s ease; }
+  .ai-button { min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 21px;border:1px solid transparent;border-radius:7px;font-size:16px;font-weight:700;transition:transform .24s ease,box-shadow .24s ease,background .24s ease,color .24s ease,border-color .24s ease; }
   .ai-button:hover { transform:translateY(-2px); }
-  .ai-button--primary { color:#111966;background:var(--ai-yellow);box-shadow:0 9px 24px rgba(181,162,0,.22); }
-  .ai-button--primary:hover { background: var(--brand-hover-yellow);box-shadow:0 12px 28px rgba(181,162,0,.3); }
+  .ai-button--primary { color:#fff;background:var(--ai-navy);box-shadow:0 9px 24px rgba(17,25,102,.2); }
+  .ai-button--primary:hover { color:var(--ai-navy);background:var(--brand-hover-yellow);box-shadow:0 12px 28px rgba(181,162,0,.24); }
   .ai-button--quiet { color:var(--ai-navy);background:rgba(255,255,255,.75);border-color:#dfe2ed; }
-  .ai-button--quiet:hover { background:#fff;border-color:#b9bfd4; }
+  .ai-button--quiet:hover { color:var(--ai-navy);background:var(--brand-hover-yellow);border-color:#e5d87c;box-shadow:0 10px 24px rgba(17,25,102,.1); }
   .ai-hero-proof { display:flex;align-items:center;gap:8px;margin-top:21px;color:#757b98;font-size:11px; }
   .ai-hero-proof svg { color:var(--brand-gold-text); }
   .ai-hero-visual { position:relative;min-width:0; }
-  .ai-hero-image-frame { position:relative;overflow:hidden;border:1px solid rgba(17,25,102,.13);border-radius:19px;background:#0c1234;box-shadow:0 26px 60px rgba(12,19,55,.2); }
+  .ai-hero-image-frame { position:relative;overflow:hidden;border:1px solid rgba(17,25,102,.13);border-radius:19px;background:#0c1234;box-shadow:0 26px 60px rgba(12,19,55,.2);transition:transform .28s cubic-bezier(.2,.75,.25,1),box-shadow .28s ease; }
   .ai-hero-image-frame>img { display:block;width:100%;height:auto; }
+  @media(hover:hover) { .ai-hero-visual:hover .ai-hero-image-frame { transform:translateY(-5px);box-shadow:0 32px 70px rgba(12,19,55,.25); } }
   .ai-hero-live-card { position:absolute;right:17px;bottom:17px;display:flex;align-items:center;gap:11px;min-width:235px;padding:13px 15px;color:#fff;background:rgba(9,14,37,.92);border:1px solid rgba(252,240,0,.34);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.24);backdrop-filter:blur(12px); }
   .ai-hero-live-card>div { display:grid;gap:4px;flex:1; }
   .ai-hero-live-card small { color:#e5d76e;font-size:8px;font-weight:700;letter-spacing:.13em; }
@@ -484,25 +489,30 @@ const AI_AUTOMATION_STYLES = `
   .ai-eyebrow>i { width:7px;height:7px;border-radius:50%;background:var(--ai-yellow);box-shadow:0 0 0 4px rgba(252,240,0,.18); }
   .ai-eyebrow--light { color:#f0df65; }
   .ai-eyebrow--light>i { background:var(--ai-yellow); }
-  .ai-role-section { position:relative;padding:clamp(72px,8vw,112px) 0;background:#F5F5F5; }
+  .ai-role-section { position:relative;padding:clamp(46px,5vw,70px) 0;background:#F5F5F5; }
   .ai-role-intro { max-width:790px;margin:0 auto 34px;text-align:center; }
   .ai-role-intro h2,.ai-section-heading h2,.ai-onboarding-intro h2 { margin:17px auto 12px;color:var(--ai-navy);font-family:var(--font-heading),Georgia,serif;font-size:clamp(33px,4.1vw,53px);font-weight:600;line-height:1.15;letter-spacing:-.025em; }
-  .ai-role-intro p,.ai-section-heading>p { max-width:740px;margin:0 auto;color:var(--ai-copy);font-size:15px;line-height:1.8; }
+  .ai-role-intro h2 { margin-top:0; }
+  .ai-role-intro p,.ai-section-heading>p { max-width:740px;margin:0 auto;color:var(--ai-copy);font-size:18px;line-height:1.72; }
   .ai-role-experience { max-width:1160px;margin:0 auto; }
   .ai-role-tabbar { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:5px;padding:6px;background:#fff;border:1px solid #e3e5ed;border-radius:50px;box-shadow:0 10px 28px rgba(17,25,102,.045); }
   .ai-role-tab { min-height:47px;padding:10px 12px;color:#42486a;background:transparent;border:0;border-radius:30px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;transition:color .24s ease,background .24s ease,box-shadow .24s ease; }
-  .ai-role-tab:hover { background: var(--brand-hover-yellow);color:var(--ai-navy); }
+  .ai-role-tab:hover { background:#FFF9AE;color:var(--ai-navy); }
   .ai-role-tab.is-active { color:#fff;background:var(--ai-navy);box-shadow:0 6px 17px rgba(17,25,102,.2); }
   .ai-role-tab:focus-visible,.ai-role-arrows button:focus-visible,.ai-role-dots button:focus-visible { outline:3px solid #ab9700;outline-offset:3px; }
-  .ai-role-panel { display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);align-items:center;gap:clamp(28px,5vw,65px);min-height:490px;margin-top:24px;padding:clamp(25px,4vw,52px);overflow:hidden;border:1px solid #ebeef4;border-radius:20px;background:#fff;box-shadow:0 22px 60px rgba(17,25,102,.07); }
+  .ai-role-panel { transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);align-items:center;gap:clamp(28px,5vw,65px);min-height:490px;margin-top:24px;padding:clamp(25px,4vw,52px);overflow:hidden;border:1px solid #ebeef4;border-radius:20px;background:#fff;box-shadow:0 22px 60px rgba(17,25,102,.07); }
+  .ai-role-panel:hover { background:#FFF9AE;border-color:#e5d87c;box-shadow:0 24px 62px rgba(17,25,102,.1); }
   .ai-role-copy { max-width:520px;animation:aiCopyEnter .8s cubic-bezier(.22,.7,.2,1) both; }
   .ai-role-kicker { display:inline-flex;margin-bottom:13px;color:var(--brand-gold-text);font-size:9px;font-weight:700;letter-spacing:.17em; }
   .ai-role-copy h3 { margin:0 0 15px;color:var(--ai-navy);font-family:var(--font-heading),Georgia,serif;font-size:clamp(30px,3.4vw,44px);font-weight:600;line-height:1.16;letter-spacing:-.02em; }
-  .ai-role-copy>p { margin:0;color:var(--ai-copy);font-size:14px;line-height:1.8; }
+  .ai-role-copy>p { margin:0;color:var(--ai-copy);font-size:18px;line-height:1.72; }
   .ai-role-copy ul { display:grid;gap:12px;margin:22px 0 24px;padding:0;list-style:none; }
-  .ai-role-copy li { display:flex;align-items:flex-start;gap:10px;color:#454a69;font-size:12px;line-height:1.55; }
+  .ai-role-copy li { display:flex;align-items:flex-start;gap:10px;color:#454a69;font-size:16px;line-height:1.6; }
   .ai-role-copy li svg { flex:none;margin-top:1px;padding:2px;color:var(--brand-gold-text);background:#fff9a6;border-radius:50%; }
-  .ai-text-link,.ai-light-link { display:inline-flex;align-items:center;gap:8px;color:var(--ai-navy);font-size:12px;font-weight:700;transition:gap .2s ease,color .2s ease; }
+  .ai-text-link,.ai-light-link { display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:0 17px;color:var(--ai-navy);background:transparent;border:1px solid transparent;border-radius:999px;font-size:16px;font-weight:700;transition:gap .22s ease,color .22s ease,background .22s ease,border-color .22s ease,transform .22s ease; }
+  .ai-text-link:hover,.ai-light-link:hover { gap:12px; }
+  .ai-launch-copy .ai-text-link { background:#fff;border-color:#dfe2ed; }
+  .ai-launch-copy .ai-text-link:hover { color:var(--ai-navy);background:#FFF9AE;border-color:#e5d87c;transform:translateY(-2px); }
   .ai-text-link:hover,.ai-light-link:hover { gap:12px;color:var(--brand-gold-text); }
   .ai-role-visual { position:relative;min-width:0;overflow:hidden;aspect-ratio:1.14/1;border:1px solid rgba(17,25,102,.11);border-radius:15px;background:#0b112d;box-shadow:0 14px 30px rgba(17,25,102,.13);animation:aiVisualEnter .9s cubic-bezier(.22,.7,.2,1) both; }
   .ai-role-visual>img { display:block;width:100%;height:100%;object-fit:cover; }
@@ -516,19 +526,19 @@ const AI_AUTOMATION_STYLES = `
   .ai-role-dots button[aria-current="true"] { width:38px;background:#a69000; }
   .ai-role-arrows { display:flex;gap:8px; }
   .ai-role-arrows button { display:grid;place-items:center;width:37px;height:37px;color:var(--ai-navy);background:#fff;border:1px solid #dce0eb;border-radius:50%;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease; }
-  .ai-role-arrows button:hover { color:var(--ai-navy);background: var(--brand-hover-yellow);transform:translateY(-2px); }
+  .ai-role-arrows button:hover { color:var(--ai-navy);background:#FFF9AE;transform:translateY(-2px); }
   .ai-sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
-  .ai-pipeline-section { position:relative;isolation:isolate;overflow:hidden;padding:clamp(72px,8vw,112px) 0;background:linear-gradient(125deg,#080d2d 0%,#111966 54%,#171e58 100%);color:#fff; }
+  .ai-pipeline-section { position:relative;isolation:isolate;overflow:hidden;padding:clamp(46px,5vw,70px) 0;background:linear-gradient(125deg,#080d2d 0%,#111966 54%,#171e58 100%);color:#fff; }
   .ai-pipeline-section::before { content:"";position:absolute;z-index:-1;inset:0;opacity:.25;background-image:radial-gradient(rgba(255,255,255,.25) .6px,transparent .6px);background-size:23px 23px;mask-image:linear-gradient(90deg,#000,transparent 90%); }
   .ai-pipeline-glow { position:absolute;z-index:-1;top:-270px;right:-120px;width:610px;height:610px;border-radius:50%;background:radial-gradient(circle,rgba(252,240,0,.16),transparent 70%); }
   .ai-pipeline-layout { display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);align-items:center;gap:clamp(35px,6vw,85px); }
-  .ai-pipeline-copy h2 { max-width:590px;margin:19px 0 17px;color:#fff;font-family:var(--font-heading),Georgia,serif;font-size:clamp(38px,4.6vw,60px);font-weight:600;line-height:1.09;letter-spacing:-.025em; }
-  .ai-pipeline-copy>p { max-width:570px;margin:0;color:rgba(255,255,255,.74);font-size:15px;line-height:1.82; }
+  .ai-pipeline-copy h2 { max-width:590px;margin:0 0 17px;color:#fff;font-family:var(--font-heading),Georgia,serif;font-size:clamp(38px,4.6vw,60px);font-weight:600;line-height:1.09;letter-spacing:-.025em; }
+  .ai-pipeline-copy>p { max-width:570px;margin:0;color:rgba(255,255,255,.74);font-size:18px;line-height:1.72; }
   .ai-pipeline-capabilities { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:25px 0 24px; }
-  .ai-pipeline-capabilities span { display:flex;align-items:center;gap:9px;min-height:43px;padding:9px 11px;color:#f6f6ff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);border-radius:8px;font-size:11px; }
+  .ai-pipeline-capabilities span { display:flex;align-items:center;gap:9px;min-height:43px;padding:9px 11px;color:#f6f6ff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.11);border-radius:8px;font-size:14px; }
   .ai-pipeline-capabilities svg { flex:none;color:var(--ai-yellow); }
-  .ai-light-link { color:#fff; }
-  .ai-light-link:hover { color:var(--ai-yellow); }
+  .ai-light-link { color:#fff;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2); }
+  .ai-light-link:hover { color:var(--ai-navy);background:#FFF9AE;border-color:#FFF9AE;transform:translateY(-2px); }
   .ai-call-console { min-width:0;padding:20px;border:1px solid rgba(255,255,255,.16);border-radius:17px;background:linear-gradient(150deg,rgba(255,255,255,.095),rgba(5,9,31,.72));box-shadow:0 28px 70px rgba(0,0,0,.28);backdrop-filter:blur(10px); }
   .ai-call-console-top { display:flex;align-items:center;gap:15px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.12); }
   .ai-call-brand { display:flex;align-items:center;gap:7px;color:#fff;font-size:11px;font-weight:700; }
@@ -558,13 +568,12 @@ const AI_AUTOMATION_STYLES = `
   .ai-call-metrics>div>b { color:#fff;font-size:12px; }
   .ai-call-metrics>div>small { display:flex;align-items:center;gap:5px;color:#bbc2da;font-size:8px; }
   .ai-call-metrics>div>small svg { color:var(--ai-yellow); }
-  .ai-call-footer { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,.12);color:#aeb6d4;font-size:8px;letter-spacing:.06em; }
-  .ai-call-footer>span { display:flex;align-items:center;gap:6px; }
-  .ai-call-footer svg { color:var(--ai-yellow); }
-  .ai-integrations-section { padding:clamp(74px,8vw,108px) 0;background:linear-gradient(180deg,#fff 0%,#F5F5F5 100%); }
+  .ai-integrations-section { padding:clamp(46px,5vw,70px) 0;background:linear-gradient(180deg,#fff 0%,#F5F5F5 100%); }
   .ai-section-heading { max-width:850px;margin:0 auto 30px;text-align:center; }
+  .ai-integrations-section .ai-section-heading>.ai-eyebrow { font-size:14px; }
   .ai-section-heading h2 { max-width:780px; }
-  .ai-integrations-visual { position:relative;isolation:isolate;margin:0 auto 24px;padding:clamp(20px,3.2vw,34px);overflow:hidden;border:1px solid #e5e8f1;border-radius:22px;background:radial-gradient(ellipse at 50% 0%,rgba(252,240,0,.105),transparent 62%),linear-gradient(145deg,#F5F5F5 0%,#fff 72%);box-shadow:0 20px 48px rgba(17,25,102,.065); }
+  .ai-integrations-visual { position:relative;isolation:isolate;margin:0 auto 24px;padding:clamp(20px,3.2vw,34px);overflow:hidden;border:1px solid #e5e8f1;border-radius:22px;background:radial-gradient(ellipse at 50% 0%,rgba(252,240,0,.105),transparent 62%),linear-gradient(145deg,#F5F5F5 0%,#fff 72%);box-shadow:0 20px 48px rgba(17,25,102,.065);transition:background .25s ease,border-color .25s ease,box-shadow .25s ease; }
+  .ai-integrations-visual:hover { border-color:#d9deeb;box-shadow:0 24px 54px rgba(17,25,102,.09); }
   .ai-integrations-visual::before { position:absolute;z-index:-1;inset:0;content:"";opacity:.3;background-image:radial-gradient(rgba(17,25,102,.16) .65px,transparent .65px);background-size:19px 19px;mask-image:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);pointer-events:none; }
   .ai-integration-stage-heading { display:flex;align-items:flex-end;justify-content:space-between;gap:18px;max-width:1080px;margin:0 auto 19px;padding:0 2px; }
   .ai-integration-stage-heading>div { display:grid;gap:6px; }
@@ -578,9 +587,10 @@ const AI_AUTOMATION_STYLES = `
   .ai-integration-logo-tile>img { position:relative;z-index:1;display:block;width:100%;height:100%;padding:7px;object-fit:contain;mix-blend-mode:multiply;transition:transform .3s cubic-bezier(.2,.75,.25,1); }
   .ai-motion-ready .ai-integrations-visual .ai-integration-logo-tile { opacity:0;transform:translateY(10px) scale(.94);transition:opacity .65s cubic-bezier(.22,.7,.2,1),transform .65s cubic-bezier(.22,.7,.2,1),background .25s ease,filter .25s ease;transition-delay:var(--logo-delay,0ms); }
   .ai-motion-ready .ai-integrations-visual.ai-in-view .ai-integration-logo-tile { opacity:1;transform:translateY(0) scale(1); }
-  .ai-integration-logo-tile:hover { z-index:2;background:#e4d300;filter:drop-shadow(0 8px 11px rgba(17,25,102,.14));transform:translateY(-4px); }
+  .ai-integration-logo-tile:hover { z-index:2;background:#FFF9AE;filter:drop-shadow(0 8px 11px rgba(17,25,102,.14));transform:translateY(-4px); }
   .ai-motion-ready .ai-integrations-visual.ai-in-view .ai-integration-logo-tile:hover { transform:translateY(-4px);transition-delay:0ms; }
   .ai-integration-logo-tile:hover>img { transform:scale(1.08); }
+  .ai-integration-logo-tile:hover::before { background:#FFF9AE; }
   .ai-connection-options { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;overflow:hidden;border:1px solid #e5e7ee;border-radius:18px;background:#fff;box-shadow:0 8px 20px rgba(17,25,102,.04); }
   .ai-connection-options article { position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:190px;padding:21px 23px;border-right:1px solid #e5e7ee;background:#fff;transition:background .25s ease,box-shadow .25s ease,transform .25s ease; }
   .ai-connection-options article:last-child { border-right:0; }
@@ -592,31 +602,32 @@ const AI_AUTOMATION_STYLES = `
   .ai-connection-index { display:block;margin-bottom:13px;color:var(--brand-gold-text);font-size:8px;font-weight:700;letter-spacing:.14em; }
   .ai-connection-icon { display:grid;place-items:center;width:42px;height:42px;margin-bottom:12px;color:var(--ai-navy);background:#fff9b3;border-radius:11px;transition:background .25s ease,color .25s ease,transform .25s ease; }
   .ai-connection-options h3 { margin:0 0 7px;color:var(--ai-navy);font-family:var(--font-heading),Georgia,serif;font-size:20px;line-height:1.25; }
-  .ai-connection-options p { margin:0;color:var(--ai-copy);font-size:11px;line-height:1.65; }
-  .ai-connection-options article:hover,.ai-motion-ready .ai-connection-options.ai-in-view article:hover { z-index:1;transform:translateY(-3px);background: var(--brand-hover-yellow);box-shadow:inset 0 0 0 1px #ddc900,0 12px 24px rgba(17,25,102,.08);transition-delay:0ms; }
+  .ai-connection-options p { margin:0;color:var(--ai-copy);font-size:16px;line-height:1.65; }
+  .ai-connection-options article:hover,.ai-motion-ready .ai-connection-options.ai-in-view article:hover { z-index:1;transform:translateY(-3px);background:#FFF9AE;box-shadow:inset 0 0 0 1px #ddc900,0 12px 24px rgba(17,25,102,.08);transition-delay:0ms; }
   .ai-connection-options article:hover .ai-connection-icon { background:var(--ai-yellow);transform:translateY(-2px); }
-  .ai-onboarding-intro { position:relative;isolation:isolate;overflow:hidden;padding:clamp(64px,8vw,95px) 0 28px;background:#F5F5F5;text-align:center; }
+  .ai-onboarding-intro { position:relative;isolation:isolate;overflow:hidden;padding:clamp(42px,4.8vw,64px) 0 16px;background:#F5F5F5;text-align:center; }
   .ai-onboarding-intro-glow { position:absolute;z-index:-1;top:-260px;left:50%;width:700px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(252,240,0,.15),transparent 70%);transform:translateX(-50%); }
   .ai-onboarding-intro .ai-container { max-width:860px; }
-  .ai-onboarding-intro h2 { margin:17px auto 11px; }
-  .ai-onboarding-intro p { max-width:740px;margin:0 auto;color:var(--ai-copy);font-size:15px;line-height:1.8; }
-  .ai-launch-section { padding:35px 0 clamp(75px,8vw,110px);background:#F5F5F5; }
-  .ai-launch-grid { display:grid;grid-template-columns:minmax(0,.87fr) minmax(0,1.13fr);align-items:center;gap:clamp(38px,7vw,100px);padding:clamp(25px,4vw,48px);border:1px solid #e8eaf1;border-radius:19px;background:#fff;box-shadow:0 18px 50px rgba(17,25,102,.055); }
-  .ai-launch-copy h2 { margin:16px 0 13px;color:var(--ai-navy);font-family:var(--font-heading),Georgia,serif;font-size:clamp(34px,3.9vw,48px);font-weight:600;line-height:1.13;letter-spacing:-.025em; }
-  .ai-launch-copy>p { margin:0;color:var(--ai-copy);font-size:13px;line-height:1.8; }
+  .ai-onboarding-intro h2 { margin:0 auto 11px; }
+  .ai-onboarding-intro p { max-width:740px;margin:0 auto;color:var(--ai-copy);font-size:18px;line-height:1.72; }
+  .ai-launch-section { padding:18px 0 clamp(42px,4.5vw,62px);background:#F5F5F5; }
+  .ai-launch-grid { transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;display:grid;grid-template-columns:minmax(0,.87fr) minmax(0,1.13fr);align-items:center;gap:clamp(38px,7vw,100px);padding:clamp(25px,4vw,48px);border:1px solid #e8eaf1;border-radius:19px;background:#fff;box-shadow:0 18px 50px rgba(17,25,102,.055); }
+  .ai-launch-grid:hover { background:#FFF9AE;border-color:#e5d87c;box-shadow:0 22px 54px rgba(17,25,102,.09); }
+  .ai-launch-copy h2 { margin:0 0 13px;color:var(--ai-navy);font-family:var(--font-heading),Georgia,serif;font-size:clamp(34px,3.9vw,48px);font-weight:600;line-height:1.13;letter-spacing:-.025em; }
+  .ai-launch-copy>p { margin:0;color:var(--ai-copy);font-size:18px;line-height:1.72; }
   .ai-launch-copy ul { display:grid;gap:11px;margin:22px 0 25px;padding:0;list-style:none; }
-  .ai-launch-copy li { display:flex;align-items:center;gap:10px;color:#464b69;font-size:11px; }
+  .ai-launch-copy li { display:flex;align-items:center;gap:10px;color:#464b69;font-size:16px;line-height:1.55; }
   .ai-launch-copy li svg { color:var(--brand-gold-text); }
   .ai-launch-visual { position:relative;min-width:0;overflow:hidden;border:1px solid rgba(17,25,102,.14);border-radius:16px;background:#0b1237;box-shadow:0 20px 44px rgba(17,25,102,.14); }
   .ai-launch-visual>img { display:block;width:100%;height:auto; }
-  .ai-launch-image-label { position:absolute;left:15px;bottom:15px;display:flex;align-items:center;gap:8px;padding:9px 12px;color:#fff;background:rgba(8,14,42,.9);border:1px solid rgba(252,240,0,.3);border-radius:30px;font-size:8px;font-weight:700;letter-spacing:.11em;backdrop-filter:blur(8px); }
-  .ai-launch-image-label>span { width:6px;height:6px;border-radius:50%;background:var(--ai-yellow); }
-  .ai-faq-section { padding:clamp(72px,8vw,106px) 0 70px;background:#F5F5F5; }
+  .ai-faq-section { padding:clamp(46px,5vw,70px) 0 48px;background:#F5F5F5; }
   .ai-faq-section .svc-faq-wrap { margin-top:0; }
   .ai-faq-section .svc-faq-head { max-width:770px;margin-bottom:32px; }
   .ai-faq-section .svc-faq-title { font-size:clamp(32px,4vw,48px); }
   .ai-faq-section .svc-faq-list { max-width:940px;gap:11px; }
-  .ai-faq-section .svc-faq-card { border-radius:12px; }
+  .ai-faq-section .svc-faq-card { border-radius:12px;transition:background .25s ease,border-color .25s ease,box-shadow .25s ease; }
+  .ai-faq-section .svc-faq-card:hover { background:#FFF9AE;border-color:#e5d87c; }
+  .ai-faq-section .svc-faq-badge { font-size:16px; }
   .ai-faq-section .svc-faq-card.is-open { border-color:#c9b600; }
   .ai-faq-section .svc-cta-box { margin-top:clamp(46px,6vw,74px); }
   .ai-motion-ready [data-ai-reveal] { opacity:0;transform:translate3d(0,27px,0);transition:opacity 1.08s cubic-bezier(.22,.7,.2,1),transform 1.08s cubic-bezier(.22,.7,.2,1);transition-delay:var(--ai-reveal-delay,0ms); }
@@ -637,7 +648,7 @@ const AI_AUTOMATION_STYLES = `
   @media(max-width:850px) {
     .ai-container { width:min(calc(100% - 40px),700px); }
     .ai-hero-grid,.ai-pipeline-layout,.ai-launch-grid { grid-template-columns:1fr; }
-    .ai-hero-grid { gap:26px;padding:13px 0 34px; }
+    .ai-hero-grid { gap:26px;padding:13px 0 24px; }
     .ai-hero-copy { max-width:700px; }
     .ai-hero-visual { width:min(100%,620px);margin:0 auto; }
     .ai-hero-image-frame { max-height:650px; }
@@ -652,7 +663,7 @@ const AI_AUTOMATION_STYLES = `
     .ai-connection-options article:nth-child(2) { border-right:0; }
     .ai-connection-options article:nth-child(-n+2) { border-bottom:1px solid #e5e7ee; }
     .ai-launch-grid { gap:30px; }
-    .ai-role-section,.ai-pipeline-section { padding:68px 0; }
+    .ai-role-section,.ai-pipeline-section { padding:54px 0; }
   }
   @media(max-width:760px) {
     .ai-integration-logo-tile { flex-basis:calc(16.666667% - 8.33px); }
@@ -663,27 +674,27 @@ const AI_AUTOMATION_STYLES = `
     .ai-breadcrumb { margin-bottom:17px;font-size:10px; }
     .ai-hero-grid { padding-top:8px; }
     .ai-hero-badge { gap:7px;padding:8px 11px;font-size:8px; }
-    .ai-hero-copy h1 { margin:19px 0 14px;font-size:clamp(39px,12vw,54px); }
-    .ai-hero-copy>p { font-size:13px;line-height:1.7; }
+    .ai-hero-copy h1 { margin:0 0 14px;font-size:clamp(40px,11.5vw,58px); }
+    .ai-hero-copy>p { font-size:18px;line-height:1.58; }
     .ai-hero-benefits { gap:11px;margin:20px 0 23px; }
-    .ai-hero-benefits li { gap:8px;font-size:11px; }
-    .ai-button { min-height:46px;padding:0 15px;font-size:11px; }
+    .ai-hero-benefits li { gap:8px;font-size:16px; }
+    .ai-button { min-height:48px;padding:0 17px;font-size:15px; }
     .ai-hero-live-card { right:9px;bottom:9px;min-width:195px;padding:10px 11px; }
     .ai-hero-live-card b { font-size:10px; }
     .ai-hero-live-card small { font-size:7px; }
     .ai-hero-visual-caption { justify-content:flex-start;font-size:9px; }
     .ai-hero-bottom-rule { gap:11px;font-size:7px;letter-spacing:.15em; }
-    .ai-role-section,.ai-pipeline-section,.ai-integrations-section { padding:58px 0; }
+    .ai-role-section,.ai-pipeline-section,.ai-integrations-section { padding:42px 0; }
     .ai-role-intro { margin-bottom:24px; }
-    .ai-role-intro h2,.ai-section-heading h2,.ai-onboarding-intro h2 { font-size:clamp(30px,9vw,39px); }
-    .ai-role-intro p,.ai-section-heading>p,.ai-onboarding-intro p { font-size:12px;line-height:1.7; }
+    .ai-role-intro h2 { margin-top:0; } .ai-role-intro h2,.ai-section-heading h2,.ai-onboarding-intro h2 { font-size:clamp(30px,9vw,39px); }
+    .ai-role-intro p,.ai-section-heading>p,.ai-onboarding-intro p { font-size:17px;line-height:1.68; }
     .ai-role-tabbar { grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;padding:5px;border-radius:17px; }
     .ai-role-tab { min-height:40px;padding:8px 5px;font-size:9px; }
     .ai-role-panel { gap:19px;margin-top:14px;padding:17px;border-radius:14px; }
     .ai-role-copy h3 { font-size:30px; }
-    .ai-role-copy>p { font-size:12px;line-height:1.7; }
+    .ai-role-copy>p { font-size:17px;line-height:1.68; }
     .ai-role-copy ul { gap:10px;margin:18px 0 20px; }
-    .ai-role-copy li { font-size:10px; }
+    .ai-role-copy li { font-size:15px;line-height:1.55; }
     .ai-role-visual { aspect-ratio:1/1;border-radius:11px; }
     .ai-image-caption { right:7px;bottom:7px;padding:6px 8px;font-size:6px; }
     .ai-role-controls { gap:11px;margin-top:12px; }
@@ -695,9 +706,9 @@ const AI_AUTOMATION_STYLES = `
     .ai-role-dots button[aria-current="true"] { width:25px; }
     .ai-pipeline-layout { gap:27px; }
     .ai-pipeline-copy h2 { font-size:clamp(35px,10vw,47px); }
-    .ai-pipeline-copy>p { font-size:12px;line-height:1.75; }
+    .ai-pipeline-copy>p { font-size:17px;line-height:1.68; }
     .ai-pipeline-capabilities { gap:7px;margin:19px 0; }
-    .ai-pipeline-capabilities span { gap:6px;min-height:39px;padding:7px;font-size:9px; }
+    .ai-pipeline-capabilities span { gap:6px;min-height:42px;padding:8px;font-size:13px; }
     .ai-pipeline-capabilities svg { width:14px;height:14px; }
     .ai-call-console { padding:12px;border-radius:13px; }
     .ai-call-console-top { gap:8px;padding-bottom:12px; }
@@ -718,7 +729,6 @@ const AI_AUTOMATION_STYLES = `
     .ai-call-metrics>div>b { font-size:10px; }
     .ai-call-metrics>div>small { gap:3px;font-size:6px; }
     .ai-call-metrics>div>small svg { width:10px;height:10px; }
-    .ai-call-footer { font-size:6px; }
     .ai-integrations-visual { margin-bottom:17px;padding:13px;border-radius:15px; }
     .ai-integration-stage-heading { align-items:flex-start;flex-direction:column;gap:11px;margin-bottom:13px; }
     .ai-integration-stage-heading>div>b { font-size:18px; }
@@ -735,26 +745,26 @@ const AI_AUTOMATION_STYLES = `
     .ai-connection-icon { width:35px;height:35px;margin-bottom:10px;border-radius:9px; }
     .ai-connection-icon svg { width:17px;height:17px; }
     .ai-connection-options h3 { font-size:17px; }
-    .ai-connection-options p { font-size:9px;line-height:1.55; }
-    .ai-onboarding-intro { padding:58px 0 18px; }
-    .ai-onboarding-intro h2 { margin-top:15px; }
-    .ai-launch-section { padding:20px 0 60px; }
+    .ai-connection-options p { font-size:15px;line-height:1.6; }
+    .ai-onboarding-intro { padding:42px 0 14px; }
+    .ai-onboarding-intro h2 { margin-top:0; }
+    .ai-launch-section { padding:14px 0 42px; }
     .ai-launch-grid { gap:24px;padding:18px;border-radius:14px; }
-    .ai-launch-copy h2 { font-size:clamp(31px,9vw,39px); }
-    .ai-launch-copy>p { font-size:11px; }
+  .ai-launch-copy h2 { font-size:clamp(31px,9vw,39px); }
+    .ai-launch-copy>p { font-size:17px;line-height:1.68; }
     .ai-launch-copy ul { gap:10px;margin:18px 0 20px; }
-    .ai-launch-copy li { align-items:flex-start;font-size:10px; }
+    .ai-launch-copy li { align-items:flex-start;font-size:15px;line-height:1.55; }
     .ai-launch-visual { border-radius:11px; }
-    .ai-launch-image-label { left:8px;bottom:8px;padding:7px 9px;font-size:6px; }
-    .ai-faq-section { padding:59px 0 55px; }
+    .ai-faq-section { padding:42px 0 40px; }
     .ai-faq-section .svc-faq-head { text-align:left;margin-bottom:23px; }
     .ai-faq-section .svc-faq-title { font-size:clamp(29px,8.5vw,37px); }
-    .ai-faq-section .svc-faq-subtitle { font-size:12px; }
+    .ai-faq-section .svc-faq-subtitle { font-size:16px; }
     .ai-faq-section .svc-faq-list { gap:9px; }
     .ai-faq-section .svc-faq-trigger { gap:10px;padding:14px; }
     .ai-faq-section .svc-faq-q { font-size:14px; }
-    .ai-faq-section .svc-faq-body { padding:0 14px 15px;font-size:12px; }
+    .ai-faq-section .svc-faq-body { padding:0 14px 15px;font-size:16px;line-height:1.65; }
     .ai-faq-section .svc-cta-box { margin-top:43px; }
+      .ai-faq-section .svc-faq-badge { font-size:14px; }
   }
   @media(prefers-reduced-motion:reduce) {
     .ai-auto-page *, .ai-auto-page *::before, .ai-auto-page *::after { scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important; }

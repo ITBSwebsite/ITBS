@@ -163,7 +163,6 @@ const faqs = [
 function StoreMapIllustration() {
   return (
     <div className="ecom-visual" data-ecom-reveal>
-      <div className="ecom-visual-topline"><span>STORE STRUCTURE</span><span>ILLUSTRATIVE</span></div>
       <svg className="ecom-store-map" viewBox="0 0 600 360" role="img" aria-labelledby="ecom-map-title ecom-map-desc">
         <title id="ecom-map-title">Illustrative ecommerce site structure</title>
         <desc id="ecom-map-desc">A home page connects to category pages, collections and product pages, with a guide connected to a category.</desc>
@@ -220,18 +219,17 @@ export function EcommerceSEOView() {
           </nav>
           <div className="ecom-hero-grid">
             <div className="ecom-hero-copy" data-ecom-reveal>
-              <p className="ecom-eyebrow"><span /> ECOMMERCE SEO FOR UK ONLINE STORES</p>
               <h1>Ecommerce SEO for UK online stores, built around how people <em>actually shop</em></h1>
               <p className="ecom-hero-lede">
                 We improve how your store is crawled, structured and presented in search, from category
                 architecture to product data, so people looking for what you sell can find useful pages.
               </p>
-              <p className="ecom-hero-support">Technical foundations, category and product pages, content planning and reporting shaped around your store.</p>
+
               <div className="ecom-hero-actions">
                 <Link href="/contact" className="ecom-button ecom-button--primary">Request a store SEO review <ArrowRight size={17} aria-hidden="true" /></Link>
                 <a href="#process" className="ecom-button ecom-button--secondary">See how we work <ArrowDown size={16} aria-hidden="true" /></a>
               </div>
-              <p className="ecom-hero-note"><Check size={15} aria-hidden="true" /> No ranking promises. A plan based on your catalogue, platform and goals.</p>
+
             </div>
             <StoreMapIllustration />
           </div>
@@ -250,14 +248,13 @@ export function EcommerceSEOView() {
       <section className="ecom-section ecom-explainer">
         <div className="ecom-container ecom-explainer-grid">
           <div className="ecom-section-intro" data-ecom-reveal>
-            <p className="ecom-kicker">THE DISCIPLINE</p>
             <h2>Selling through search takes more than ranking a homepage</h2>
             <p>An online store can have thousands of product pages, filters that create URL variations, stock that changes and categories competing for the same searches.</p>
             <p>Ecommerce SEO makes the structure clearer to search engines and the pages more useful to shoppers. It starts with the different ways people search, then gives those needs the right kind of page.</p>
             <Link href="/services/seo" className="ecom-text-link">Explore our SEO services <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="ecom-channel-panel" data-ecom-reveal>
-            <div className="ecom-channel-title"><span>WHERE EACH CHANNEL FITS</span><p>Search can support different parts of the buying journey.</p></div>
+            <div className="ecom-channel-title"><p>Search can support different parts of the buying journey.</p></div>
             <div className="ecom-channel-row ecom-channel-row--focus"><strong>Ecommerce SEO</strong><span>Build visibility for pages on your own store over time.</span><small>Owned store · no per-click charge</small></div>
             <div className="ecom-channel-row"><strong><Link href="/services/ppc">Paid search</Link></strong><span>Use campaigns for targeted demand, offers and testing.</span><small>Ad budget · platform-dependent</small></div>
             <div className="ecom-channel-row"><strong>Marketplaces</strong><span>Reach shoppers through another platform’s storefront.</span><small>Marketplace rules and fees</small></div>
@@ -316,7 +313,7 @@ export function EcommerceSEOView() {
       <section className="ecom-section ecom-page-plan">
         <div className="ecom-container">
           <div className="ecom-plan-heading" data-ecom-reveal>
-            <div><p className="ecom-kicker">SEARCH DEMAND TO PAGE PLAN</p><h2>We plan your store around the way people search</h2></div>
+            <div><h2>We plan your store around the way people search</h2></div>
             <p>Shoppers may search by product type, brand, model or a question they have before buying. Each search has a different job to do.</p>
           </div>
           <table className="ecom-plan-table" aria-label="How ecommerce page types serve different searches">

@@ -23,13 +23,10 @@
 .ecom-breadcrumb [aria-current="page"] { color: var(--ecom-navy); font-weight: 700; }
 .ecom-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr); align-items: center; gap: clamp(40px, 6vw, 82px); }
 .ecom-hero-copy { min-width: 0; }
-.ecom-eyebrow { display: inline-flex; align-items: center; gap: 11px; margin: 0 0 18px; padding: 9px 14px; border: 1px solid rgba(17,25,102,.12); border-radius: 30px; color: var(--brand-gold-text); background: rgba(255,255,255,.9); box-shadow: 0 8px 24px rgba(17,25,102,.045); font-size: 10px; font-weight: 700; letter-spacing: .15em; line-height: 1.45; }
-.ecom-eyebrow>span { width: 8px; height: 8px; border-radius: 50%; background: var(--ecom-yellow); box-shadow: 0 0 0 5px rgba(252,240,0,.2); }
 .ecom-hero h1, .ecom-section h2, .ecom-centered-heading h2, .ecom-final-cta h2 { margin: 0; color: var(--ecom-navy); font-family: var(--font-heading), "The Seasons", Georgia, serif; font-weight: 700; letter-spacing: -.035em; }
 .ecom-hero h1 { max-width: 730px; font-size: clamp(44px, 5.3vw, 70px); line-height: 1.045; }
 .ecom-hero h1 em { color: #315fe9; font-style: normal; }
 .ecom-hero-lede { max-width: 650px; margin: 20px 0 0; color: var(--ecom-ink); font-size: clamp(17px, 1.25vw, 19px); line-height: 1.72; }
-.ecom-hero-support { max-width: 620px; margin: 10px 0 0; color: var(--ecom-muted); font-size: 15px; line-height: 1.65; }
 .ecom-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 24px; }
 .ecom-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 11px; padding: 0 18px; border: 1px solid transparent; border-radius: 6px; font-family: inherit; font-size: 14px; font-weight: 700; text-decoration: none; transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
 .ecom-button:hover { transform: translateY(-2px); }
@@ -40,13 +37,9 @@
 .ecom-button--secondary { min-height: 44px; padding: 0 3px; color: var(--ecom-navy); background: transparent; }
 .ecom-button--secondary:hover { color: #315fe9; }
 .ecom-button--secondary svg { color: var(--brand-gold-text); }
-.ecom-hero-note { display: flex; align-items: flex-start; gap: 8px; margin: 17px 0 0; color: #46566e; font-size: 13px; line-height: 1.55; }
-.ecom-hero-note svg { flex: 0 0 15px; margin-top: 2px; color: #14805c; }
 
 .ecom-visual { position: relative; overflow: hidden; padding: 18px 22px 17px; border: 1px solid rgba(17,25,102,.12); border-radius: 14px; background: rgba(255,255,255,.88); box-shadow: 0 24px 58px rgba(17,25,102,.11); }
 .ecom-visual::before { position: absolute; top: -160px; right: -150px; width: 370px; height: 370px; border: 1px solid rgba(252,240,0,.23); border-radius: 50%; box-shadow: 0 0 0 38px rgba(252,240,0,.045); content: ""; pointer-events: none; }
-.ecom-visual-topline { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding-bottom: 13px; border-bottom: 1px solid var(--ecom-line); color: #697790; font-size: 9px; font-weight: 700; letter-spacing: .14em; }
-.ecom-visual-topline span:last-child { color: var(--brand-gold-text); }
 .ecom-store-map { display: block; width: 100%; height: auto; max-height: 320px; margin: 6px auto 0; overflow: visible; }
 .ecom-map-lines { color: #9ca8bc; stroke-dasharray: 260; stroke-dashoffset: 0; }
 .ecom-map-dash { stroke-dasharray: 4 5; color: #b8a600; }
@@ -281,14 +274,11 @@
   .ecom-hero { padding: 14px 0 43px; }
   .ecom-breadcrumb { margin-bottom: 24px; gap: 7px; font-size: 11px; }
   .ecom-hero-grid { grid-template-columns: 1fr; gap: 29px; }
-  .ecom-eyebrow { margin-bottom: 14px; font-size: 9px; }
   .ecom-hero h1 { max-width: 580px; font-size: clamp(38px, 10.4vw, 55px); }
   .ecom-hero-lede { margin-top: 14px; font-size: 16px; line-height: 1.68; }
-  .ecom-hero-support { font-size: 14px; }
   .ecom-hero-actions { align-items: stretch; gap: 8px; margin-top: 20px; }
   .ecom-button--primary { min-height: 48px; }
   .ecom-button--secondary { justify-content: flex-start; min-height: 42px; }
-  .ecom-hero-note { font-size: 12px; }
   .ecom-visual { padding: 14px 12px 12px; border-radius: 11px; }
   .ecom-store-map { max-height: none; }
   .ecom-search-preview { grid-template-columns: 34px minmax(0,1fr) 18px; gap: 8px; padding: 10px; }
@@ -361,4 +351,106 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .ecom-seo-page *, .ecom-seo-page *::before, .ecom-seo-page *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+/* Refined ecommerce page type scale and pale hover for light surfaces. */
+.ecom-seo-page { --ecom-card-hover: #FFF9AE; }
+.ecom-search-preview small { font-size: 10px; }
+.ecom-search-preview strong { font-size: 18px; }
+.ecom-search-preview>div>span { font-size: 14px; }
+.ecom-proof-grid strong { font-size: 17px; }
+.ecom-proof-grid small { font-size: 14px; }
+.ecom-hero-lede { font-size: 19px; line-height: 1.72; }
+.ecom-section-intro>p:not(.ecom-kicker),
+.ecom-plan-heading>p,
+.ecom-process-intro>p:not(.ecom-kicker),
+.ecom-approach-copy>p:not(.ecom-kicker),
+.ecom-fit-grid>div:first-child>p:not(.ecom-kicker),
+.ecom-faq-intro>p:not(.ecom-kicker),
+.ecom-final-cta p:not(.ecom-kicker) { font-size: 17px; line-height: 1.72; }
+.ecom-channel-title p { font-size: 16px; }
+.ecom-channel-row strong { font-size: 18px; }
+.ecom-channel-row span { font-size: 15px; }
+.ecom-channel-row small { font-size: 13px; }
+.ecom-channel-foot { font-size: 14px; }
+.ecom-issue h3 { font-size: 22px; }
+.ecom-issue p { font-size: 16px; line-height: 1.65; }
+.ecom-work-card h3 { font-size: 27px; }
+.ecom-work-promise { font-size: 16px; line-height: 1.68; }
+.ecom-work-detail>span { font-size: 10px; }
+.ecom-work-detail p { font-size: 14px; }
+.ecom-plan-table tbody th { font-size: 18px; }
+.ecom-plan-table tbody td { font-size: 15px; line-height: 1.62; }
+.ecom-plan-mobile-label { font-size: 10px; }
+.ecom-plan-foot p { font-size: 15px; }
+.ecom-platform-list strong { font-size: 19px; }
+.ecom-platform-list small { font-size: 14px; }
+.ecom-timeline-step h3 { font-size: 23px; }
+.ecom-timeline-step p { font-size: 16px; line-height: 1.65; }
+.ecom-measure-caveat p { font-size: 15px; }
+.ecom-report-head small { font-size: 10px; }
+.ecom-report-panel li { font-size: 16px; }
+.ecom-report-note { font-size: 14px; }
+.ecom-fit-list>span { font-size: 16px; }
+.ecom-fit-list>p { font-size: 14px; }
+.ecom-faq-item summary { font-size: 18px; }
+.ecom-faq-item>p { font-size: 16px; line-height: 1.72; }
+.ecom-final-cta small { font-size: 13px; }
+
+/* Keep the brighter yellow for navy panels; use the softer requested yellow on light cards. */
+.ecom-search-preview:hover,
+.ecom-issue:hover,
+.ecom-channel-row:hover,
+.ecom-channel-row--focus:hover,
+.ecom-work-card:hover,
+.ecom-plan-table tbody tr:hover,
+.ecom-platform-list>a:hover,
+.ecom-faq-item summary:hover { background-color: var(--ecom-card-hover); }
+.ecom-work-card:hover { border-color: #e8dd75; }
+
+@media (max-width: 760px) {
+  .ecom-section { padding: 46px 0; }
+  .ecom-hero-lede { font-size: 17px; line-height: 1.68; }
+  .ecom-search-preview small { font-size: 9px; }
+  .ecom-search-preview strong { font-size: 16px; }
+  .ecom-search-preview>div>span { font-size: 13px; }
+  .ecom-proof-grid strong { font-size: 15px; }
+  .ecom-proof-grid small { font-size: 13px; }
+  .ecom-section-intro>p:not(.ecom-kicker),
+  .ecom-plan-heading>p,
+  .ecom-process-intro>p:not(.ecom-kicker),
+  .ecom-approach-copy>p:not(.ecom-kicker),
+  .ecom-fit-grid>div:first-child>p:not(.ecom-kicker),
+  .ecom-faq-intro>p:not(.ecom-kicker),
+  .ecom-final-cta p:not(.ecom-kicker) { font-size: 16px; line-height: 1.68; }
+  .ecom-channel-title p,
+  .ecom-channel-row span,
+  .ecom-channel-row small,
+  .ecom-channel-foot { font-size: 15px; }
+  .ecom-issue h3 { font-size: 21px; }
+  .ecom-issue p { font-size: 15px; }
+  .ecom-work-card h3 { font-size: 23px; }
+  .ecom-work-promise { font-size: 15px; }
+  .ecom-work-detail p { font-size: 14px; }
+  .ecom-plan-table tbody th { font-size: 18px; }
+  .ecom-plan-table tbody td { font-size: 15px; }
+  .ecom-plan-mobile-label { font-size: 10px; }
+  .ecom-plan-foot p { font-size: 15px; }
+  .ecom-platform-list strong { font-size: 18px; }
+  .ecom-platform-list small { font-size: 14px; }
+  .ecom-timeline-step h3 { font-size: 22px; }
+  .ecom-timeline-step p,
+  .ecom-measure-caveat p,
+  .ecom-report-panel li,
+  .ecom-fit-list>span,
+  .ecom-faq-item>p { font-size: 15px; }
+  .ecom-report-note,
+  .ecom-fit-list>p { font-size: 14px; }
+  .ecom-faq-item summary { font-size: 16px; }
+  .ecom-final-cta small { font-size: 13px; }
+}
+
+/* Keep the primary Ecommerce SEO card heading above the shared service h3 scale. */
+body > div.flex-1 .ecom-seo-page .ecom-work-card h3 { font-size: 27px !important; }
+@media (max-width: 760px) {
+  body > div.flex-1 .ecom-seo-page .ecom-work-card h3 { font-size: 23px !important; }
 }

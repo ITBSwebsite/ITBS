@@ -346,7 +346,7 @@ export function CRMLeadManagementView({ faqItems }: { faqItems: FAQItem[] }) {
         <div className="crm-container crm-followup-inner" data-crm-reveal="down">
           <h2>Every Lead Deserves a Follow-Up.</h2>
           <p>Your team can&apos;t follow up with every prospect manually. Our CRM and lead generation systems automate responses, organise enquiries, nurture potential customers and keep follow-ups on track—helping you convert more leads into paying customers and retain existing ones.</p>
-          <a className="crm-followup-link" href="#crm-platform">See how ITBS connects the journey <ArrowUpRight size={17} /></a>
+
         </div>
       </section>
 

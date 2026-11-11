@@ -135,7 +135,10 @@ export function SEOMigrationServicesView() {
     root.classList.add('smm-motion-ready');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('smm-visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('smm-visible');
+          observer.unobserve(entry.target);
+        }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -28px 0px' });
     root.querySelectorAll<HTMLElement>('[data-smm-reveal]').forEach((item) => observer.observe(item));

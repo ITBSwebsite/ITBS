@@ -2416,44 +2416,18 @@ a {
 .brands-marquee-outer {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   padding: 16px 0;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
 }
 
 .brands-marquee-track {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
-  gap: 28px;
-  width: max-content;
-  animation: brandsMarquee 32s linear infinite;
+  gap: 20px;
+  width: 100%;
 }
 
-.brands-marquee-outer:hover .brands-marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes brandsMarquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 14px));
-  }
-}
 
 .brand-logo-card {
   position: relative;
@@ -2461,7 +2435,7 @@ a {
   border: 1px solid rgba(17, 25, 102, 0.09);
   border-radius: 20px;
   box-shadow: 0 4px 18px -4px rgba(17, 25, 102, 0.05);
-  width: 290px;
+  width: 100%;
   height: 130px;
   padding: 14px 22px;
   display: flex;
@@ -2494,7 +2468,7 @@ a {
 
 @media (max-width: 768px) {
   .brand-logo-card {
-    width: 240px;
+    width: 100%;
     height: 110px;
     padding: 12px 18px;
   }
@@ -2503,8 +2477,8 @@ a {
     max-width: 200px;
   }
   .brands-marquee-track {
-    gap: 20px;
-    animation-duration: 22s;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
   }
 }
 
@@ -5118,8 +5092,8 @@ body > div.flex-1 .psa-campaign-intro p { font-size: 13px !important; line-heigh
 /* Consistent soft-yellow hover for light interactive cards site-wide. */
 :root { --brand-card-hover-yellow: #FFF9AE; }
 .home-page .svc-item:hover,
-.home-page .wcu-card:hover,
-.home-page .ind-card:hover,
+.home-page .wcu-card--gold:hover,
+.home-page .ind-card--gold:hover,
 .psa-channel-card:hover,
 .psa-principle-card:hover,
 .seo-service-card:hover,
@@ -5134,6 +5108,17 @@ body > div.flex-1 .psa-campaign-intro p { font-size: 13px !important; line-heigh
 .community-audience-chip:hover,
 .faq-category-pill:not(.is-active):hover,
 .faq-question:hover,
+.svc-faq-card:hover,
+.ecom-faq-item summary:hover,
+.ecom-channel-row:hover,
+.ecom-work-card:hover,
+.ecom-platform-list > a:hover,
+.ecom-plan-table tbody tr:hover,
+.geo-benefit-card:hover,
+.geo-faq-item:hover,
+.aeo-faq-item:hover,
+.psa-faq-item:hover,
+.sa-faq-item:hover,
 .privacy-toc-links a:hover,
 .privacy-toc-links a:focus-visible,
 .terms-toc-links a:hover,
@@ -5161,6 +5146,7 @@ body > div.flex-1 .psa-campaign-intro p { font-size: 13px !important; line-heigh
 .geo-service-card:hover,
 .geo-service-card:focus-within,
 .smm-service-card:hover,
+.sa-pricing-card:hover,
 .sa-pricing-card:focus-within,
 .sa-tab:hover,
 .jux-feature-card:hover {

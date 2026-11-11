@@ -150,8 +150,7 @@ export function UIUXDesignView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('jux-visible');
-          } else {
-            entry.target.classList.remove('jux-visible');
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -444,7 +443,6 @@ export function UIUXDesignView() {
           color: #111966;
           z-index: 6;
           backdrop-filter: blur(8px);
-          animation: juxFloat 5s ease-in-out infinite alternate;
         }
 
         .jux-pill-top {
@@ -455,17 +453,8 @@ export function UIUXDesignView() {
         .jux-pill-bottom {
           bottom: 15px;
           right: -10px;
-          animation-delay: -2.5s;
         }
 
-        @keyframes juxFloat {
-          0% {
-            transform: translateY(0);
-          }
-          100% {
-            transform: translateY(-8px);
-          }
-        }
 
         /* ── Credibility & Stats Section ── */
         .jux-cred-sec {

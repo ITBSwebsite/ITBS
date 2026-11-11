@@ -221,7 +221,7 @@
 .ecom-faq-item { border-bottom: 1px solid #cfd6e5; }
 .ecom-faq-item summary { display: grid; min-height: 68px; grid-template-columns: 29px minmax(0,1fr) 22px; align-items: center; gap: 10px; padding: 11px 8px; color: var(--ecom-navy); cursor: pointer; font-family: var(--font-heading), Georgia, serif; font-size: 17px; font-weight: 700; line-height: 1.4; list-style: none; transition: background .18s ease; }
 .ecom-faq-item summary::-webkit-details-marker { display: none; }
-.ecom-faq-item summary:hover { background: var(--brand-hover-yellow); }
+.ecom-faq-item summary:hover { background: #FFF9AE; }
 .ecom-faq-num { color: var(--brand-gold-text); font-family: var(--font-body), Georgia, serif; font-size: 10px; letter-spacing: .08em; }
 .ecom-faq-toggle { position: relative; width: 20px; height: 20px; border: 1px solid #d5dbea; border-radius: 50%; background: #fff; }
 .ecom-faq-toggle::before, .ecom-faq-toggle::after { position: absolute; top: 9px; left: 5px; width: 8px; height: 1.5px; background: var(--ecom-navy); content: ""; transition: transform .18s ease; }
@@ -404,7 +404,7 @@
 .ecom-work-card:hover,
 .ecom-plan-table tbody tr:hover,
 .ecom-platform-list>a:hover,
-.ecom-faq-item summary:hover { background-color: var(--ecom-card-hover); }
+.ecom-faq-item summary:hover { background-color: #FFF9AE; }
 .ecom-work-card:hover { border-color: #e8dd75; }
 
 @media (max-width: 760px) {

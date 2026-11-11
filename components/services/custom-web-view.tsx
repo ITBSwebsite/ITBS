@@ -89,8 +89,7 @@ export function CustomWebView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('cw-visible');
-          } else {
-            entry.target.classList.remove('cw-visible');
+            observer.unobserve(entry.target);
           }
         });
       },

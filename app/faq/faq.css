@@ -61,7 +61,7 @@
 .faq-list { overflow: hidden; border: 1px solid var(--faq-line); border-radius: 13px; background: #fff; box-shadow: 0 13px 36px rgba(17,25,102,.055); }
 .faq-item + .faq-item { border-top: 1px solid var(--faq-line); }
 .faq-question { display: grid; width: 100%; min-height: 76px; grid-template-columns: 42px minmax(0, 1fr) 40px; align-items: center; gap: 16px; padding: 13px 23px; border: 0; color: var(--faq-navy); background: #fff; cursor: pointer; text-align: left; transition: background-color .22s ease; }
-.faq-question:hover, .faq-item.is-open .faq-question { background: var(--brand-hover-yellow); }
+.faq-question:hover, .faq-item.is-open .faq-question { background: #FFF9AE; }
 .faq-number { color: var(--brand-gold-text); font-size: 11px; font-weight: 700; letter-spacing: .1em; }
 .faq-question-copy { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-family: "The Seasons", Georgia, serif; font-size: 18px; font-weight: 700; line-height: 1.35; }
 .faq-question-copy small { flex: 0 0 auto; color: #8490a4; font-family: var(--font-body), "Cardo", Georgia, serif; font-size: 11px; font-weight: 400; }

@@ -148,8 +148,7 @@ export function GraphicDesignView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('gd-visible');
-          } else {
-            entry.target.classList.remove('gd-visible');
+            observer.unobserve(entry.target);
           }
         });
       },

@@ -62,13 +62,6 @@ const CLIENT_BRANDS: ClientBrand[] = [
 ];
 
 export function BrandsSection() {
-  // Multiply the brands array so the marquee loops seamlessly with zero gaps
-  const marqueeItems = [
-    ...CLIENT_BRANDS,
-    ...CLIENT_BRANDS,
-    ...CLIENT_BRANDS,
-    ...CLIENT_BRANDS,
-  ];
 
   return (
     <section className="brands-section-root" suppressHydrationWarning>
@@ -169,40 +162,15 @@ export function BrandsSection() {
         .brands-marquee-outer {
           position: relative;
           width: 100%;
-          overflow: hidden;
+          overflow: visible;
           padding: 16px 0;
-          mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 10%,
-            black 90%,
-            transparent 100%
-          );
-          -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 10%,
-            black 90%,
-            transparent 100%
-          );
         }
         .brands-marquee-track {
-          display: flex;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
           align-items: center;
-          gap: 28px;
-          width: max-content;
-          animation: brandsMarquee 32s linear infinite;
-        }
-        .brands-marquee-outer:hover .brands-marquee-track {
-          animation-play-state: paused;
-        }
-        @keyframes brandsMarquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-50% - 14px));
-          }
+          gap: 20px;
+          width: 100%;
         }
         /* Individual Luxury Brand Logo Card */
         .brand-logo-card {
@@ -211,7 +179,7 @@ export function BrandsSection() {
           border: 1px solid rgba(17, 25, 102, 0.09);
           border-radius: 20px;
           box-shadow: 0 4px 18px -4px rgba(17, 25, 102, 0.05);
-          width: 290px;
+          width: 100%;
           height: 130px;
           padding: 14px 22px;
           display: flex;
@@ -241,7 +209,7 @@ export function BrandsSection() {
         /* Mobile adjustment */
         @media (max-width: 768px) {
           .brand-logo-card {
-            width: 240px;
+            width: 100%;
             height: 110px;
             padding: 12px 18px;
           }
@@ -250,8 +218,8 @@ export function BrandsSection() {
             max-width: 200px;
           }
           .brands-marquee-track {
-            gap: 20px;
-            animation-duration: 22s;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
           }
         }
       `}</style>
@@ -283,10 +251,10 @@ export function BrandsSection() {
           </p>
         </div>
 
-        {/* Continuous Moving Logo Slider (Marquee) */}
+        {/* Client logos */}
         <div className="brands-marquee-outer" aria-label="Brands and clients we have worked with">
           <div className="brands-marquee-track">
-            {marqueeItems.map((brand, idx) => (
+            {CLIENT_BRANDS.map((brand, idx) => (
               <div
                 key={`${brand.id}-${idx}`}
                 className="brand-logo-card"

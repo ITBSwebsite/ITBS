@@ -179,9 +179,7 @@ export function FigmaDesignView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('fg-visible');
-          } else {
-            // Re-animate when scrolling back into view
-            entry.target.classList.remove('fg-visible');
+            observer.unobserve(entry.target);
           }
         });
       },

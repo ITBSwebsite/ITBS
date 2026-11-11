@@ -139,8 +139,7 @@ export function WebDevelopmentMainView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('wdm-visible');
-          } else {
-            entry.target.classList.remove('wdm-visible');
+            observer.unobserve(entry.target);
           }
         });
       },

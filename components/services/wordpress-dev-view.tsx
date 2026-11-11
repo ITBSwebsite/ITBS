@@ -112,8 +112,7 @@ export function WordPressDevView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('wp-visible');
-          } else {
-            entry.target.classList.remove('wp-visible');
+            observer.unobserve(entry.target);
           }
         });
       },

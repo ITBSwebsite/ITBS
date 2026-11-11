@@ -175,8 +175,10 @@ export function SEOServiceView() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('seo-visible');
-          else entry.target.classList.remove('seo-visible');
+          if (entry.isIntersecting) {
+            entry.target.classList.add('seo-visible');
+            observer.unobserve(entry.target);
+          }
         });
       },
       { threshold: 0.12, rootMargin: '0px 0px -36px 0px' },

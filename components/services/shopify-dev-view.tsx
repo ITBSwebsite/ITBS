@@ -86,8 +86,7 @@ export function ShopifyDevView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('sp-visible');
-          } else {
-            entry.target.classList.remove('sp-visible');
+            observer.unobserve(entry.target);
           }
         });
       },

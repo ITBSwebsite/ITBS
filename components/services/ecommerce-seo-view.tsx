@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
-  ArrowDown,
   ArrowRight,
   BarChart3,
   Check,
@@ -199,7 +198,10 @@ export function EcommerceSEOView() {
     root.classList.add('ecom-motion-ready');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('ecom-visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ecom-visible');
+          observer.unobserve(entry.target);
+        }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
     root.querySelectorAll<HTMLElement>('[data-ecom-reveal]').forEach((item) => observer.observe(item));
@@ -227,7 +229,6 @@ export function EcommerceSEOView() {
 
               <div className="ecom-hero-actions">
                 <Link href="/contact" className="ecom-button ecom-button--primary">Request a store SEO review <ArrowRight size={17} aria-hidden="true" /></Link>
-                <a href="#process" className="ecom-button ecom-button--secondary">See how we work <ArrowDown size={16} aria-hidden="true" /></a>
               </div>
 
             </div>

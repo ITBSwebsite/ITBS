@@ -201,9 +201,7 @@ export function PPCMarketingView() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('ppc-visible');
-          } else {
-            // Re-animate when scrolling back into view
-            entry.target.classList.remove('ppc-visible');
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -444,7 +442,6 @@ export function PPCMarketingView() {
           color: #111966;
           z-index: 5;
           backdrop-filter: blur(8px);
-          animation: ppcFloat 5s ease-in-out infinite alternate;
         }
 
         .ppc-badge-top {
@@ -455,17 +452,8 @@ export function PPCMarketingView() {
         .ppc-badge-bottom {
           bottom: 12px;
           right: -10px;
-          animation-delay: -2.5s;
         }
 
-        @keyframes ppcFloat {
-          0% {
-            transform: translateY(0);
-          }
-          100% {
-            transform: translateY(-8px);
-          }
-        }
 
         /* ── Stats Bar (Blue Footer Style with Yellow Cards & White Text) ── */
         .ppc-stats-sec {

@@ -535,7 +535,7 @@ export function FigmaDesignView() {
           width: 250px;
           height: 44px;
           border-radius: 9999px;
-          background: #fff37e !important; /* Exact stripes color requested */
+          background: #FFF9AE !important;
           top: 14%;
           right: -45px;
           transform: rotate(-35deg);
@@ -551,7 +551,7 @@ export function FigmaDesignView() {
           width: 170px;
           height: 38px;
           border-radius: 9999px;
-          background: #fff37e !important; /* Exact stripes color requested */
+          background: #FFF9AE !important;
           top: 42%;
           right: -25px;
           transform: rotate(-35deg);
@@ -562,7 +562,7 @@ export function FigmaDesignView() {
         }
 
         .fg-feature-card:hover {
-          background: var(--brand-hover-yellow) !important; /* Exact Card background requested */
+          background: #FFF9AE !important;
           border-color: #EAB308 !important;
           transform: none !important; /* NO SHAKING OR MOVING TEXT */
           box-shadow: 0 14px 34px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
@@ -664,7 +664,7 @@ export function FigmaDesignView() {
 
         .fg-step-card:hover {
           border-color: #EAB308;
-          background: var(--brand-hover-yellow);
+          background: #FFF9AE;
           transform: none;
           box-shadow: 0 12px 28px rgba(17, 25, 102, 0.06);
         }
@@ -716,6 +716,7 @@ export function FigmaDesignView() {
 
         .fg-grid-card:hover {
           border-color: #EAB308;
+          background: #FFF9AE;
           transform: none;
           box-shadow: 0 14px 32px rgba(17, 25, 102, 0.06);
         }
@@ -774,6 +775,7 @@ export function FigmaDesignView() {
 
         .fg-test-card:hover {
           border-color: #EAB308;
+          background: #FFF9AE;
           transform: none;
           box-shadow: 0 12px 28px rgba(17, 25, 102, 0.06);
         }
@@ -960,9 +962,6 @@ export function FigmaDesignView() {
                   <span>Start Your Figma Project</span>
                   <ArrowRight size={16} strokeWidth={2.2} />
                 </Link>
-                <a href="#figma-workflow" className="fg-btn-secondary">
-                  <span>Explore 5-Step Workflow</span>
-                </a>
               </div>
             </div>
 

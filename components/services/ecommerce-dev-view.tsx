@@ -4,18 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  ShoppingCart,
-  CreditCard,
-  TrendingUp,
-  ShieldCheck,
-  Zap,
   ArrowRight,
   CheckCircle2,
   Package,
-  Layers,
-  Sparkles,
   BarChart3,
-  Globe,
 } from 'lucide-react';
 import { FAQAccordion, FAQItem } from './faq-accordion';
 import { ServiceCTA } from './service-cta';
@@ -23,28 +15,24 @@ import { ServiceCTA } from './service-cta';
 const PLATFORMS = [
   {
     name: 'Shopify & Shopify Plus',
-    tagline: 'Flexible commerce tools for growing stores',
     desc: 'Bespoke Liquid theme development, custom app extensions, checkout extensibility, and seamless omnichannel integrations built for D2C scale.',
     features: ['Custom Shopify 2.0 Themes', 'Shopify Plus B2B Wholesale', 'One-Click Checkout & Subscriptions'],
     href: '/services/shopify-development',
   },
   {
     name: 'WooCommerce Custom Solutions',
-    tagline: 'Flexible, content-led commerce with platform costs to consider',
     desc: 'Engineered for brands wanting complete data autonomy. Custom checkout funnels, membership subscriptions, and custom product builders.',
     features: ['High-Performance Checkout', 'Flexible Hosting and Extension Costs', 'Full WordPress Content Ecosystem'],
     href: '/services/wordpress-development',
   },
   {
     name: 'Magento / Adobe Commerce',
-    tagline: 'Heavyweight Architecture for Complex B2B & Multi-Storefront Brands',
     desc: 'Robust ERP integrations, multi-warehouse inventory management, custom tier pricing, and advanced product variant matrix capabilities.',
     features: ['Complex Catalog Matrix', 'Multi-Store & International Multi-Currency', 'ERP & SAP Integrations'],
     href: '/contact',
   },
   {
     name: 'Headless E-Commerce Engines',
-    tagline: 'Next.js Frontend Paired with Composable Commerce Backends',
     desc: 'Decoupled storefront architecture can support tailored shopper journeys and frontend flexibility, with performance shaped by the implementation and hosting.',
     features: ['Composable API-First Stack', 'Flexible Frontend Design', 'Performance-Led Implementation'],
     href: '/services/custom-web-development',
@@ -144,85 +132,54 @@ export function EcommerceDevView() {
         .ec-hero {
           position: relative;
           background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 60%, #F5F5F5 100%);
-          padding: clamp(60px, 8vw, 110px) 0 clamp(50px, 6vw, 90px);
+          padding: clamp(54px, 6vw, 82px) 0;
           border-bottom: 1px solid #e3e5ef;
           overflow: hidden;
         }
         .ec-hero-glow {
           position: absolute;
-          top: -120px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 900px;
-          height: 380px;
+          top: -180px;
+          right: 8%;
+          width: 760px;
+          height: 520px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(246, 239, 228, 0.75) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(255, 249, 174, 0.32) 0%, rgba(246, 239, 228, 0.24) 42%, transparent 72%);
           pointer-events: none;
         }
         .ec-hero-inner {
           position: relative;
-          max-width: 880px;
-          margin: 0 auto;
-          text-align: center;
-        }
-        .ec-eyebrow {
-          display: inline-flex;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(380px, 0.94fr);
           align-items: center;
-          gap: 8px;
-          padding: 6px 18px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.14);
-          border-radius: 30px;
-          box-shadow: 0 2px 10px rgba(17, 25, 102, 0.04);
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 12.5px;
-          font-weight: 700;
-          letter-spacing: 0.18em;
-          color: #111966;
-          text-transform: uppercase;
-          margin-bottom: 22px;
+          gap: clamp(36px, 5vw, 72px);
+          max-width: 1280px;
+          margin: 0 auto;
+          text-align: left;
+        }
+        .ec-hero-copy {
+          max-width: 660px;
         }
         .ec-title {
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
-          font-size: clamp(34px, 4.5vw, 56px);
+          font-size: clamp(40px, 4.8vw, 64px);
           font-weight: 700;
           color: #111966;
-          line-height: 1.15;
-          margin: 0 0 20px;
+          line-height: 1.08;
+          margin: 0 0 22px;
+          text-wrap: balance;
         }
         .ec-desc {
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: clamp(17px, 1.25vw, 19.5px);
-          line-height: 1.75;
+          font-size: clamp(18px, 1.35vw, 20px);
+          line-height: 1.7;
           color: #202938;
-          margin: 0 0 34px;
-        }
-        .ec-stat-strip {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 16px;
-          flex-wrap: wrap;
-          margin-bottom: 36px;
-        }
-        .ec-stat-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          padding: 6px 14px;
-          background: #FFFFFF;
-          border: 1px solid #E2E8F0;
-          border-radius: 20px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #111966;
+          margin: 0 0 30px;
         }
         .ec-btn-group {
           display: flex;
           align-items: center;
-          justify-content: center;
-          gap: 16px;
+          justify-content: flex-start;
+          gap: 14px;
           flex-wrap: wrap;
         }
         .ec-btn-primary {
@@ -245,41 +202,34 @@ export function EcommerceDevView() {
           transform: none;
           box-shadow: 0 8px 24px rgba(17, 25, 102, 0.28);
         }
-        .ec-btn-secondary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 14px 28px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.2);
-          color: #111966;
-          border-radius: 8px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
-        }
-        .ec-btn-secondary:hover {
-          border-color: #EAB308;
-          background: #FFFDF5;
-          transform: none;
-        }
         .ec-hero-graphic-wrap {
+          position: relative;
           display: flex;
+          align-items: center;
           justify-content: center;
-          margin-top: clamp(32px, 4vw, 48px);
+          justify-self: end;
+          width: 100%;
+          max-width: 590px;
+          min-height: 430px;
+          padding: 18px;
+          overflow: hidden;
+          border: 1px solid rgba(17, 25, 102, 0.08);
+          border-radius: 30px;
+          background: radial-gradient(ellipse at 52% 48%, rgba(255, 249, 174, 0.36) 0%, rgba(246, 239, 228, 0.45) 42%, rgba(255, 255, 255, 0.72) 78%);
+          box-shadow: 0 22px 56px rgba(17, 25, 102, 0.07);
         }
         .ec-hero-graphic {
-          max-width: 290px;
+          position: relative;
+          z-index: 1;
+          max-width: 540px;
           width: 100%;
           height: auto;
           object-fit: contain;
-          filter: drop-shadow(0 12px 30px rgba(17, 25, 102, 0.12));
+          filter: drop-shadow(0 16px 24px rgba(17, 25, 102, 0.1));
           transition: transform 0.4s ease;
         }
         .ec-hero-graphic:hover {
-          transform: scale(1.03);
+          transform: translateY(-5px);
         }
 
         /* Platform Grid */
@@ -340,9 +290,9 @@ export function EcommerceDevView() {
         }
         .ec-platform-card:hover {
           transform: none !important;
-          background: var(--brand-hover-yellow) !important;
-          border-color: #EAB308 !important;
-          box-shadow: 0 14px 34px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
+          background: #FFF9AE !important;
+          border-color: #E9D96C !important;
+          box-shadow: 0 14px 34px rgba(17, 25, 102, 0.09), 0 4px 12px rgba(17, 25, 102, 0.05) !important;
         }
         .ec-platform-name {
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
@@ -350,13 +300,6 @@ export function EcommerceDevView() {
           font-weight: 700;
           color: #111966;
           margin: 0 0 6px;
-        }
-        .ec-platform-tagline {
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 14.5px;
-          font-weight: 700;
-          color: #b8863a;
-          margin: 0 0 14px;
         }
         .ec-platform-desc {
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
@@ -407,7 +350,7 @@ export function EcommerceDevView() {
           transition: gap 0.25s ease, color 0.25s ease;
         }
         .ec-platform-card:hover .ec-card-link {
-          color: #D97706;
+          color: #111966;
           gap: 9px;
         }
 
@@ -435,9 +378,9 @@ export function EcommerceDevView() {
         }
         .ec-path-card:hover {
           transform: none !important;
-          background: var(--brand-hover-yellow) !important;
-          border-color: #EAB308 !important;
-          box-shadow: 0 12px 28px rgba(234, 179, 8, 0.18) !important;
+          background: #FFF9AE !important;
+          border-color: #E9D96C !important;
+          box-shadow: 0 12px 28px rgba(17, 25, 102, 0.08) !important;
         }
         .ec-path-step {
           font-family: "The Seasons", Georgia, serif !important;
@@ -464,8 +407,34 @@ export function EcommerceDevView() {
         }
 
         @media (max-width: 1080px) {
+          .ec-hero-inner {
+            grid-template-columns: minmax(0, 1fr) minmax(330px, 0.9fr);
+            gap: 32px;
+          }
           .ec-path-grid {
             grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 900px) {
+          .ec-hero-inner {
+            grid-template-columns: 1fr;
+            max-width: 760px;
+            text-align: center;
+          }
+          .ec-hero-copy {
+            margin: 0 auto;
+          }
+          .ec-desc {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .ec-btn-group {
+            justify-content: center;
+          }
+          .ec-hero-graphic-wrap {
+            justify-self: center;
+            max-width: 640px;
+            min-height: clamp(320px, 56vw, 430px);
           }
         }
         @media (max-width: 800px) {
@@ -474,6 +443,22 @@ export function EcommerceDevView() {
           }
           .ec-path-grid {
             grid-template-columns: 1fr;
+          }
+        }
+        @media (max-width: 600px) {
+          .ec-hero {
+            padding: 48px 0 42px;
+          }
+          .ec-title {
+            font-size: clamp(36px, 9.5vw, 48px);
+          }
+          .ec-hero-graphic-wrap {
+            min-height: 270px;
+            padding: 12px;
+            border-radius: 22px;
+          }
+          .ec-hero-graphic {
+            max-width: 390px;
           }
         }
 
@@ -510,6 +495,22 @@ export function EcommerceDevView() {
         .ec-path-card[data-ec-anim]:nth-child(3).ec-visible { animation-delay: 0.25s; }
         .ec-path-card[data-ec-anim]:nth-child(4).ec-visible { animation-delay: 0.35s; }
         .ec-path-card[data-ec-anim]:nth-child(5).ec-visible { animation-delay: 0.45s; }
+
+        @media (prefers-reduced-motion: reduce) {
+          [data-ec-anim],
+          .ec-platform-card[data-ec-anim].ec-visible,
+          .ec-path-card[data-ec-anim].ec-visible {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+            will-change: auto;
+          }
+          .ec-hero-graphic,
+          .ec-platform-card,
+          .ec-path-card {
+            transition: none !important;
+          }
+        }
       `}</style>
 
       {/* Hero */}
@@ -517,52 +518,31 @@ export function EcommerceDevView() {
         <div className="ec-hero-glow" aria-hidden="true" />
         <div className="ec-container">
           <div className="ec-hero-inner">
-            <div className="ec-eyebrow">
-              <ShoppingCart size={14} style={{ color: '#EAB308' }} />
-              <span>HIGH-PERFORMANCE COMMERCE ENGINEERING</span>
-            </div>
+            <div className="ec-hero-copy">
+              <h1 className="ec-title">
+                E-Commerce Store Development Services Agency UK
+              </h1>
 
-            <h1 className="ec-title">
-              E-Commerce Store Development Services Agency UK
-            </h1>
+              <p className="ec-desc">
+                We design and build bespoke, high-converting digital storefronts tailored for retail,
+                D2C, and trade wholesale brands. Engineered for lightning-fast speeds, frictionless checkouts,
+                and scalable revenue growth.
+              </p>
 
-            <p className="ec-desc">
-              We design and build bespoke, high-converting digital storefronts tailored for retail,
-              D2C, and trade wholesale brands. Engineered for lightning-fast speeds, frictionless checkouts,
-              and scalable revenue growth.
-            </p>
-
-            <div className="ec-stat-strip">
-              <span className="ec-stat-pill">
-                <TrendingUp size={13} style={{ color: '#EAB308' }} />
-                <span>Conversion-First UX Design</span>
-              </span>
-              <span className="ec-stat-pill">
-                <CreditCard size={13} style={{ color: '#EAB308' }} />
-                <span>Frictionless 1-Click Checkouts</span>
-              </span>
-              <span className="ec-stat-pill">
-                <Globe size={13} style={{ color: '#EAB308' }} />
-                <span>Multi-Currency &amp; Global Shipping</span>
-              </span>
-            </div>
-
-            <div className="ec-btn-group">
-              <Link href="/contact" className="ec-btn-primary">
-                <span>Book Store Consultation</span>
-                <ArrowRight size={16} strokeWidth={2.2} />
-              </Link>
-              <a href="#platforms-section" className="ec-btn-secondary">
-                <span>Compare Platforms</span>
-              </a>
+              <div className="ec-btn-group">
+                <Link href="/contact" className="ec-btn-primary">
+                  <span>Book Store Consultation</span>
+                  <ArrowRight size={16} strokeWidth={2.2} />
+                </Link>
+              </div>
             </div>
 
             <div className="ec-hero-graphic-wrap">
               <Image
-                src="/images/graphics/web-development.png"
-                alt="E-Commerce Development Engineering Illustration"
-                width={330}
-                height={380}
+                src="/images/graphics/ecommerce-storefront.svg"
+                alt="Illustration of an online store with products and a shopping basket"
+                width={560}
+                height={480}
                 className="ec-hero-graphic"
                 priority
               />
@@ -590,7 +570,7 @@ export function EcommerceDevView() {
             {PLATFORMS.map((item, idx) => (
               <Link key={idx} href={item.href} className="ec-platform-card" data-ec-anim>
                 <h3 className="ec-platform-name">{item.name}</h3>
-                <p className="ec-platform-tagline">{item.tagline}</p>
+
                 <p className="ec-platform-desc">{item.desc}</p>
                 <ul className="ec-platform-bullets">
                   {item.features.map((f, i) => (

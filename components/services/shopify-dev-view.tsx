@@ -4,17 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
-  Zap,
   ShieldCheck,
-  TrendingUp,
   ArrowRight,
-  CheckCircle2,
-  Sliders,
-  Code2,
-  RefreshCw,
   ShoppingBag,
-  Cpu,
-  Layers,
 } from 'lucide-react';
 import { FAQAccordion, FAQItem } from './faq-accordion';
 import { ServiceCTA } from './service-cta';
@@ -23,32 +15,26 @@ const SHOPIFY_SERVICES = [
   {
     title: 'Bespoke Shopify 2.0 Theme Development',
     desc: 'Built around your brand with modular sections and product blocks, with performance shaped by the theme, apps, assets and hosting setup.',
-    bullets: ['Tailored Liquid Architecture', 'Modular Theme Sections', 'Performance-Conscious Builds'],
   },
   {
     title: 'Shopify Plus & Enterprise B2B',
     desc: 'Advanced enterprise capabilities: Checkout Extensibility, automated wholesale customer tiers, customized B2B price lists, and multi-location inventory.',
-    bullets: ['Shopify Plus Checkout Extensibility', 'B2B Wholesale Portals & Pricing', 'Shopify Flow Workflow Automations'],
   },
   {
     title: 'Private Shopify App & API Engineering',
     desc: 'Custom middleware and bespoke Shopify apps connecting your store with custom ERPs, warehouse management systems (WMS), and proprietary calculators.',
-    bullets: ['REST & GraphQL Admin API Integrations', 'Custom ERP, CRM & WMS Middleware', 'Bespoke Product Bundling Engines'],
   },
   {
     title: 'Shopify Speed & Conversion Optimization',
     desc: 'Eliminating unused third-party JavaScript, optimizing critical rendering paths, and implementing friction-free slide-out carts with smart upsells.',
-    bullets: ['90+ Mobile PageSpeed Optimization', 'High-Converting Slide-Out Drawer Carts', 'Sticky Add-to-Cart & Dynamic Upsells'],
   },
   {
     title: 'Seamless Migration to Shopify',
     desc: 'A planned move from platforms such as Magento, WooCommerce or BigCommerce, with agreed data transfer and redirect mapping to reduce disruption.',
-    bullets: ['Agreed Customer & Order Data Transfer', '1-to-1 301 URL SEO Redirect Mapping', 'Planned DNS Cutover'],
   },
   {
     title: 'Ongoing Retainers & Growth Support',
     desc: 'Continuous conversion rate optimization (CRO), A/B testing, seasonal promotional setups, security audits, and dedicated senior developer availability.',
-    bullets: ['Proactive App & Speed Maintenance', 'Conversion Rate Optimization (CRO)', 'Dedicated UK Shopify Developers'],
   },
 ];
 
@@ -81,6 +67,11 @@ export function ShopifyDevView() {
   React.useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    const animatedElements = root.querySelectorAll('[data-sp-anim]');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof IntersectionObserver === 'undefined') {
+      animatedElements.forEach((el) => el.classList.add('sp-visible'));
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -92,8 +83,7 @@ export function ShopifyDevView() {
       },
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
     );
-    const els = root.querySelectorAll('[data-sp-anim]');
-    els.forEach((el) => observer.observe(el));
+    animatedElements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -116,129 +106,269 @@ export function ShopifyDevView() {
         /* Hero */
         .sp-hero {
           position: relative;
-          background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 60%, #F5F5F5 100%);
-          padding: clamp(60px, 8vw, 110px) 0 clamp(50px, 6vw, 90px);
-          border-bottom: 1px solid #e3e5ef;
+          isolation: isolate;
           overflow: hidden;
+          padding: clamp(68px, 7vw, 100px) 0 clamp(60px, 6.5vw, 88px);
+          background:
+            radial-gradient(ellipse at 82% 16%, rgba(255,249,174,.45), transparent 34%),
+            linear-gradient(135deg, #F8F8FF 0%, #FFFFFF 56%, #F7F7F5 100%);
+          border-bottom: 1px solid #e3e5ef;
         }
-        .sp-hero-glow {
+        .sp-hero::before {
           position: absolute;
-          top: -120px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 900px;
-          height: 380px;
+          z-index: -1;
+          top: -310px;
+          right: -145px;
+          width: 650px;
+          height: 650px;
+          border: 1px solid rgba(17,25,102,.07);
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(246, 239, 228, 0.75) 0%, transparent 70%);
-          pointer-events: none;
+          box-shadow: 0 0 0 42px rgba(17,25,102,.018), 0 0 0 86px rgba(17,25,102,.014);
+          content: "";
+        }
+        .sp-hero-glow { display: none; }
+        .sp-hero-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1.02fr) minmax(360px, .98fr);
+          align-items: center;
+          gap: clamp(36px, 5.5vw, 78px);
         }
         .sp-hero-inner {
           position: relative;
-          max-width: 880px;
-          margin: 0 auto;
-          text-align: center;
-        }
-        .sp-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 6px 18px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.14);
-          border-radius: 30px;
-          box-shadow: 0 2px 10px rgba(17, 25, 102, 0.04);
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 12.5px;
-          font-weight: 700;
-          letter-spacing: 0.18em;
-          color: #111966;
-          text-transform: uppercase;
-          margin-bottom: 22px;
+          max-width: 700px;
+          margin: 0;
+          text-align: left;
         }
         .sp-title {
+          max-width: 13ch;
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
-          font-size: clamp(34px, 4.5vw, 56px);
+          font-size: clamp(42px, 4.7vw, 66px);
           font-weight: 700;
           color: #111966;
-          line-height: 1.15;
-          margin: 0 0 20px;
+          line-height: 1.06;
+          letter-spacing: -.025em;
+          margin: 0 0 22px;
         }
         .sp-desc {
+          max-width: 650px;
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: clamp(17px, 1.25vw, 19.5px);
-          line-height: 1.75;
+          font-size: clamp(18px, 1.35vw, 20px);
+          line-height: 1.72;
           color: #202938;
-          margin: 0 0 34px;
-        }
-        .sp-stat-strip {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 16px;
-          flex-wrap: wrap;
-          margin-bottom: 36px;
-        }
-        .sp-stat-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          padding: 6px 14px;
-          background: #FFFFFF;
-          border: 1px solid #E2E8F0;
-          border-radius: 20px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #111966;
+          margin: 0 0 32px;
         }
         .sp-btn-group {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 16px;
           flex-wrap: wrap;
         }
         .sp-btn-primary {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 15px 34px;
+          gap: 10px;
+          padding: 16px 30px;
           background: #111966;
           color: #FFFFFF;
-          border-radius: 8px;
+          border: 1px solid #111966;
+          border-radius: 9px;
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15.5px;
+          font-size: 17px;
           font-weight: 700;
           text-decoration: none;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 16px rgba(17, 25, 102, 0.2);
+          transition: background .25s ease, box-shadow .25s ease, transform .25s ease;
+          box-shadow: 0 10px 26px rgba(17,25,102,.16);
         }
         .sp-btn-primary:hover {
           background: #0c1250;
-          transform: none;
-          box-shadow: 0 8px 24px rgba(17, 25, 102, 0.28);
+          border-color: #0c1250;
+          transform: translateY(-2px);
+          box-shadow: 0 14px 32px rgba(17,25,102,.22);
         }
-        .sp-btn-secondary {
+        .sp-hero-visual {
+          position: relative;
+          min-width: 0;
+          padding: clamp(16px, 2vw, 24px);
+          border: 1px solid rgba(17,25,102,.12);
+          border-radius: 28px;
+          background: rgba(255,255,255,.9);
+          box-shadow: 0 28px 70px rgba(21,31,94,.12), 0 4px 14px rgba(21,31,94,.05);
+          transform: rotate(.6deg);
+          transition: transform .35s ease, box-shadow .35s ease;
+        }
+        .sp-hero-visual:hover {
+          transform: rotate(0) translateY(-5px);
+          box-shadow: 0 34px 78px rgba(21,31,94,.16), 0 6px 18px rgba(21,31,94,.06);
+        }
+        .sp-store-frame {
+          overflow: hidden;
+          border: 1px solid #e7e9f1;
+          border-radius: 18px;
+          background: #fff;
+        }
+        .sp-window-top {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          height: 42px;
+          padding: 0 15px;
+          border-bottom: 1px solid #eaecf2;
+          color: #6b7280;
+          font: 600 12px/1 var(--font-body), "Cardo", Georgia, serif;
+        }
+        .sp-window-dot { width: 8px; height: 8px; border-radius: 50%; background: #d4d7e4; }
+        .sp-window-dot:first-child { background: #edb44b; }
+        .sp-window-dot:nth-child(2) { background: #d8dce8; }
+        .sp-window-dot:nth-child(3) { background: #cbd1e0; }
+        .sp-window-top-label { margin-left: 8px; color: #596174; letter-spacing: .04em; }
+        .sp-store-nav {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          min-height: 54px;
+          padding: 0 20px;
+          border-bottom: 1px solid #eef0f5;
+          color: #4b5366;
+          font: 600 11px/1.3 var(--font-body), "Cardo", Georgia, serif;
+        }
+        .sp-store-brand { color: #111966; font: 700 16px/1 "The Seasons", Georgia, serif; letter-spacing: .12em; }
+        .sp-store-links { display: flex; gap: clamp(8px, 1.2vw, 17px); }
+        .sp-store-bag { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+        .sp-store-content {
+          display: grid;
+          grid-template-columns: 1fr .78fr;
+          gap: 20px;
+          align-items: center;
+          min-height: 255px;
+          padding: clamp(22px, 3vw, 38px);
+          background: linear-gradient(132deg, #fbf9f1 0%, #fff 58%, #f5f5fa 100%);
+        }
+        .sp-store-copy { min-width: 0; }
+        .sp-store-kicker {
+          display: block;
+          margin-bottom: 13px;
+          color: #957100;
+          font: 700 10px/1.3 var(--font-body), "Cardo", Georgia, serif;
+          letter-spacing: .16em;
+        }
+        .sp-store-heading {
+          display: block;
+          color: #111966;
+          font: 700 clamp(25px, 2.4vw, 34px)/1.05 "The Seasons", Georgia, serif;
+          letter-spacing: -.025em;
+        }
+        .sp-store-copy p {
+          max-width: 230px;
+          margin: 12px 0 17px;
+          color: #596579;
+          font: 15px/1.55 var(--font-body), "Cardo", Georgia, serif;
+        }
+        .sp-store-link {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 14px 28px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.2);
+          gap: 7px;
+          padding-bottom: 4px;
+          border-bottom: 1px solid rgba(17,25,102,.38);
           color: #111966;
-          border-radius: 8px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
+          font: 700 13px/1.3 var(--font-body), "Cardo", Georgia, serif;
         }
-        .sp-btn-secondary:hover {
-          border-color: #EAB308;
-          background: #FFFDF5;
-          transform: none;
+        .sp-product-card {
+          position: relative;
+          padding: 10px;
+          border: 1px solid rgba(17,25,102,.1);
+          border-radius: 14px;
+          background: #fff;
+          box-shadow: 0 12px 28px rgba(17,25,102,.08);
         }
+        .sp-product-art {
+          position: relative;
+          display: grid;
+          place-items: center;
+          min-height: 154px;
+          overflow: hidden;
+          border-radius: 9px;
+          background: linear-gradient(145deg, #f6f0df, #e8e8f1);
+        }
+        .sp-product-sun {
+          position: absolute;
+          top: 14px;
+          right: 18px;
+          width: 78px;
+          height: 78px;
+          border-radius: 50%;
+          background: rgba(255,249,174,.82);
+        }
+        .sp-product-vase {
+          position: relative;
+          z-index: 1;
+          width: 58px;
+          height: 92px;
+          border-radius: 45% 45% 28% 28% / 24% 24% 16% 16%;
+          background: linear-gradient(90deg, #c4a775, #e2cfaa 48%, #b2915b);
+          box-shadow: 15px 14px 0 -8px rgba(17,25,102,.1);
+        }
+        .sp-product-vase::before {
+          position: absolute;
+          top: -17px;
+          left: 20px;
+          width: 18px;
+          height: 23px;
+          border-radius: 5px 5px 2px 2px;
+          background: #c4a775;
+          content: "";
+        }
+        .sp-product-vase::after {
+          position: absolute;
+          top: -48px;
+          left: 28px;
+          width: 2px;
+          height: 40px;
+          background: #66816c;
+          box-shadow: -14px 12px 0 -0.5px #66816c, 15px 9px 0 -0.5px #66816c;
+          transform: rotate(8deg);
+          content: "";
+        }
+        .sp-product-meta { display: flex; justify-content: space-between; gap: 8px; padding: 11px 2px 2px; color: #697386; font: 11px/1.4 var(--font-body), "Cardo", Georgia, serif; }
+        .sp-product-meta strong { color: #111966; font-weight: 700; white-space: nowrap; }
+        .sp-store-foot {
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 12px 20px;
+          border-top: 1px solid #eef0f5;
+          color: #626c7c;
+          font: 11px/1.3 var(--font-body), "Cardo", Georgia, serif;
+        }
+        .sp-store-foot span { display: inline-flex; align-items: center; gap: 6px; }
+        .sp-store-foot svg { color: #a68100; }
 
+        @media (max-width: 1024px) {
+          .sp-hero-layout { grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr); gap: 30px; }
+          .sp-store-content { gap: 12px; padding: 22px; }
+        }
+        @media (max-width: 900px) {
+          .sp-hero-layout { grid-template-columns: 1fr; gap: 38px; }
+          .sp-hero-inner { max-width: 760px; }
+          .sp-hero-visual { width: min(100%, 650px); margin: 0 auto; transform: none; }
+          .sp-hero-visual:hover { transform: translateY(-4px); }
+        }
+        @media (max-width: 560px) {
+          .sp-hero { padding: 54px 0 52px; }
+          .sp-title { font-size: clamp(38px, 10vw, 50px); }
+          .sp-desc { font-size: 18px; }
+          .sp-btn-primary { width: 100%; justify-content: center; }
+          .sp-hero-visual { padding: 11px; border-radius: 22px; }
+          .sp-store-nav { min-height: 48px; padding: 0 12px; }
+          .sp-store-links { gap: 7px; font-size: 10px; }
+          .sp-store-content { grid-template-columns: 1fr .72fr; min-height: 220px; padding: 17px 14px; }
+          .sp-store-heading { font-size: clamp(23px, 7vw, 30px); }
+          .sp-store-copy p { font-size: 13px; }
+          .sp-product-art { min-height: 132px; }
+          .sp-product-vase { transform: scale(.82); }
+          .sp-store-foot { padding: 10px 12px; font-size: 10px; }
+        }
         /* Services Grid */
         .sp-section {
           padding: clamp(70px, 8vw, 110px) 0;
@@ -296,10 +426,15 @@ export function ShopifyDevView() {
           transition: all 0.35s ease;
         }
         .sp-card:hover {
-          transform: none !important;
-          background: var(--brand-hover-yellow) !important;
-          border-color: #EAB308 !important;
-          box-shadow: 0 14px 34px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
+          transform: translateY(-4px) !important;
+          background: #FFF9AE !important;
+          border-color: rgba(234, 179, 8, .5) !important;
+          box-shadow: 0 14px 34px rgba(234, 179, 8, .14), 0 4px 12px rgba(17, 25, 102, .06) !important;
+        }
+        .shopify-dev-root .svc-faq-card:hover {
+          background: #FFF9AE !important;
+          border-color: rgba(234, 179, 8, .5);
+          box-shadow: 0 10px 26px rgba(17, 25, 102, .08);
         }
         .sp-card-title {
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
@@ -316,29 +451,6 @@ export function ShopifyDevView() {
           color: #202938;
           margin: 0 0 20px;
           flex: 1;
-        }
-        .sp-card-bullets {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 9px;
-          border-top: 1px solid #EEF2F6;
-          padding-top: 18px;
-        }
-        .sp-bullet {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #111966;
-        }
-        .sp-bullet svg {
-          color: #EAB308;
-          flex-shrink: 0;
         }
 
         @media (max-width: 1024px) {
@@ -369,6 +481,16 @@ export function ShopifyDevView() {
           will-change: transform, opacity;
         }
 
+        @keyframes spFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .sp-hero-inner[data-sp-anim].sp-visible {
+          animation: spFadeIn 0.75s ease-out forwards;
+        }
+        .sp-hero-visual[data-sp-anim].sp-visible {
+          animation: spFadeIn 0.85s ease-out 0.12s both;
+        }
         .sp-card[data-sp-anim].sp-visible {
           animation: spFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -378,56 +500,67 @@ export function ShopifyDevView() {
         .sp-card[data-sp-anim]:nth-child(4).sp-visible { animation-delay: 0.44s; }
         .sp-card[data-sp-anim]:nth-child(5).sp-visible { animation-delay: 0.57s; }
         .sp-card[data-sp-anim]:nth-child(6).sp-visible { animation-delay: 0.7s; }
+        @media (prefers-reduced-motion: reduce) {
+          [data-sp-anim] { opacity: 1 !important; animation: none !important; transform: none !important; }
+          .sp-card, .sp-hero-visual, .sp-btn-primary { transition: none !important; }
+        }
       `}</style>
 
       {/* Hero */}
       <section className="sp-hero">
         <div className="sp-hero-glow" aria-hidden="true" />
-        <div className="sp-container">
-          <div className="sp-hero-inner">
-            <div className="sp-eyebrow">
-              <ShoppingBag size={14} style={{ color: '#EAB308' }} />
-              <span>SHOPIFY STORE DEVELOPMENT</span>
-            </div>
-
-            <h1 className="sp-title">
-              Shopify Store Development Services UK
-            </h1>
-
+        <div className="sp-container sp-hero-layout">
+          <div className="sp-hero-inner" data-sp-anim>
+            <h1 className="sp-title">Shopify Store Development Services UK</h1>
             <p className="sp-desc">
               We design, build, and optimize high-converting Shopify 2.0 and Shopify Plus storefronts.
               Bespoke Liquid theme engineering, custom app development, and checkout optimizations
               built to scale your eCommerce brand.
             </p>
-
-            <div className="sp-stat-strip">
-              <span className="sp-stat-pill">
-                <CheckCircle2 size={13} style={{ color: '#EAB308' }} />
-                <span>Purpose-built themes</span>
-              </span>
-              <span className="sp-stat-pill">
-                <Zap size={13} style={{ color: '#EAB308' }} />
-                <span>Theme and app customization</span>
-              </span>
-              <span className="sp-stat-pill">
-                <Sliders size={13} style={{ color: '#EAB308' }} />
-                <span>Private Custom Apps</span>
-              </span>
-            </div>
-
             <div className="sp-btn-group">
               <Link href="/contact" className="sp-btn-primary">
                 <span>Book Shopify Consultation</span>
-                <ArrowRight size={16} strokeWidth={2.2} />
+                <ArrowRight size={17} strokeWidth={2.2} />
               </Link>
-              <a href="#services-section" className="sp-btn-secondary">
-                <span>Explore Capabilities</span>
-              </a>
+            </div>
+          </div>
+
+          <div className="sp-hero-visual" data-sp-anim role="img" aria-label="Illustration of a polished Shopify storefront and featured product">
+            <div className="sp-store-frame">
+              <div className="sp-window-top" aria-hidden="true">
+                <span className="sp-window-dot" />
+                <span className="sp-window-dot" />
+                <span className="sp-window-dot" />
+                <span className="sp-window-top-label">shopify storefront preview</span>
+              </div>
+              <div className="sp-store-nav">
+                <strong className="sp-store-brand">ATELIER</strong>
+                <div className="sp-store-links" aria-hidden="true"><span>Shop</span><span>New in</span><span>Journal</span></div>
+                <span className="sp-store-bag"><ShoppingBag size={14} /> Bag (0)</span>
+              </div>
+              <div className="sp-store-content">
+                <div className="sp-store-copy">
+                  <span className="sp-store-kicker">DESIGNED TO FEEL AT HOME</span>
+                  <strong className="sp-store-heading">Considered<br />essentials.</strong>
+                  <p>Thoughtful pieces, made for everyday living.</p>
+                  <span className="sp-store-link">Discover the collection <ArrowRight size={14} /></span>
+                </div>
+                <div className="sp-product-card">
+                  <div className="sp-product-art" aria-hidden="true">
+                    <span className="sp-product-sun" />
+                    <span className="sp-product-vase" />
+                  </div>
+                  <div className="sp-product-meta"><span>Signature vase</span><strong>£48</strong></div>
+                </div>
+              </div>
+              <div className="sp-store-foot">
+                <span><ShieldCheck size={13} /> Secure checkout</span>
+                <span><Sparkles size={13} /> Made for your brand</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* Services Grid */}
       <section id="services-section" className="sp-section">
         <div className="sp-container">
@@ -448,14 +581,6 @@ export function ShopifyDevView() {
               <div key={idx} className="sp-card" data-sp-anim>
                 <h3 className="sp-card-title">{item.title}</h3>
                 <p className="sp-card-desc">{item.desc}</p>
-                <ul className="sp-card-bullets">
-                  {item.bullets.map((b, i) => (
-                    <li key={i} className="sp-bullet">
-                      <CheckCircle2 size={14} strokeWidth={2.4} />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>

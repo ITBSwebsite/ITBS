@@ -11,11 +11,8 @@ import {
   Check,
   ChevronDown,
   CircleHelp,
-  FileText,
   GitBranch,
-  Globe,
   Layers3,
-  Link2,
   MessageSquareText,
   Network,
   Search,
@@ -193,7 +190,6 @@ export function AEOServiceView() {
 
           <div className="aeo-hero-grid">
             <div className="aeo-hero-copy" data-aeo-reveal="left">
-              <span className="aeo-hero-eyebrow"><i aria-hidden="true" />Answer Engine Optimisation</span>
               <h1 id="aeo-title">Answer Engine Optimisation Services <em>in the UK</em></h1>
               <p className="aeo-hero-lede">
                 Help your business get discovered across AI-powered search experiences with an AEO strategy built around your content, technical SEO and brand authority.
@@ -202,19 +198,12 @@ export function AEOServiceView() {
                 <Link href="/contact" className="aeo-button aeo-button--primary">
                   Let&apos;s Talk AEO <ArrowUpRight size={17} aria-hidden="true" />
                 </Link>
-                <a href="#aeo-approach" className="aeo-button aeo-button--quiet">
-                  Explore our approach <ArrowDown size={16} aria-hidden="true" />
-                </a>
               </div>
-              <div className="aeo-hero-note"><ShieldCheck size={16} aria-hidden="true" /><span>Clear strategy. Useful content. No visibility guarantees.</span></div>
             </div>
 
-            <div className="aeo-hero-art" data-aeo-reveal="right" role="img" aria-label="Illustration of AI search understanding a clear answer and connected sources">
+            <div className="aeo-hero-art" data-aeo-reveal="right" role="img" aria-label="Illustration of an AI search result with a clear answer and source information">
               <div className="aeo-art-orbit aeo-art-orbit--one" aria-hidden="true" />
               <div className="aeo-art-orbit aeo-art-orbit--two" aria-hidden="true" />
-              <div className="aeo-art-node aeo-art-node--one"><FileText size={17} /><span>Useful content</span></div>
-              <div className="aeo-art-node aeo-art-node--two"><Network size={17} /><span>Clear entities</span></div>
-              <div className="aeo-art-node aeo-art-node--three"><Globe size={17} /><span>Brand authority</span></div>
               <div className="aeo-art-window">
                 <div className="aeo-art-window-top">
                   <span className="aeo-window-dots"><i /><i /><i /></span>
@@ -231,8 +220,6 @@ export function AEOServiceView() {
                 </div>
                 <div className="aeo-answer-sources"><span>UNDERSTOOD FROM</span><i /><i /><i /><b>your expertise</b></div>
               </div>
-              <div className="aeo-art-bubble aeo-art-bubble--left"><span><Check size={13} /></span>Answer-ready content</div>
-              <div className="aeo-art-bubble aeo-art-bubble--right"><span><Link2 size={14} /></span>Connected brand signals</div>
               <div className="aeo-art-spark aeo-art-spark--one" aria-hidden="true">✳</div>
               <div className="aeo-art-spark aeo-art-spark--two" aria-hidden="true">✦</div>
             </div>
@@ -382,9 +369,8 @@ const AEO_STYLES = `
   .aeo-hero-glow--two { left:38%; bottom:-280px; background:radial-gradient(circle,rgba(252,240,0,.12),transparent 70%); }
   .aeo-hero-grid { min-height:620px; display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); gap:clamp(36px,6.5vw,90px); align-items:center; padding:52px 0 72px; }
   .aeo-hero-copy { position:relative; z-index:2; max-width:560px; }
-  .aeo-hero-eyebrow,.aeo-kicker { display:inline-flex; align-items:center; gap:10px; color:var(--brand-gold-text); font-size:11px; font-weight:700; letter-spacing:.16em; line-height:1.4; text-transform:uppercase; }
-  .aeo-hero-eyebrow { margin-bottom:22px; padding:8px 13px; border:1px solid rgba(169,139,0,.2); border-radius:999px; background:rgba(255,255,255,.75); }
-  .aeo-hero-eyebrow i,.aeo-kicker i { width:8px; height:8px; flex:none; border-radius:50%; background:var(--aeo-yellow); box-shadow:0 0 0 4px rgba(252,240,0,.22); }
+  .aeo-kicker { display:inline-flex; align-items:center; gap:10px; color:var(--brand-gold-text); font-size:11px; font-weight:700; letter-spacing:.16em; line-height:1.4; text-transform:uppercase; }
+  .aeo-kicker i { width:8px; height:8px; flex:none; border-radius:50%; background:var(--aeo-yellow); box-shadow:0 0 0 4px rgba(252,240,0,.22); }
   .aeo-hero h1 { max-width:640px; margin-bottom:22px; color:var(--aeo-navy); font-size:clamp(45px,5.45vw,74px); font-weight:800; line-height:1.03; letter-spacing:-.04em; }
   .aeo-hero h1 em { color:var(--aeo-blue); font-style:normal; }
   .aeo-hero-lede { max-width:520px; margin-bottom:27px; color:#202938; font-size:clamp(18px,1.45vw,20px); line-height:1.72; }
@@ -393,10 +379,6 @@ const AEO_STYLES = `
   .aeo-button:hover { transform:translateY(-2px); }
   .aeo-button--primary { color:#fff; background:var(--aeo-navy); box-shadow:0 10px 24px rgba(17,25,102,.17); }
   .aeo-button--primary:hover { color:var(--aeo-navy); background: var(--brand-hover-yellow); box-shadow:0 12px 26px rgba(182,166,0,.2); }
-  .aeo-button--quiet { color:var(--aeo-navy); background:rgba(255,255,255,.75); border-color:rgba(17,25,102,.14); }
-  .aeo-button--quiet:hover { border-color:var(--aeo-blue); background:#fff; }
-  .aeo-hero-note { display:flex; align-items:center; gap:8px; margin-top:22px; color:#535d7d; font-size:13px; }
-  .aeo-hero-note svg { color:var(--brand-gold-text); }
   .aeo-hero-art { position:relative; min-height:460px; display:grid; place-items:center; isolation:isolate; }
   .aeo-art-window { position:relative; z-index:2; width:min(100%,490px); padding:17px; border:1px solid rgba(255,255,255,.85); border-radius:20px; background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(245,245,245,.9)); box-shadow:0 35px 90px rgba(36,57,127,.17),0 5px 18px rgba(25,44,105,.08); transform:rotate(-2deg); }
   .aeo-art-window::before { position:absolute; z-index:-1; inset:-10px; content:""; border:1px solid rgba(91,127,247,.17); border-radius:27px; transform:rotate(4deg); }
@@ -421,15 +403,6 @@ const AEO_STYLES = `
   .aeo-art-orbit { position:absolute; z-index:-1; width:395px; height:395px; border:1px solid rgba(73,104,207,.12); border-radius:50%; }
   .aeo-art-orbit--one { transform:scaleX(1.26) rotate(25deg); }
   .aeo-art-orbit--two { width:310px; height:310px; border-style:dashed; transform:scaleX(1.2) rotate(-28deg); }
-  .aeo-art-node { position:absolute; z-index:3; display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid rgba(222,228,245,.95); border-radius:9px; color:#5d668b; background:rgba(255,255,255,.95); box-shadow:0 9px 24px rgba(27,48,113,.09); font-size:10px; }
-  .aeo-art-node svg { color:var(--aeo-blue); }
-  .aeo-art-node--one { top:46px; left:2%; }
-  .aeo-art-node--two { top:72px; right:1%; }
-  .aeo-art-node--three { right:5%; bottom:49px; }
-  .aeo-art-bubble { position:absolute; z-index:4; display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #e1e6f3; border-radius:9px; color:var(--aeo-navy); background:#fff; box-shadow:0 10px 24px rgba(17,25,102,.1); font-size:10px; font-weight:700; }
-  .aeo-art-bubble span { width:22px; height:22px; display:grid; place-items:center; border-radius:6px; color:var(--aeo-navy); background:var(--aeo-yellow); }
-  .aeo-art-bubble--left { left:-4%; bottom:100px; transform:rotate(-4deg); }
-  .aeo-art-bubble--right { right:-4%; top:118px; transform:rotate(3deg); }
   .aeo-art-spark { position:absolute; color:#b8a000; }
   .aeo-art-spark--one { left:10%; top:125px; font-size:25px; }
   .aeo-art-spark--two { right:13%; bottom:104px; color:#6682df; font-size:18px; }
@@ -528,10 +501,6 @@ const AEO_STYLES = `
     .aeo-hero h1 { font-size:clamp(44px,6.5vw,64px); }
     .aeo-hero-art { min-height:400px; }
     .aeo-art-window { width:min(100%,420px); }
-    .aeo-art-node--one { left:-2%; }
-    .aeo-art-node--two { right:-3%; }
-    .aeo-art-bubble--left { left:-7%; }
-    .aeo-art-bubble--right { right:-8%; }
     .aeo-intro-grid { gap:48px; }
     .aeo-platform-list { grid-template-columns:repeat(2,minmax(0,1fr)); max-width:710px; }
     .aeo-service-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -542,12 +511,10 @@ const AEO_STYLES = `
     .aeo-breadcrumb { gap:7px; padding-top:17px; font-size:10px; }
     .aeo-hero-grid { display:flex; flex-direction:column; align-items:stretch; gap:27px; padding:42px 0 61px; }
     .aeo-hero-copy { max-width:none; }
-    .aeo-hero-eyebrow { margin-bottom:17px; font-size:10px; letter-spacing:.13em; }
     .aeo-hero h1 { max-width:600px; margin-bottom:16px; font-size:clamp(40px,10.8vw,56px); line-height:1.04; }
     .aeo-hero-lede { margin-bottom:20px; font-size:16.5px; line-height:1.68; }
     .aeo-hero-actions { align-items:stretch; }
     .aeo-button { min-height:50px; padding:0 15px; font-size:13px; }
-    .aeo-hero-note { margin-top:17px; font-size:11px; }
     .aeo-hero-art { width:100%; min-height:340px; }
     .aeo-art-window { width:min(88%,420px); padding:13px; border-radius:15px; }
     .aeo-art-window-top { font-size:9px; }
@@ -555,15 +522,6 @@ const AEO_STYLES = `
     .aeo-art-answer { padding:12px; }
     .aeo-answer-copy b { font-size:12px; }
     .aeo-answer-copy span { font-size:11px; }
-    .aeo-art-node { padding:8px 9px; font-size:9px; }
-    .aeo-art-node svg { width:14px; height:14px; }
-    .aeo-art-node--one { top:25px; left:0; }
-    .aeo-art-node--two { top:28px; right:0; }
-    .aeo-art-node--three { right:0; bottom:22px; }
-    .aeo-art-bubble { padding:7px 9px; font-size:9px; }
-    .aeo-art-bubble--left { left:0; bottom:46px; }
-    .aeo-art-bubble--right { right:0; top:89px; }
-    .aeo-art-bubble span { width:18px; height:18px; }
     .aeo-art-orbit { width:270px; height:270px; }
     .aeo-art-orbit--two { width:215px; height:215px; }
     .aeo-scroll-cue { bottom:12px; }
@@ -624,8 +582,6 @@ const AEO_STYLES = `
     .aeo-button { width:100%; }
     .aeo-hero-art { min-height:300px; }
     .aeo-art-window { width:90%; }
-    .aeo-art-node--one { left:-4px; }
-    .aeo-art-node--two { right:-4px; }
     .aeo-platform-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
     .aeo-platform-pill { min-height:66px; gap:6px; padding:9px; }
     .aeo-platform-icon { width:29px; height:29px; }

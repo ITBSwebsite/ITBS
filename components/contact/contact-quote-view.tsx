@@ -72,7 +72,7 @@ export function ContactQuoteView() {
   const [submitted, setSubmitted] = useState(false);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [openServiceGroups, setOpenServiceGroups] = useState<string[]>([]);
-  const [contactDetailsOpen, setContactDetailsOpen] = useState(false);
+  const [contactDetailsOpen, setContactDetailsOpen] = useState(true);
   const [projectDetailsOpen, setProjectDetailsOpen] = useState(false);
 
   function toggleServiceGroup(groupId: string) {

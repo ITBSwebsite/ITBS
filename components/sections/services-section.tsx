@@ -23,7 +23,7 @@ const SERVICES: ServiceItem[] = [
     id: 'solutions',
     number: '01',
     tag: 'Operations & AI',
-    title: 'Solutions',
+    title: 'CRM Solutions',
     desc: 'Streamline your operations and scale client conversions with bespoke lead management and automated business intelligence.',
     href: '/services/crm-lead-management',
     image: '/images/graphics/marketing-solutions.png',

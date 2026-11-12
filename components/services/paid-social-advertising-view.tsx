@@ -6,13 +6,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   BarChart3,
-  BriefcaseBusiness,
   Camera,
   Check,
   ChevronDown,
   MessageSquareText,
   MousePointer2,
-  Music2,
   Target,
   UsersRound,
 } from 'lucide-react';
@@ -22,7 +20,6 @@ const channels = [
     number: '01',
     name: 'Meta',
     label: 'Facebook & Instagram',
-    icon: Camera,
     description:
       'Build campaigns for Facebook and Instagram around the audience, message and next step that matter to your business.',
     points: ['Audience-led campaigns', 'Creative for social placements', 'Enquiry or website goals'],
@@ -31,7 +28,6 @@ const channels = [
     number: '02',
     name: 'LinkedIn',
     label: 'Professional audiences',
-    icon: BriefcaseBusiness,
     description:
       'Put a clear offer in front of relevant professional audiences, with campaign messaging shaped around your B2B goals.',
     points: ['B2B campaign planning', 'Relevant professional audiences', 'Clear enquiry pathways'],
@@ -40,12 +36,11 @@ const channels = [
     number: '03',
     name: 'TikTok',
     label: 'Video-led discovery',
-    icon: Music2,
     description:
       'Use concise, platform-native creative to introduce your offer and give interested viewers a clear next step.',
     points: ['Video-first campaign ideas', 'Creative testing', 'A direct path to enquire'],
   },
-];
+] as const;
 
 const process = [
   {
@@ -127,6 +122,35 @@ const faqs = [
   },
 ];
 
+type PlatformName = 'Meta' | 'LinkedIn' | 'TikTok';
+
+function PlatformMark({ platform, className = '' }: { platform: PlatformName; className?: string }) {
+  if (platform === 'Meta') {
+    return (
+      <svg className={'psa-platform-mark ' + className} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <path d="M3.7 20.9c1.8-5.8 5.3-11.8 8.5-11.8 4.2 0 8 13.8 12.2 13.8 2.2 0 4.1-3 4.1-6.2 0-3.9-2.3-6.8-5.2-6.8-4.6 0-8.5 14.2-13.7 14.2-3.1 0-5.5-2.7-5.5-6.1 0-3.7 2.2-6.5 5.1-6.5 1.2 0 2.3.5 3.4 1.5" fill="none" stroke="#0668E1" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" />
+      </svg>
+    );
+  }
+
+  if (platform === 'LinkedIn') {
+    return (
+      <svg className={'psa-platform-mark ' + className} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect x="2" y="2" width="28" height="28" rx="5" fill="#0A66C2" />
+        <path d="M8 13h4v11H8zm2-5.2a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4M14.5 13h3.8v1.5h.1c.5-.9 1.7-1.9 3.5-1.9 3.8 0 4.5 2.5 4.5 5.7V24h-4v-5.1c0-1.2 0-2.8-1.8-2.8s-2.1 1.3-2.1 2.7V24h-4z" fill="#fff" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className={'psa-platform-mark ' + className} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path d="M12.5 3.3c1.3 0 2.6 0 3.9-.1.2 2.3 1.1 4.1 2.6 5.4 1.2 1 2.7 1.6 4.4 1.8v4.2c-2.1-.1-4-.8-5.7-2v8.2c0 3.8-3 6.8-6.8 6.8a6.8 6.8 0 0 1-6.8-6.8c0-3.8 3-6.8 6.8-6.8.5 0 1 .1 1.5.2v4.4a2.6 2.6 0 1 0 1.1 2.2V3.3z" fill="#111" />
+      <path d="M11.7 14.2v4.4a2.6 2.6 0 0 0-1.5-.5 2.6 2.6 0 1 0 2.6 2.6V9.5c1 .8 2.2 1.4 3.6 1.8v-4c-1.4-.5-2.5-1.5-3.1-2.8h-3.5v9.9a6.7 6.7 0 0 0-1.5-.2c-3.8 0-6.8 3-6.8 6.8 0 1 .2 1.9.6 2.7l3.1-2.1a2.6 2.6 0 0 1 2.5-3.2c.5 0 1 .1 1.4.4v-4.6c.8-.3 1.7-.4 2.6-.2z" fill="#25F4EE" opacity=".9" transform="translate(-1.3 1)" />
+      <path d="M14.7 4c.7 1.7 2 3.1 3.8 3.9.8.4 1.7.6 2.7.7v3.2c-2.3-.2-4.3-1.1-5.9-2.6v10.3a5.5 5.5 0 1 1-5.5-5.5v3.4a2.1 2.1 0 1 0 2.1 2.1V4z" fill="#FE2C55" opacity=".82" transform="translate(1.1 -.5)" />
+    </svg>
+  );
+}
+
 function SectionHeading({
   id,
   eyebrow,
@@ -194,7 +218,6 @@ export function PaidSocialAdvertisingView() {
 
           <div className="psa-hero-grid">
             <div className="psa-hero-copy" data-psa-reveal>
-              <span className="psa-eyebrow"><i aria-hidden="true" />PAID SOCIAL ADVERTISING</span>
               <h1 id="psa-title">Reach the right people with <em>purposeful</em> social campaigns.</h1>
               <p className="psa-hero-description">
                 Plan paid social around your audience, your offer and the action you want people to take. ITBS helps UK businesses bring campaign strategy, creative and measurement together across Meta, LinkedIn and TikTok.
@@ -203,11 +226,6 @@ export function PaidSocialAdvertisingView() {
                 <a className="psa-button psa-button--primary" href="mailto:info@infotechbusinesssolutions.com?subject=Paid%20Social%20Advertising%20Enquiry">
                   Discuss your campaign <ArrowRight size={17} aria-hidden="true" />
                 </a>
-                <a className="psa-text-link" href="#psa-approach">Explore our approach <ArrowUpRight size={17} aria-hidden="true" /></a>
-              </div>
-              <div className="psa-hero-note">
-                <span className="psa-note-mark"><Check size={14} aria-hidden="true" /></span>
-                <span>Focused on your audience, message and next step</span>
               </div>
             </div>
 
@@ -231,18 +249,17 @@ export function PaidSocialAdvertisingView() {
                   <span className="psa-flow-connector" aria-hidden="true"><i /></span>
                   <div className="psa-flow-node psa-flow-node--goal"><span className="psa-flow-icon"><MessageSquareText size={17} aria-hidden="true" /></span><b>Enquiry</b><small>A useful next step</small></div>
                 </div>
-                <div className="psa-campaign-foot"><span>PLATFORM MIX</span><div><i>f</i><i>in</i><i>♪</i></div><span>Meta · LinkedIn · TikTok</span></div>
+                <div className="psa-campaign-foot"><span>PLATFORM MIX</span><div aria-label="Meta, LinkedIn and TikTok"><PlatformMark platform="Meta" /><PlatformMark platform="LinkedIn" /><PlatformMark platform="TikTok" /></div><span>Meta · LinkedIn · TikTok</span></div>
               </div>
-              <span className="psa-visual-caption"><span />Strategy first. Clear next steps.</span>
             </div>
           </div>
 
           <div className="psa-hero-bottom" data-psa-reveal>
             <span>CORE PLATFORMS</span>
             <div className="psa-platform-rail">
-              <span><i className="psa-platform-glyph psa-platform-glyph--meta"><Camera size={16} aria-hidden="true" /></i>Meta <small>Facebook &amp; Instagram</small></span>
-              <span><i className="psa-platform-glyph psa-platform-glyph--linkedin"><BriefcaseBusiness size={16} aria-hidden="true" /></i>LinkedIn <small>Professional audiences</small></span>
-              <span><i className="psa-platform-glyph psa-platform-glyph--tiktok"><Music2 size={16} aria-hidden="true" /></i>TikTok <small>Video-led discovery</small></span>
+              <span><i className="psa-platform-glyph psa-platform-glyph--meta"><PlatformMark platform="Meta" /></i>Meta <small>Facebook &amp; Instagram</small></span>
+              <span><i className="psa-platform-glyph psa-platform-glyph--linkedin"><PlatformMark platform="LinkedIn" /></i>LinkedIn <small>Professional audiences</small></span>
+              <span><i className="psa-platform-glyph psa-platform-glyph--tiktok"><PlatformMark platform="TikTok" /></i>TikTok <small>Video-led discovery</small></span>
             </div>
           </div>
         </div>
@@ -258,10 +275,9 @@ export function PaidSocialAdvertisingView() {
           />
           <div className="psa-channel-grid">
             {channels.map((channel) => {
-              const Icon = channel.icon;
               return (
                 <article className="psa-channel-card" key={channel.number} data-psa-reveal>
-                  <div className="psa-card-topline"><span>{channel.number}<i> / 03</i></span><span className="psa-channel-icon"><Icon size={22} aria-hidden="true" /></span></div>
+                  <div className="psa-card-topline"><span>{channel.number}<i> / 03</i></span><span className="psa-channel-icon"><PlatformMark platform={channel.name} /></span></div>
                   <span className="psa-channel-label">{channel.label}</span>
                   <h3>{channel.name}</h3>
                   <p>{channel.description}</p>

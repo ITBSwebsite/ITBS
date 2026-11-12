@@ -473,7 +473,7 @@ export function GraphicDesignView() {
           width: 250px;
           height: 44px;
           border-radius: 9999px;
-          background: #fff37e !important;
+          background: #FFF9AE !important;
           top: 14%;
           right: -45px;
           transform: rotate(-35deg);
@@ -489,7 +489,7 @@ export function GraphicDesignView() {
           width: 170px;
           height: 38px;
           border-radius: 9999px;
-          background: #fff37e !important;
+          background: #FFF9AE !important;
           top: 42%;
           right: -25px;
           transform: rotate(-35deg);
@@ -500,7 +500,7 @@ export function GraphicDesignView() {
         }
 
         .gd-feature-card:hover {
-          background: var(--brand-hover-yellow) !important;
+          background: #FFF9AE !important;
           border-color: #EAB308 !important;
           transform: none !important;
           box-shadow: 0 14px 34px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
@@ -590,7 +590,7 @@ export function GraphicDesignView() {
 
         .gd-cap-card:hover {
           border-color: #EAB308;
-          background: var(--brand-hover-yellow);
+          background: #FFF9AE;
           transform: none;
           box-shadow: 0 14px 32px rgba(17, 25, 102, 0.06);
         }
@@ -782,11 +782,6 @@ export function GraphicDesignView() {
         <div className="gd-container">
           <div className="gd-hero-grid">
             <div className="gd-hero-content">
-              <div className="gd-eyebrow">
-                <Sparkles size={13} style={{ color: '#EAB308' }} />
-                <span>GRAPHIC DESIGN AGENCY UK</span>
-              </div>
-
               <h1 className="gd-hero-title">
                 Powerful Graphic Designs That{' '}
                 <span className="gd-title-highlight">Get Your Brand Noticed</span>
@@ -812,9 +807,6 @@ export function GraphicDesignView() {
                   <span>Get Free Consultation</span>
                   <ArrowRight size={16} strokeWidth={2.2} />
                 </Link>
-                <a href="#services-detail" className="gd-btn-secondary">
-                  <span>Our Creative Services</span>
-                </a>
               </div>
             </div>
 

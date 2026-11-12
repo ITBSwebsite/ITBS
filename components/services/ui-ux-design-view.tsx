@@ -598,7 +598,7 @@ export function UIUXDesignView() {
           width: 250px;
           height: 44px;
           border-radius: 9999px;
-          background: #fff37e !important;
+          background: #FFF9AE !important;
           top: 14%;
           right: -45px;
           transform: rotate(-35deg);
@@ -614,7 +614,7 @@ export function UIUXDesignView() {
           width: 170px;
           height: 38px;
           border-radius: 9999px;
-          background: #fff37e !important;
+          background: #FFF9AE !important;
           top: 42%;
           right: -25px;
           transform: rotate(-35deg);
@@ -625,7 +625,7 @@ export function UIUXDesignView() {
         }
 
         .jux-feature-card:hover {
-          background: var(--brand-hover-yellow) !important;
+          background: #FFF9AE !important;
           border-color: #EAB308 !important;
           transform: none !important;
           box-shadow: 0 14px 34px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
@@ -717,7 +717,7 @@ export function UIUXDesignView() {
 
         .jux-process-module:hover {
           border-color: #EAB308;
-          background: #FFFFFF;
+          background: #FFF9AE;
           transform: none;
           box-shadow: 0 12px 28px rgba(17, 25, 102, 0.06);
         }
@@ -996,14 +996,8 @@ export function UIUXDesignView() {
                   <span>Get a Free Quote</span>
                   <ArrowRight size={16} strokeWidth={2.2} />
                 </Link>
-                <a href="#process-section" className="jux-btn-secondary">
-                  <span>Explore Process</span>
-                </a>
               </div>
 
-              <div className="jux-trust-strip">
-                Design support for UK startups, health platforms, fintech teams and growing businesses.
-              </div>
             </div>
 
             {/* Right: 3-Phone Layered Mockup Showcase */}
@@ -1011,12 +1005,6 @@ export function UIUXDesignView() {
               <div className="jux-stage-glow" aria-hidden="true" />
 
               <div className="jux-phones-wrapper">
-                {/* Floating Badge Top Left */}
-                <div className="jux-floating-pill jux-pill-top">
-                  <CheckCircle2 size={15} style={{ color: '#EAB308' }} />
-                  <span>Interactive Prototype</span>
-                </div>
-
                 {/* Left Phone: Habits App */}
                 <div className="jux-phone-card jux-phone-left">
                   <Image
@@ -1053,11 +1041,6 @@ export function UIUXDesignView() {
                   />
                 </div>
 
-                {/* Floating Badge Bottom Right */}
-                <div className="jux-floating-pill jux-pill-bottom">
-                  <Zap size={15} style={{ color: '#111966' }} />
-                  <span>Developer-Ready Figma</span>
-                </div>
               </div>
             </div>
           </div>

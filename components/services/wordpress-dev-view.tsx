@@ -4,20 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import {
   Layers,
-  ShieldCheck,
-  Zap,
-  TrendingUp,
   ArrowRight,
-  CheckCircle2,
   Code2,
-  RefreshCw,
-  ShoppingBag,
-  Cpu,
-  Lock,
-  Database,
   Building2,
   Briefcase,
   Store,
+  ShoppingBag,
 } from 'lucide-react';
 import { FAQAccordion, FAQItem } from './faq-accordion';
 import { ServiceCTA } from './service-cta';
@@ -26,32 +18,26 @@ const WP_SERVICES = [
   {
     title: 'Custom Gutenberg Theme Development',
     desc: 'Bespoke, lightweight WordPress themes crafted from scratch with native Gutenberg editor blocks. Complete editorial freedom without confusing, bloated visual page builders.',
-    bullets: ['Native Custom Block Architecture', 'Performance-Conscious Builds', 'Brand-Aligned Layouts'],
   },
   {
     title: 'Custom Plugin & API Engineering',
     desc: 'When standard plugins are bloated or insufficient, we write clean, secure custom WordPress plugins and connect your site with external CRM and ERP APIs.',
-    bullets: ['Tailored Business Logic Plugins', 'REST & GraphQL API Endpoints', 'Zero License Renewal Dependencies'],
   },
   {
     title: 'WooCommerce E-Commerce Stores',
     desc: 'High-performing, customized WooCommerce stores with bespoke product options, custom checkout funnels, automated tax rules, and multi-currency gateways.',
-    bullets: ['Optimized One-Page Checkout', 'Flexible Hosting and Extension Costs', 'Custom Product Configurator Logic'],
   },
   {
     title: 'Safe WordPress Migration Services',
     desc: 'A planned move from legacy hosts, older CMS platforms or staging servers, with agreed data transfer and 301 redirect mapping to reduce disruption.',
-    bullets: ['Planned Hosting Cutover', '301 SEO Redirect Mapping', 'Database & Media Transfer Plan'],
   },
   {
     title: 'Speed & Core Web Vitals Optimization',
     desc: 'We transform slow WordPress sites into high-speed performers. Redis object caching, asset minification, critical CSS inlining, and global Cloudflare CDN routing.',
-    bullets: ['95+ Google PageSpeed Scores', 'Redis In-Memory Object Caching', 'Optimized Database Queries'],
   },
   {
     title: 'Enterprise Security & Maintenance',
     desc: 'Proactive malware scanning, automated daily cloud backups, security headers, two-factor authentication, and managed plugin updates tested in staging.',
-    bullets: ['Web Application Firewall (WAF)', 'Automated Off-Site Backups', 'Zero-Crash Staging Update Testing'],
   },
 ];
 
@@ -107,6 +93,11 @@ export function WordPressDevView() {
   React.useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    const animatedElements = root.querySelectorAll('[data-wp-anim]');
+    if (typeof IntersectionObserver === 'undefined') {
+      animatedElements.forEach((el) => el.classList.add('wp-visible'));
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -142,129 +133,183 @@ export function WordPressDevView() {
         /* Hero */
         .wp-hero {
           position: relative;
-          background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 60%, #F5F5F5 100%);
-          padding: clamp(60px, 8vw, 110px) 0 clamp(50px, 6vw, 90px);
-          border-bottom: 1px solid #e3e5ef;
+          isolation: isolate;
           overflow: hidden;
+          padding: clamp(68px, 8vw, 112px) 0 clamp(64px, 7vw, 96px);
+          background:
+            radial-gradient(ellipse at 80% 18%, rgba(255,249,174,.42), transparent 34%),
+            linear-gradient(135deg, #F8F8FF 0%, #FFFFFF 55%, #F7F7F5 100%);
+          border-bottom: 1px solid #e3e5ef;
         }
-        .wp-hero-glow {
+        .wp-hero::before {
           position: absolute;
-          top: -120px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 900px;
-          height: 380px;
+          z-index: -1;
+          top: -260px;
+          right: -135px;
+          width: 620px;
+          height: 620px;
+          border: 1px solid rgba(17,25,102,.07);
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(246, 239, 228, 0.75) 0%, transparent 70%);
-          pointer-events: none;
+          content: "";
+        }
+        .wp-hero-glow { display: none; }
+        .wp-hero-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1.08fr) minmax(380px, .92fr);
+          align-items: center;
+          gap: clamp(38px, 6vw, 84px);
         }
         .wp-hero-inner {
           position: relative;
-          max-width: 880px;
-          margin: 0 auto;
-          text-align: center;
-        }
-        .wp-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 6px 18px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.14);
-          border-radius: 30px;
-          box-shadow: 0 2px 10px rgba(17, 25, 102, 0.04);
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 12.5px;
-          font-weight: 700;
-          letter-spacing: 0.18em;
-          color: #111966;
-          text-transform: uppercase;
-          margin-bottom: 22px;
+          max-width: 720px;
+          margin: 0;
+          text-align: left;
         }
         .wp-title {
+          max-width: 13ch;
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
-          font-size: clamp(34px, 4.5vw, 56px);
+          font-size: clamp(42px, 5.2vw, 72px);
           font-weight: 700;
           color: #111966;
-          line-height: 1.15;
-          margin: 0 0 20px;
+          line-height: 1.04;
+          letter-spacing: -.025em;
+          margin: 0 0 24px;
         }
         .wp-desc {
+          max-width: 660px;
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: clamp(17px, 1.25vw, 19.5px);
-          line-height: 1.75;
+          font-size: clamp(18px, 1.35vw, 20px);
+          line-height: 1.72;
           color: #202938;
           margin: 0 0 34px;
-        }
-        .wp-stat-strip {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 16px;
-          flex-wrap: wrap;
-          margin-bottom: 36px;
-        }
-        .wp-stat-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          padding: 6px 14px;
-          background: #FFFFFF;
-          border: 1px solid #E2E8F0;
-          border-radius: 20px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #111966;
         }
         .wp-btn-group {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 16px;
           flex-wrap: wrap;
         }
         .wp-btn-primary {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 15px 34px;
+          gap: 10px;
+          padding: 16px 30px;
           background: #111966;
           color: #FFFFFF;
-          border-radius: 8px;
+          border: 1px solid #111966;
+          border-radius: 9px;
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15.5px;
+          font-size: 17px;
           font-weight: 700;
           text-decoration: none;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 16px rgba(17, 25, 102, 0.2);
+          transition: background .25s ease, box-shadow .25s ease, transform .25s ease;
+          box-shadow: 0 10px 26px rgba(17,25,102,.16);
         }
         .wp-btn-primary:hover {
           background: #0c1250;
-          transform: none;
-          box-shadow: 0 8px 24px rgba(17, 25, 102, 0.28);
+          border-color: #0c1250;
+          transform: translateY(-2px);
+          box-shadow: 0 14px 32px rgba(17,25,102,.22);
         }
-        .wp-btn-secondary {
-          display: inline-flex;
+        .wp-hero-visual {
+          position: relative;
+          min-height: 420px;
+          padding: clamp(18px, 2vw, 28px);
+          border: 1px solid rgba(17,25,102,.12);
+          border-radius: 28px;
+          background: rgba(255,255,255,.88);
+          box-shadow: 0 28px 70px rgba(21,31,94,.12), 0 4px 14px rgba(21,31,94,.05);
+          transform: rotate(1deg);
+          transition: transform .35s ease, box-shadow .35s ease;
+        }
+        .wp-hero-visual:hover {
+          transform: rotate(0) translateY(-5px);
+          box-shadow: 0 34px 78px rgba(21,31,94,.16), 0 6px 18px rgba(21,31,94,.06);
+        }
+        .wp-window-top {
+          display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 14px 28px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.2);
+          gap: 7px;
+          padding: 0 0 18px;
+          border-bottom: 1px solid #e9eaf2;
+          color: #6b7280;
+          font: 600 13px/1.2 var(--font-body), "Cardo", Georgia, serif;
+        }
+        .wp-window-dot { width: 8px; height: 8px; border-radius: 50%; background: #d4d7e4; }
+        .wp-window-top-label { margin-left: 9px; color: #202938; letter-spacing: .04em; }
+        .wp-window-content {
+          display: grid;
+          grid-template-columns: 42px minmax(0,1fr);
+          gap: 16px;
+          padding-top: 20px;
+        }
+        .wp-window-sidebar {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          padding-top: 5px;
+        }
+        .wp-window-sidebar span { display: block; width: 27px; height: 8px; border-radius: 8px; background: #e8eaf2; }
+        .wp-window-sidebar span:first-child { background: #181f72; }
+        .wp-store-preview { min-width: 0; }
+        .wp-store-toolbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 15px;
           color: #111966;
-          border-radius: 8px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
+          font: 700 12px/1.2 var(--font-body), "Cardo", Georgia, serif;
+          letter-spacing: .1em;
         }
-        .wp-btn-secondary:hover {
-          border-color: #EAB308;
-          background: #FFFDF5;
-          transform: none;
+        .wp-store-toolbar span:last-child { color: #768098; font-weight: 500; letter-spacing: 0; }
+        .wp-store-hero {
+          display: grid;
+          grid-template-columns: 1fr .75fr;
+          align-items: center;
+          min-height: 188px;
+          overflow: hidden;
+          padding: 22px;
+          border-radius: 18px;
+          background: linear-gradient(125deg, #171f70 0%, #232e89 100%);
+          color: white;
         }
-
+        .wp-store-copy small {
+          display: block;
+          margin-bottom: 10px;
+          color: #fff9ae;
+          font: 700 10px/1.2 var(--font-body), "Cardo", Georgia, serif;
+          letter-spacing: .16em;
+        }
+        .wp-store-copy strong {
+          display: block;
+          max-width: 14ch;
+          font: 700 clamp(20px, 2vw, 27px)/1.15 "The Seasons", Georgia, serif;
+        }
+        .wp-store-copy > span { display: block; width: 82px; height: 8px; margin-top: 18px; border-radius: 8px; background: #fff9ae; }
+        .wp-store-art {
+          display: grid;
+          place-items: center;
+          width: clamp(82px, 9vw, 120px);
+          aspect-ratio: 1;
+          justify-self: center;
+          border: 1px solid rgba(255,255,255,.25);
+          border-radius: 28px;
+          background: rgba(255,255,255,.11);
+          color: #fff9ae;
+        }
+        .wp-store-products { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 14px; }
+        .wp-store-product {
+          min-width: 0;
+          padding: 10px;
+          border: 1px solid #e8eaf2;
+          border-radius: 13px;
+          background: #fff;
+        }
+        .wp-store-product-art { display: grid; place-items: center; height: 58px; margin-bottom: 8px; border-radius: 9px; background: linear-gradient(140deg,#f8f8ff,#fff9ae); color: #171f70; }
+        .wp-store-product-line { width: 70%; height: 6px; margin: 0 auto 5px; border-radius: 6px; background: #dfe3ee; }
+        .wp-store-product-line:last-child { width: 42%; background: #e9d86c; }
         /* Services Grid */
         .wp-section {
           padding: clamp(70px, 8vw, 110px) 0;
@@ -322,10 +367,10 @@ export function WordPressDevView() {
           transition: all 0.35s ease;
         }
         .wp-card:hover {
-          transform: none !important;
-          background: var(--brand-hover-yellow) !important;
-          border-color: #EAB308 !important;
-          box-shadow: 0 14px 34px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
+          transform: translateY(-4px);
+          background: #FFF9AE !important;
+          border-color: #E8D976 !important;
+          box-shadow: 0 16px 34px rgba(17,25,102,.10) !important;
         }
         .wp-card-title {
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
@@ -343,30 +388,6 @@ export function WordPressDevView() {
           margin: 0 0 20px;
           flex: 1;
         }
-        .wp-card-bullets {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 9px;
-          border-top: 1px solid #EEF2F6;
-          padding-top: 18px;
-        }
-        .wp-bullet {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #111966;
-        }
-        .wp-bullet svg {
-          color: #EAB308;
-          flex-shrink: 0;
-        }
-
         /* Site Types Section */
         .wp-types-sec {
           background: linear-gradient(180deg, #F5F5F5 0%, #FFFFFF 100%);
@@ -385,6 +406,13 @@ export function WordPressDevView() {
           border-radius: 16px;
           padding: 28px 22px;
           text-align: center;
+          transition: background .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+        }
+        .wp-type-box:hover {
+          background: #FFF9AE;
+          border-color: #E8D976;
+          transform: translateY(-4px);
+          box-shadow: 0 14px 30px rgba(17,25,102,.09);
         }
         .wp-type-icon {
           width: 52px;
@@ -412,21 +440,37 @@ export function WordPressDevView() {
           margin: 0;
         }
 
+        .wp-dev-root .svc-faq-card:hover {
+          background: #FFF9AE !important;
+          border-color: #E8D976 !important;
+          box-shadow: 0 12px 28px rgba(17,25,102,.08) !important;
+        }
+
         @media (max-width: 1024px) {
-          .wp-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-          .wp-types-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+          .wp-hero-layout { grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr); gap: 34px; }
+          .wp-hero-visual { min-height: 390px; }
+          .wp-grid { grid-template-columns: repeat(2, 1fr); }
+          .wp-types-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 760px) {
+          .wp-hero { padding: 58px 0 64px; }
+          .wp-hero-layout { grid-template-columns: 1fr; gap: 38px; }
+          .wp-hero-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+          .wp-title { max-width: 16ch; margin-left: auto; margin-right: auto; font-size: clamp(38px, 8vw, 56px); }
+          .wp-desc { margin-left: auto; margin-right: auto; font-size: 18px; }
+          .wp-btn-group { justify-content: center; }
+          .wp-hero-visual { width: min(100%, 560px); min-height: 0; margin: 0 auto; transform: none; }
         }
         @media (max-width: 640px) {
-          .wp-grid {
-            grid-template-columns: 1fr;
-          }
-          .wp-types-grid {
-            grid-template-columns: 1fr;
-          }
+          .wp-grid, .wp-types-grid { grid-template-columns: 1fr; gap: 18px; }
+          .wp-card { padding: 27px 23px; }
+          .wp-sec-head { margin-bottom: 30px; }
+          .wp-sec-title { font-size: clamp(29px, 8vw, 38px); }
+          .wp-store-hero { min-height: 160px; padding: 18px; }
+          .wp-store-products { gap: 8px; }
+          .wp-store-product { padding: 7px; }
+          .wp-store-product-art { height: 46px; }
+          .wp-window-content { grid-template-columns: 28px minmax(0,1fr); gap: 10px; }
         }
 
         /* -- SCROLL ANIMATIONS -- */
@@ -463,51 +507,65 @@ export function WordPressDevView() {
         .wp-type-box[data-wp-anim]:nth-child(2).wp-visible { animation-delay: 0.15s; }
         .wp-type-box[data-wp-anim]:nth-child(3).wp-visible { animation-delay: 0.25s; }
         .wp-type-box[data-wp-anim]:nth-child(4).wp-visible { animation-delay: 0.35s; }
+        @media (prefers-reduced-motion: reduce) {
+          .wp-dev-root *,
+          .wp-dev-root *::before,
+          .wp-dev-root *::after {
+            scroll-behavior: auto !important;
+            animation-duration: .01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: .01ms !important;
+          }
+          .wp-dev-root [data-wp-anim] { opacity: 1; transform: none; }
+        }
       `}</style>
 
       {/* Hero */}
       <section className="wp-hero">
         <div className="wp-hero-glow" aria-hidden="true" />
-        <div className="wp-container">
+        <div className="wp-container wp-hero-layout">
           <div className="wp-hero-inner">
-            <div className="wp-eyebrow">
-              <Layers size={14} style={{ color: '#EAB308' }} />
-              <span>CUSTOM WORDPRESS &amp; WOOCOMMERCE EXPERTS</span>
-            </div>
-
-            <h1 className="wp-title">
-              WordPress Website Development Company UK
-            </h1>
-
+            <h1 className="wp-title">WordPress Website Development Company UK</h1>
             <p className="wp-desc">
               We engineer custom, security-hardened WordPress websites and WooCommerce platforms.
-                Clean native Gutenberg blocks, bespoke theme development, fewer heavy page-builder dependencies,
-              and 95+ PageSpeed scores.
+              Clean native Gutenberg blocks, bespoke theme development, fewer heavy page-builder
+              dependencies, and performance-conscious builds.
             </p>
-
-            <div className="wp-stat-strip">
-              <span className="wp-stat-pill">
-                <CheckCircle2 size={13} style={{ color: '#EAB308' }} />
-                <span>Zero Builder Bloat</span>
-              </span>
-              <span className="wp-stat-pill">
-                <Zap size={13} style={{ color: '#EAB308' }} />
-                <span>Performance-Focused Delivery</span>
-              </span>
-              <span className="wp-stat-pill">
-                <ShieldCheck size={13} style={{ color: '#EAB308' }} />
-                <span>Enterprise Hardened Security</span>
-              </span>
-            </div>
-
             <div className="wp-btn-group">
               <Link href="/contact" className="wp-btn-primary">
                 <span>Book WordPress Audit</span>
-                <ArrowRight size={16} strokeWidth={2.2} />
+                <ArrowRight size={18} strokeWidth={2.2} />
               </Link>
-              <a href="#services-section" className="wp-btn-secondary">
-                <span>View WP Services</span>
-              </a>
+            </div>
+          </div>
+
+          <div className="wp-hero-visual" aria-hidden="true">
+            <div className="wp-window-top">
+              <span className="wp-window-dot" /><span className="wp-window-dot" /><span className="wp-window-dot" />
+              <span className="wp-window-top-label">WordPress storefront</span>
+            </div>
+            <div className="wp-window-content">
+              <div className="wp-window-sidebar"><span /><span /><span /><span /><span /></div>
+              <div className="wp-store-preview">
+                <div className="wp-store-toolbar"><span>YOUR STORE</span><span>Designed around your brand</span></div>
+                <div className="wp-store-hero">
+                  <div className="wp-store-copy">
+                    <small>MADE FOR EVERY DAY</small>
+                    <strong>A better home for your products.</strong>
+                    <span />
+                  </div>
+                  <div className="wp-store-art"><ShoppingBag size={54} strokeWidth={1.25} /></div>
+                </div>
+                <div className="wp-store-products">
+                  {[0, 1, 2].map((item) => (
+                    <div className="wp-store-product" key={item}>
+                      <div className="wp-store-product-art"><ShoppingBag size={22} strokeWidth={1.5} /></div>
+                      <div className="wp-store-product-line" />
+                      <div className="wp-store-product-line" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -533,14 +591,7 @@ export function WordPressDevView() {
               <div key={idx} className="wp-card" data-wp-anim>
                 <h3 className="wp-card-title">{item.title}</h3>
                 <p className="wp-card-desc">{item.desc}</p>
-                <ul className="wp-card-bullets">
-                  {item.bullets.map((b, i) => (
-                    <li key={i} className="wp-bullet">
-                      <CheckCircle2 size={14} strokeWidth={2.4} />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
+
               </div>
             ))}
           </div>

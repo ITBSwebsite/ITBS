@@ -3169,6 +3169,10 @@ body > div.flex-1 .seo-platform-card h3 {
 
 .psa-platform-glyph--tiktok { color: #111; }
 
+.psa-platform-mark { display: block; width: 20px; height: 20px; flex: 0 0 auto; }
+.psa-channel-icon .psa-platform-mark { width: 24px; height: 24px; }
+.psa-campaign-foot .psa-platform-mark { width: 16px; height: 16px; }
+
 .psa-channels { background: #fff; }
 
 .psa-section-heading { max-width: 760px; margin: 0 auto clamp(36px, 5vw, 58px); text-align: center; }

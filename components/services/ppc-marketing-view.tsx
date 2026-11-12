@@ -41,37 +41,31 @@ const STATS = [
 const PLATFORMS = [
   {
     name: 'Google Ads',
-    tag: 'High-Intent Search & Shopping',
     desc: 'Built for active intent searches. We capture ready-to-buy prospects at the exact moment of search with surgical keyword bidding and high-quality score ad copy.',
     accent: '#111966',
   },
   {
     name: 'Bing / Microsoft Ads',
-    tag: 'Cost-Effective B2B Search',
     desc: 'Take advantage of lower CPCs and less competition. Bing gives direct access to high-earning corporate professionals and desktop enterprise buyers.',
     accent: '#EAB308',
   },
   {
     name: 'Meta Ads (FB & Instagram)',
-    tag: 'Visual & Audience Retargeting',
     desc: 'High-converting social creatives and dynamic product catalogs engineered to drive impulse buys, nurture retargeting audiences, and scale D2C brands.',
     accent: '#111966',
   },
   {
     name: 'Amazon Ads',
-    tag: 'E-Commerce Marketplace Scale',
     desc: 'Sponsored Products, Brands, and Display ads that place your SKU catalog directly in front of shoppers with immediate buying intent on Amazon.',
     accent: '#EAB308',
   },
   {
     name: 'LinkedIn Ads',
-    tag: 'B2B Enterprise Lead Generation',
     desc: 'Pinpoint decision-makers, C-suite executives, and procurement leaders by job title, company size, and industry with high-ticket B2B campaigns.',
     accent: '#111966',
   },
   {
     name: 'TikTok Ads',
-    tag: 'Viral Video & Gen Z Commerce',
     desc: 'High-energy, short-form video ads that hook fast-growing mobile audiences and drive explosive top-of-funnel customer acquisition.',
     accent: '#EAB308',
   },
@@ -664,7 +658,7 @@ export function PPCMarketingView() {
         }
 
         .ppc-bcard:hover {
-          background: var(--brand-hover-yellow);
+          background: #FFF9AE;
           border-color: #EAB308;
           transform: none;
           box-shadow: 0 16px 36px rgba(17, 25, 102, 0.08);
@@ -806,7 +800,7 @@ export function PPCMarketingView() {
 
         .ppc-method-card:hover {
           border-color: #EAB308;
-          background: var(--brand-hover-yellow);
+          background: #FFF9AE;
           transform: none;
           box-shadow: 0 12px 28px rgba(17, 25, 102, 0.06);
         }
@@ -1020,7 +1014,7 @@ export function PPCMarketingView() {
 
         .ppc-plat-card:hover,
         .ppc-format-card:hover {
-          background: var(--brand-hover-yellow) !important; /* Exact Card background requested */
+          background: #FFF9AE !important; /* Exact Card background requested */
           border-color: #d9cf00 !important;
           transform: none !important; /* NO SHAKING OR MOVING TEXT */
           box-shadow: 0 14px 34px rgba(252, 240, 0, 0.18), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
@@ -1185,11 +1179,6 @@ export function PPCMarketingView() {
           <div className="ppc-hero-grid">
             {/* Left Content */}
             <div className="ppc-hero-content">
-              <div className="ppc-eyebrow">
-                <Sparkles size={13} style={{ color: '#EAB308' }} />
-                <span>PAY-PER-CLICK MANAGEMENT AGENCY UK</span>
-              </div>
-
               <h1 className="ppc-hero-title">
                 Your Premium PPC Services In{' '}
                 <span className="ppc-title-highlight">The UK</span>
@@ -1225,9 +1214,6 @@ export function PPCMarketingView() {
                   <span>Contact Us</span>
                   <ArrowRight size={16} strokeWidth={2.2} />
                 </Link>
-                <a href="#benefits" className="ppc-btn-secondary">
-                  <span>Explore PPC Benefits</span>
-                </a>
               </div>
             </div>
 
@@ -1236,12 +1222,6 @@ export function PPCMarketingView() {
               <div className="ppc-laptop-glow" aria-hidden="true" />
 
               <div className="ppc-laptop-wrapper">
-                {/* Floating Telemetry Badge Top */}
-                <div className="ppc-floating-badge ppc-badge-top">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Measure and refine</span>
-                </div>
-
                 <Image
                   src="/images/ppc/premium-ppc-laptop.webp"
                   alt="ITBS Premium PPC Services in the UK Laptop Illustration"
@@ -1251,11 +1231,6 @@ export function PPCMarketingView() {
                   priority
                 />
 
-                {/* Floating Telemetry Badge Bottom */}
-                <div className="ppc-floating-badge ppc-badge-bottom">
-                  <Award size={15} style={{ color: '#EAB308' }} />
-                  <span>Clear performance reporting</span>
-                </div>
               </div>
             </div>
           </div>
@@ -1297,7 +1272,6 @@ export function PPCMarketingView() {
           <div className="ppc-plat-grid">
             {PLATFORMS.map((plat, idx) => (
               <div key={idx} className="ppc-plat-card" data-ppc-anim>
-                <span className="ppc-plat-tag">{plat.tag}</span>
                 <h3 className="ppc-plat-title">{plat.name}</h3>
                 <p className="ppc-plat-desc">{plat.desc}</p>
               </div>

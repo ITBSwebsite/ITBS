@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Code2,
   Server,
   Database,
   Cpu,
@@ -14,7 +13,6 @@ import {
   CheckCircle2,
   Terminal,
   Layers,
-  Lock,
 } from 'lucide-react';
 import { FAQAccordion, FAQItem } from './faq-accordion';
 import { ServiceCTA } from './service-cta';
@@ -137,67 +135,37 @@ export function CustomWebView() {
         }
         .cw-hero-inner {
           position: relative;
-          max-width: 880px;
-          margin: 0 auto;
-          text-align: center;
-        }
-        .cw-eyebrow {
-          display: inline-flex;
+          display: grid;
+          grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
           align-items: center;
-          gap: 8px;
-          padding: 6px 18px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.14);
-          border-radius: 30px;
-          box-shadow: 0 2px 10px rgba(17, 25, 102, 0.04);
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 12.5px;
-          font-weight: 700;
-          letter-spacing: 0.18em;
-          color: #111966;
-          text-transform: uppercase;
-          margin-bottom: 22px;
+          gap: clamp(36px, 5vw, 76px);
+          max-width: 1280px;
+          margin: 0 auto;
+        }
+        .cw-hero-copy {
+          max-width: 680px;
         }
         .cw-title {
           font-family: "The Seasons", Georgia, "Times New Roman", serif !important;
-          font-size: clamp(34px, 4.5vw, 56px);
+          font-size: clamp(40px, 4.8vw, 64px);
           font-weight: 700;
           color: #111966;
-          line-height: 1.15;
-          margin: 0 0 20px;
+          line-height: 1.1;
+          margin: 0 0 22px;
+          text-wrap: balance;
         }
         .cw-desc {
+          max-width: 640px;
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: clamp(17px, 1.25vw, 19.5px);
-          line-height: 1.75;
+          font-size: clamp(18px, 1.35vw, 20px);
+          line-height: 1.7;
           color: #202938;
-          margin: 0 0 34px;
-        }
-        .cw-stat-strip {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 16px;
-          flex-wrap: wrap;
-          margin-bottom: 36px;
-        }
-        .cw-stat-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          padding: 6px 14px;
-          background: #FFFFFF;
-          border: 1px solid #E2E8F0;
-          border-radius: 20px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 13.5px;
-          font-weight: 700;
-          color: #111966;
+          margin: 0 0 32px;
         }
         .cw-btn-group {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 16px;
           flex-wrap: wrap;
         }
@@ -205,57 +173,45 @@ export function CustomWebView() {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 15px 34px;
+          padding: 16px 30px;
           background: #111966;
           color: #FFFFFF;
-          border-radius: 8px;
+          border-radius: 9px;
           font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15.5px;
+          font-size: 16px;
           font-weight: 700;
           text-decoration: none;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 16px rgba(17, 25, 102, 0.2);
+          transition: background-color 0.25s ease, box-shadow 0.25s ease;
+          box-shadow: 0 8px 22px rgba(17, 25, 102, 0.16);
         }
         .cw-btn-primary:hover {
           background: #0c1250;
-          transform: none;
-          box-shadow: 0 8px 24px rgba(17, 25, 102, 0.28);
-        }
-        .cw-btn-secondary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 14px 28px;
-          background: #FFFFFF;
-          border: 1px solid rgba(17, 25, 102, 0.2);
-          color: #111966;
-          border-radius: 8px;
-          font-family: var(--font-body), "Cardo", Georgia, serif !important;
-          font-size: 15px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
-        }
-        .cw-btn-secondary:hover {
-          border-color: #EAB308;
-          background: #FFFDF5;
-          transform: none;
+          box-shadow: 0 11px 26px rgba(17, 25, 102, 0.22);
         }
         .cw-hero-graphic-wrap {
+          position: relative;
           display: flex;
+          align-items: center;
           justify-content: center;
-          margin-top: clamp(32px, 4vw, 48px);
+          min-height: 440px;
+          padding: clamp(20px, 3vw, 40px);
+          overflow: hidden;
+          border: 1px solid rgba(17, 25, 102, 0.08);
+          border-radius: 30px;
+          background: radial-gradient(ellipse at 50% 48%, rgba(255, 249, 174, 0.42) 0%, rgba(246, 239, 228, 0.5) 42%, rgba(255, 255, 255, 0.3) 76%);
         }
         .cw-hero-graphic {
-          max-width: 290px;
+          position: relative;
+          z-index: 1;
+          max-width: 430px;
           width: 100%;
           height: auto;
           object-fit: contain;
-          filter: drop-shadow(0 12px 30px rgba(17, 25, 102, 0.12));
-          transition: transform 0.4s ease;
+          filter: drop-shadow(0 18px 28px rgba(17, 25, 102, 0.14));
+          transition: transform 0.35s ease;
         }
         .cw-hero-graphic:hover {
-          transform: scale(1.03);
+          transform: translateY(-5px);
         }
 
         /* Tech Section */
@@ -316,8 +272,8 @@ export function CustomWebView() {
         }
         .cw-card:hover {
           transform: none !important;
-          background: var(--brand-hover-yellow) !important;
-          border-color: #EAB308 !important;
+          background: #FFF9AE !important;
+          border-color: #E9D96C !important;
           box-shadow: 0 14px 34px rgba(234, 179, 8, 0.22), 0 4px 12px rgba(17, 25, 102, 0.06) !important;
         }
         .cw-card-title {
@@ -378,6 +334,12 @@ export function CustomWebView() {
           border-radius: 16px;
           padding: 28px 22px;
           text-align: center;
+          transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cw-val-box:hover {
+          background: #FFF9AE;
+          border-color: #E9D96C;
+          box-shadow: 0 12px 28px rgba(17, 25, 102, 0.08);
         }
         .cw-val-icon {
           width: 52px;
@@ -413,9 +375,60 @@ export function CustomWebView() {
             grid-template-columns: repeat(2, 1fr);
           }
         }
+        @media (max-width: 900px) {
+          .cw-hero-inner {
+            grid-template-columns: 1fr;
+            gap: 34px;
+          }
+          .cw-hero-copy {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+          }
+          .cw-desc {
+            margin-right: auto;
+            margin-left: auto;
+          }
+          .cw-btn-group {
+            justify-content: center;
+          }
+          .cw-hero-graphic-wrap {
+            min-height: clamp(300px, 58vw, 420px);
+          }
+          .cw-hero-graphic {
+            max-width: 360px;
+          }
+        }
         @media (max-width: 640px) {
+          .cw-hero {
+            padding: 56px 0 48px;
+          }
+          .cw-title {
+            font-size: clamp(36px, 10vw, 48px);
+          }
+          .cw-hero-graphic-wrap {
+            min-height: 270px;
+            padding: 18px;
+            border-radius: 22px;
+          }
+          .cw-hero-graphic {
+            max-width: 270px;
+          }
           .cw-val-grid {
             grid-template-columns: 1fr;
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          [data-cw-anim] {
+            opacity: 1;
+            will-change: auto;
+          }
+          .cw-card[data-cw-anim].cw-visible,
+          .cw-val-box[data-cw-anim].cw-visible {
+            animation: none !important;
+          }
+          .cw-hero-graphic {
+            transition: none;
           }
         }
 
@@ -457,52 +470,29 @@ export function CustomWebView() {
         <div className="cw-hero-glow" aria-hidden="true" />
         <div className="cw-container">
           <div className="cw-hero-inner">
-            <div className="cw-eyebrow">
-              <Code2 size={14} style={{ color: '#EAB308' }} />
-              <span>CUSTOM SOFTWARE &amp; WEB DEVELOPMENT</span>
-            </div>
+            <div className="cw-hero-copy">
+              <h1 className="cw-title">Custom Web Development Services UK</h1>
 
-            <h1 className="cw-title">
-              Custom Web Development Services UK
-            </h1>
+              <p className="cw-desc">
+                Empowering ambitious brands with bespoke, scalable web applications. We combine
+                clean component architecture, enterprise-level security, and high-performance server
+                infrastructure to build digital platforms that outpace the competition.
+              </p>
 
-            <p className="cw-desc">
-              Empowering ambitious brands with bespoke, scalable web applications. We combine
-              clean component architecture, enterprise-level security, and high-performance server
-              infrastructure to build digital platforms that outpace the competition.
-            </p>
-
-            <div className="cw-stat-strip">
-              <span className="cw-stat-pill">
-                <CheckCircle2 size={13} style={{ color: '#EAB308' }} />
-                <span>100% Bespoke Architecture</span>
-              </span>
-              <span className="cw-stat-pill">
-                <Lock size={13} style={{ color: '#EAB308' }} />
-                <span>Enterprise Security &amp; GDPR</span>
-              </span>
-              <span className="cw-stat-pill">
-                <Zap size={13} style={{ color: '#EAB308' }} />
-                <span>Performance-Focused Architecture</span>
-              </span>
-            </div>
-
-            <div className="cw-btn-group">
-              <Link href="/contact" className="cw-btn-primary">
-                <span>Book Technical Consultation</span>
-                <ArrowRight size={16} strokeWidth={2.2} />
-              </Link>
-              <a href="#frontend-section" className="cw-btn-secondary">
-                <span>View Tech Stack</span>
-              </a>
+              <div className="cw-btn-group">
+                <Link href="/contact" className="cw-btn-primary">
+                  <span>Book Technical Consultation</span>
+                  <ArrowRight size={16} strokeWidth={2.2} />
+                </Link>
+              </div>
             </div>
 
             <div className="cw-hero-graphic-wrap">
               <Image
                 src="/images/graphics/web-development.png"
-                alt="Custom Web Development Engineering Illustration"
-                width={330}
-                height={380}
+                alt="Custom web development illustration"
+                width={500}
+                height={500}
                 className="cw-hero-graphic"
                 priority
               />
